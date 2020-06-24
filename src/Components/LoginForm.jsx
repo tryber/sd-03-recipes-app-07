@@ -2,16 +2,18 @@ import React from 'react';
 
 const LoginForm = () => (
   <div>
-    <label>
+    <label htmlFor="email">
       Email:
       <input
+        id="email"
         type="email"
         placeholder="Digite seu Email"
       />
     </label>
-    <label>
+    <label htmlFor="password">
       Senha:
       <input
+        id="password"
         type="password"
         placeholder="Digite sua Senha"
       />
