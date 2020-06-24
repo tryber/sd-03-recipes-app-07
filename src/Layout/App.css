@@ -1,0 +1,11 @@
+#meals {
+  height: 100vh;
+  width: 100%;
+  background: #0fa36b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  color: #464646;
+}
