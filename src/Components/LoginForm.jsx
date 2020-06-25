@@ -45,10 +45,11 @@ const LoginForm = () => {
   const [disabled, setDisabled] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isRedirect, setIsRedirect] = useState(false);
 
   useEffect(() => {
     const disableButton = () => {
-      const regex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$/.test(email);
+      const regex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(email);
       if (regex && password.length > 6) {
         return setDisabled(false);
       }
@@ -58,11 +59,13 @@ const LoginForm = () => {
   }, [email, password]);
 
   const setToken = () => {
-    setLocalStorage('mealsToken', '1');
-    setLocalStorage('cocktailsToken', '1');
+    setLocalStorage('mealsToken', 1);
+    setLocalStorage('cocktailsToken', 1);
     setLocalStorage('user', { email });
-    return <Redirect to="/comidas" />;
+    setIsRedirect(true);
   };
+
+  if (isRedirect) return <Redirect to="/comidas" />;
 
   return (
     <div>
