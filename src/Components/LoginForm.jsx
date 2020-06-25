@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { setLocalStorage } from '../Services';
 
 const RenderEmail = (callback, value) => (
   <label htmlFor="email">
@@ -28,11 +30,12 @@ const RenderPassword = (callback, value) => (
   </label>
 );
 
-const RenderLoginButton = (disabled) => (
+const RenderLoginButton = (disabled, callback) => (
   <button
     data-testid="login-submit-btn"
-    type="button"
     disabled={disabled}
+    type="button"
+    onClick={() => callback()}
   >
     Entrar
   </button>
@@ -54,13 +57,20 @@ const LoginForm = () => {
     disableButton();
   }, [email, password]);
 
+  const setToken = () => {
+    setLocalStorage('mealsToken', '1');
+    setLocalStorage('cocktailsToken', '1');
+    setLocalStorage('user', { email });
+    return <Redirect to="/comidas" />;
+  };
+
   return (
     <div>
       {RenderEmail(setEmail, email)}
       <br />
       {RenderPassword(setPassword, password)}
       <br />
-      {RenderLoginButton(disabled)}
+      {RenderLoginButton(disabled, setToken)}
     </div>
   );
 };
