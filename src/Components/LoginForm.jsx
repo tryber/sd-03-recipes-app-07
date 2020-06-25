@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { setLocalStorage } from '../Services';
+import allRequest from '../Services/requestsAPI';
 
 const RenderEmail = (callback, value) => (
   <label htmlFor="email">
@@ -67,6 +68,7 @@ const LoginForm = () => {
 
   if (isRedirect) return <Redirect to="/comidas" />;
 
+  allRequest();
   return (
     <div>
       {RenderEmail(setEmail, email)}
