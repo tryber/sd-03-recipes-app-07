@@ -46,12 +46,11 @@ const LoginForm = () => {
   useEffect(() => {
     const disableButton = () => {
       const regex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$/.test(email);
-      if (regex && password.length >= 6) {
+      if (regex && password.length > 6) {
         return setDisabled(false);
       }
       return setDisabled(true);
     };
-
     disableButton();
   }, [email, password]);
 
