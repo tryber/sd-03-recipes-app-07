@@ -1,13 +1,11 @@
 import React from 'react';
+import RecipesRender from '../Components';
 
-const MainScreen = () => {
-  
- return (
-    <div>
+const MainScreen = () => (
+  <div>
     <h1>Tela principal de receita</h1>
-    <div id="Container"/>
+    <RecipesRender />
   </div>
- )
-};
+);
 
 export default MainScreen;

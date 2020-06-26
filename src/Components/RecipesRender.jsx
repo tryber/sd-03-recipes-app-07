@@ -1,11 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useState } from 'react';
+import recipeContext from '../Hooks/recipeContext';
 
 const RecipeRender = () => {
-
-  const [] = useState();
-
-
+  const { recipes } = useContext(recipeContext);
+  const [foods, setFoods] = useState();
 
   return (
     <div>ok</div>
