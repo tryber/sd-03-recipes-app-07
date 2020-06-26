@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../Layout/RecipeCard.css';
 
 const RecipeCard = ({ index, imgSrc, title }) => (
   <div
@@ -7,6 +8,7 @@ const RecipeCard = ({ index, imgSrc, title }) => (
   >
     <img
       alt="Card recipe name"
+      className="cardImage"
       data-testid={`${index}-card-img`}
       src={imgSrc}
     />

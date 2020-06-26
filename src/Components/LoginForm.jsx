@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { setLocalStorage } from '../Services';
-import allRequest from '../Services/requestsAPI';
+import { recipeContext } from '../Hooks/recipeContext';
 
 const RenderEmail = (callback, value) => (
   <label htmlFor="email">
@@ -46,7 +46,7 @@ const LoginForm = () => {
   const [disabled, setDisabled] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isRedirect, setIsRedirect] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
     const disableButton = () => {
@@ -59,23 +59,22 @@ const LoginForm = () => {
     disableButton();
   }, [email, password]);
 
-  const setToken = () => {
+  const setLogin = () => {
     setLocalStorage('mealsToken', 1);
     setLocalStorage('cocktailsToken', 1);
     setLocalStorage('user', { email });
-    setIsRedirect(true);
+    setIsLogged(true);
   };
 
-  if (isRedirect) return <Redirect to="/comidas" />;
+  if (isLogged) return <Redirect to="/comidas" />;
 
-  allRequest();
   return (
     <div>
       {RenderEmail(setEmail, email)}
       <br />
       {RenderPassword(setPassword, password)}
       <br />
-      {RenderLoginButton(disabled, setToken)}
+      {RenderLoginButton(disabled, setLogin)}
     </div>
   );
 };

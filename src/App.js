@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { recipeProvider as Provider } from './Hooks/recipeContext';
+import { useRecipeProvider as Provider } from './Hooks/recipeContext';
 import { Login, MainScreen } from './Pages';
 
 const App = () => (
