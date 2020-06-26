@@ -8,6 +8,7 @@ const useRecipeProvider = ({ children }) => {
   const [requesting, setRequesting] = useState(true);
   const [foods, setFoods] = useState([]);
   const [beverages, setBeverages] = useState([]);
+  const [isFood, setIsFood] = useState(true);
 
   useEffect(() => {
     foodsRequests().then((data) => {
@@ -19,9 +20,13 @@ const useRecipeProvider = ({ children }) => {
     });
   }, []);
 
+  const newMeal = () => { setIsFood(!isFood); };
+
   const context = {
-    foods,
     beverages,
+    isFood,
+    foods,
+    newMeal,
     requesting,
   };
 

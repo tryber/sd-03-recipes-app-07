@@ -3,9 +3,11 @@ import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
 
 const RecipesRender = () => {
-  const { beverages, foods, requesting } = useContext(recipeContext);
+  const {
+    beverages, foods, requesting, isFood,
+  } = useContext(recipeContext);
 
-  if (!requesting && foods) {
+  if (!requesting && isFood) {
     const { data: { meals } } = foods[3];
     return (
       <div>
@@ -20,7 +22,7 @@ const RecipesRender = () => {
       </div>
     );
   }
-  if (!requesting && beverages) {
+  if (!requesting && isFood) {
     const { data: { drinks } } = beverages[3];
     return (
       <div>
