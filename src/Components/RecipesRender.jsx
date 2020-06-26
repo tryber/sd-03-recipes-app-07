@@ -24,6 +24,7 @@ const renderDrinks = (drinks) => (
   ))
 );
 
+// Transformar em componente
 const renderCategories = (categories) => (
   categories.slice('', 5).map(
     (category) => (
