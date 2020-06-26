@@ -1,5 +1,5 @@
 import React from 'react';
-import RecipesRender from '../Components';
+import RecipesRender from '../Components/RecipesRender';
 
 const MainScreen = () => (
   <div>

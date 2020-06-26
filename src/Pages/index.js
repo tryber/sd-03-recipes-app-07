@@ -1,2 +1,2 @@
-export { Login } from './Login';
-export { MainScreen } from './MainScreen';
+export { default as Login } from './Login';
+export { default as MainScreen } from './MainScreen';

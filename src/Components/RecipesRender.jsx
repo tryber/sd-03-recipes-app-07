@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import recipeContext from '../Hooks/recipeContext';
+import { recipeContext } from '../Hooks/recipeContext';
 
-const RecipeRender = () => {
+const RecipesRender = () => {
   const { recipes } = useContext(recipeContext);
   const [foods, setFoods] = useState();
 
@@ -10,4 +10,4 @@ const RecipeRender = () => {
   );
 };
 
-export default RecipeRender;
+export default RecipesRender;

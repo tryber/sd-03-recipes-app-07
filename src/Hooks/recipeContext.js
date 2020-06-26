@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 const recipeContext = createContext();
 
+// const fazRequisição = ( funcDeRequisição ) => {
+// const [receitas, setReceitas] = useState([]);
+// useEffect(() => {}, [funcDeRequisição]);
+// };
+
 const recipeProvider = ({ children }) => {
+  // const receitas = fazRequisiçãoDasReceitas();
   const context = {};
 
   return (
