@@ -2,6 +2,42 @@ import React, { useContext } from 'react';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
 
+const renderMeals = (meals) => (
+  meals.slice('', 12).map((meal, i) => (
+    <RecipeCard
+      key={meal.strMeal}
+      index={i}
+      imgSrc={meal.strMealThumb}
+      title={meal.strMeal}
+    />
+  ))
+);
+
+const renderDrinks = (drinks) => (
+  drinks.slice('', 12).map((drink, i) => (
+    <RecipeCard
+      key={drink.strDrink}
+      index={i}
+      imgSrc={drink.strDrinkThumb}
+      title={drink.strDrink}
+    />
+  ))
+);
+
+const renderCategories = (categories) => (
+  categories.slice('', 5).map(
+    (category) => (
+      <button
+        data-testid={`${category.strCategory}-category-filter`}
+        key={`${category.strCategory}`}
+        type="button"
+      >
+        {category.strCategory}
+      </button>
+    ),
+  )
+);
+
 const RecipesRender = () => {
   const {
     beverages, foods, requesting, isFood,
@@ -9,31 +45,21 @@ const RecipesRender = () => {
 
   if (!requesting && isFood) {
     const { data: { meals } } = foods[3];
+    const { data: { meals: categories } } = foods[0];
     return (
       <div>
-        {meals.map((meal, i) => (
-          <RecipeCard
-            key={meal.strMeal}
-            index={i}
-            imgSrc={meal.strMealThumb}
-            title={meal.strMeal}
-          />
-        ))}
+        {renderCategories(categories)}
+        {renderMeals(meals)}
       </div>
     );
   }
-  if (!requesting && isFood) {
+  if (!requesting && !isFood) {
     const { data: { drinks } } = beverages[3];
+    const { data: { drinks: categories } } = beverages[0];
     return (
       <div>
-        {drinks.map((Drink, i) => (
-          <RecipeCard
-            key={Drink.strDrink}
-            index={i}
-            imgSrc={Drink.strDrinkThumb}
-            title={Drink.strDrink}
-          />
-        ))}
+        {renderCategories(categories)}
+        {renderDrinks(drinks)}
       </div>
     );
   }
