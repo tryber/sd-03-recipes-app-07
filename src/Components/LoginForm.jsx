@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { setLocalStorage } from '../Services';
-import { recipeContext } from '../Hooks/recipeContext';
+// import { recipeContext } from '../Hooks/recipeContext';
 
 const RenderEmail = (callback, value) => (
   <label htmlFor="email">
