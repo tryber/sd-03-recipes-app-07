@@ -4,22 +4,30 @@ import { foodsRequests } from '../Services/requestsAPI';
 
 const useRequestsFoods = () => {
   const [foods, setFoods] = useState([]);
-  const [requesting, setRequesting] = useState(true);
+  const [areasFood, setAreasFood] = useState([]);
+  const [apiFood, setApiFoood] = useState(true);
+  const [ingredientsFood, setIngredientsFood] = useState([]);
+  const [categoryFood, setCategoryFood] = useState([]);
   // const [isFood, setIsFood] = useState(true);
 
   useEffect(() => {
     foodsRequests().then(
       axios.spread((...index) => {
-        const { data: { meals } } = index[0]; setFoods(meals);
-        const { data } = index[1]; setFoods(data);
-        setRequesting(false);
+        const { data: { meals } } = index[0]; setFoods(meals.slice('', 12));
+        const { data } = index[1]; setCategoryFood(data.meals.slice('', 5));
+        const resultIngredients = index[2].data.meals; setIngredientsFood(resultIngredients);
+        setAreasFood(index[3]);
+        setApiFoood(false);
       }),
     );
   }, []);
 
   return {
     foods,
-    requesting,
+    apiFood,
+    categoryFood,
+    ingredientsFood,
+    areasFood,
   };
 };
 

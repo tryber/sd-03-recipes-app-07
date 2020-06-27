@@ -1,71 +1,64 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
 
-const renderMeals = (meals) => (
-  meals.slice('', 12).map((meal, i) => (
+const renderMealsOrDrinks = (item) => (
+  item.map((elem, i) => (
     <RecipeCard
-      key={meal.strMeal}
       index={i}
-      imgSrc={meal.strMealThumb}
-      title={meal.strMeal}
+      title={elem.strMeal || elem.strDrink}
+      key={elem.strMeal || elem.strDrinkThumb}
+      imgSrc={elem.strMealThumb || elem.strDrinkThumb}
     />
   ))
 );
 
-const renderDrinks = (drinks) => (
-  drinks.slice('', 12).map((drink, i) => (
-    <RecipeCard
-      key={drink.strDrink}
-      index={i}
-      imgSrc={drink.strDrinkThumb}
-      title={drink.strDrink}
-    />
-  ))
-);
-
-// Transformar em componente
-const renderCategories = (categories) => (
-  categories.slice('', 5).map(
+const renderCategories = (categories, item) => (
+  categories.map(
     (category) => (
-      <button
-        data-testid={`${category.strCategory}-category-filter`}
-        key={`${category.strCategory}`}
-        type="button"
-      >
-        {category.strCategory}
-      </button>
+      <Link to={`/${item}/${category.strCategory}`}>
+        <button
+          data-testid={`${category.strCategory}-category-filter`}
+          key={`${category.strCategory}`}
+          type="button"
+        >
+          {category.strCategory}
+        </button>
+      </Link>
     ),
   )
 );
 
 const RecipesRender = () => {
   const {
-    beverages, foods, requesting, isFood,
+    foods, categoryFood, beverages, categoryDrink,
   } = useContext(recipeContext);
 
-  if (!requesting && isFood) {
-    const { data: { meals } } = foods[3];
-    const { data: { meals: categories } } = foods[0];
+  if (beverages) {
     return (
       <div>
-        {renderCategories(categories)}
-        {renderMeals(meals)}
+        {renderCategories(categoryDrink, 'bebidas')}
+        {renderMealsOrDrinks(beverages)}
       </div>
     );
   }
-  if (!requesting && !isFood) {
-    const { data: { drinks } } = beverages[3];
-    const { data: { drinks: categories } } = beverages[0];
+  if (foods) {
     return (
       <div>
-        {renderCategories(categories)}
-        {renderDrinks(drinks)}
+        {renderCategories(categoryFood, 'comidas')}
+        {renderMealsOrDrinks(foods)}
       </div>
     );
   }
   return (
-    <p>Loading</p>
+    // <>
+    //   {
+    //   foods ? renderCategories(categoryFood, 'comidas') && renderMealsOrDrinks(foods)
+    //     : <p>Loading...</p>
+    //   }
+    // </>
+    <p>carregando</p>
   );
 };
 

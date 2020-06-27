@@ -2,18 +2,19 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useRecipeProvider as Provider } from './Hooks/recipeContext';
 import { Login, MainScreen } from './Pages';
+import CategoryFilter from './Components/CategoryFilter';
 
 const App = () => (
   <Provider>
     <Router>
       <Switch>
         <Route exact path="/" component={Login} />
-        {/* <Route exact path="/comidas" component={MainScreen} /> */}
-        {/* <Route exact path="/bebidas" component={MainScreen} /> */}
-        <Route exact path="/comidas/id:" component={Login} />
-        <Route exact path="/bebidas/id:" component={Login} />
-        <Route exact path="/comidas/id:/in-progess" component={Login} />
-        <Route exact path="/bebidas/id:/in-progess" component={Login} />
+        <Route exact path="/comidas" component={MainScreen} />
+        <Route exact path="/bebidas" component={MainScreen} />
+        <Route exact path="/:id/:id" component={CategoryFilter} />
+        <Route exact path="/bebidas/:id" component={Login} />
+        <Route exact path="/comidas/:id/in-progess" component={Login} />
+        <Route exact path="/bebidas/:id/in-progess" component={Login} />
         <Route exact path="/explorar" component={Login} />
         <Route exact path="/explorar/comidas" component={Login} />
         <Route exact path="/explorar/bebidas" component={Login} />

@@ -7,23 +7,17 @@ const recipeContext = createContext();
 
 const useRecipeProvider = ({ children }) => {
   const {
-    foods,
-    requesting,
+    apiFood, foods, categoryFood, ingredientsFood, areasFood,
   } = useRequestFoods();
 
   const {
-    beverages,
+    apiDrinks, beverages, categoryDrink, ingredientsDrink,
   } = useRequestDrinks();
-  // const newMeal = () => { setIsFood(!isFood); };
 
   const context = {
-    foods,
-    beverages,
-    requesting,
-    // newMeal,
+    apiFood, foods, categoryFood, ingredientsFood, areasFood, apiDrinks, beverages, categoryDrink,
+    ingredientsDrink,
   };
-
-  console.log('aqui', context);
 
   return (
     <recipeContext.Provider value={context}>
@@ -37,3 +31,5 @@ useRecipeProvider.propTypes = {
 };
 
 export { useRecipeProvider, recipeContext };
+
+// const newMeal = () => { setIsFood(!isFood); };
