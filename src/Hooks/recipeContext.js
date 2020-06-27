@@ -1,5 +1,5 @@
-import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
+import React, { createContext } from 'react';
 import useRequestFoods from './useRequestsFoods';
 import useRequestDrinks from './useRequestDrinks';
 
@@ -7,7 +7,7 @@ const recipeContext = createContext();
 
 const useRecipeProvider = ({ children }) => {
   const {
-    apiFood, foods, categoryFood, ingredientsFood, areasFood,
+    apiFood, foods, categoryFood, ingredientsFood, areasFood, allFoods,
   } = useRequestFoods();
 
   const {
@@ -15,7 +15,7 @@ const useRecipeProvider = ({ children }) => {
   } = useRequestDrinks();
 
   const context = {
-    apiFood, foods, categoryFood, ingredientsFood, areasFood, apiDrinks, beverages, categoryDrink,
+    apiFood, foods, categoryFood, ingredientsFood, areasFood, apiDrinks, beverages, categoryDrink, allFoods,
     ingredientsDrink,
   };
 

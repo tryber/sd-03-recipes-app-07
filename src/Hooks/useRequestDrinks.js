@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { drinksRequests } from '../Services/requestsAPI';
 
 const useRequestDrinks = () => {
   const [beverages, setBeverages] = useState([]);
   const [apiDrinks, setapiDrinks] = useState(true);
-  const [ingredientsDrink, setingredientsDrink] = useState([]);
   const [categoryDrink, setCategoryDrink] = useState([]);
+  const [ingredientsDrink, setingredientsDrink] = useState([]);
+
   useEffect(() => {
     drinksRequests().then(
       axios.spread((...index) => {
@@ -19,10 +20,10 @@ const useRequestDrinks = () => {
   }, []);
 
   return {
-    beverages,
-    apiDrinks,
-    categoryDrink,
     ingredientsDrink,
+    categoryDrink,
+    apiDrinks,
+    beverages,
   };
 };
 

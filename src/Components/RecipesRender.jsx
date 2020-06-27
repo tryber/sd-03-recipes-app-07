@@ -35,19 +35,21 @@ const RecipesRender = () => {
     foods, categoryFood, beverages, categoryDrink,
   } = useContext(recipeContext);
 
-  if (beverages) {
-    return (
-      <div>
-        {renderCategories(categoryDrink, 'bebidas')}
-        {renderMealsOrDrinks(beverages)}
-      </div>
-    );
-  }
+  // console.log('em categorias', categoryFood);
+
   if (foods) {
     return (
       <div>
         {renderCategories(categoryFood, 'comidas')}
         {renderMealsOrDrinks(foods)}
+      </div>
+    );
+  }
+  if (beverages) {
+    return (
+      <div>
+        {renderCategories(categoryDrink, 'bebidas')}
+        {renderMealsOrDrinks(beverages)}
       </div>
     );
   }
