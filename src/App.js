@@ -10,10 +10,10 @@ const App = () => (
         <Route exact path="/" component={Login} />
         <Route exact path="/comidas" component={MainScreen} />
         <Route exact path="/bebidas" component={MainScreen} />
-        <Route exact path="/comidas/id:" component={Login} />
-        <Route exact path="/bebidas/id:" component={Login} />
-        <Route exact path="/comidas/id:/in-progess" component={Login} />
-        <Route exact path="/bebidas/id:/in-progess" component={Login} />
+        <Route exact path="/comidas/:id" component={MainScreen} />
+        <Route exact path="/bebidas/:id" component={Login} />
+        <Route exact path="/comidas/:id/in-progess" component={Login} />
+        <Route exact path="/bebidas/:id/in-progess" component={Login} />
         <Route exact path="/explorar" component={Login} />
         <Route exact path="/explorar/comidas" component={Login} />
         <Route exact path="/explorar/bebidas" component={Login} />
