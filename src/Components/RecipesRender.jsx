@@ -6,8 +6,8 @@ import { recipeContext } from '../Hooks/recipeContext';
 const renderMealsOrDrinks = (item) => (
   item.map((elem, i) => (
     <Link
-      key={meal.strMeal}
-      to={`/comidas/${meal.idMeal}`}
+      key={elem.strMeal}
+      to={`/comidas/${elem.idMeal}`}
     >
       <RecipeCard
         index={i}
