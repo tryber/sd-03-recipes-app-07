@@ -7,10 +7,7 @@ const renderMeals = (meals) => (
   meals.slice('', 12).map((meal, i) => (
     <Link
       key={meal.strMeal}
-      to={{
-        pathname: `/comidas/${meal.idMeal}`,
-        state: { ...meal },
-      }}
+      to={`/comidas/${meal.idMeal}`}
     >
       <RecipeCard
         index={i}
