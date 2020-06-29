@@ -9,7 +9,7 @@ const useRecipeProvider = ({ children }) => {
   const [foods, setFoods] = useState([]);
   const [beverages, setBeverages] = useState([]);
   const [isFood, setIsFood] = useState(true);
-  const [titlePage, setTitlePage] = useState("título");
+  const [titlePage, setTitlePage] = useState('título');
 
   useEffect(() => {
     foodsRequests().then((data) => {
