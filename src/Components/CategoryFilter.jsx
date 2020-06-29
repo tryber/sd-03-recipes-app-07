@@ -7,10 +7,8 @@ const CategoryFilter = () => {
   const { ingredientsFood, ingredientsDrink, allFoods, foods,
   } = useContext(recipeContext);
 
-  console.log('categories', allFoods);
-  console.log('categorieasdasdasdasd', foods);
   return (
-    <div>
+    <div className="categoryCard">
       {filterIngredients(foods, 'Beef')
         .map((e) => (
           <div>

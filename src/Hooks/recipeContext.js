@@ -15,8 +15,8 @@ const useRecipeProvider = ({ children }) => {
   } = useRequestDrinks();
 
   const context = {
-    apiFood, foods, categoryFood, ingredientsFood, areasFood, apiDrinks, beverages, categoryDrink, allFoods,
-    ingredientsDrink,
+    apiFood, foods, categoryFood, ingredientsFood, areasFood, apiDrinks, beverages, categoryDrink,
+    allFoods, ingredientsDrink,
   };
 
   return (

@@ -35,8 +35,6 @@ const RecipesRender = () => {
     foods, categoryFood, beverages, categoryDrink,
   } = useContext(recipeContext);
 
-  // console.log('em categorias', categoryFood);
-
   if (foods) {
     return (
       <div>
