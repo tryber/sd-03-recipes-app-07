@@ -14,7 +14,7 @@ const useRequestsFoods = () => {
   useEffect(() => {
     foodsRequests().then(
       axios.spread((...index) => {
-        const { data: { meals } } = index[0]; setFoods(meals.slice('', 12));
+        const { data: { meals } } = index[0]; setFoods(meals);
         const { data } = index[1]; setCategoryFood(data.meals.slice('', 5));
         const resultIngredients = index[2].data.meals; setIngredientsFood(resultIngredients);
         setAreasFood(index[3]);
