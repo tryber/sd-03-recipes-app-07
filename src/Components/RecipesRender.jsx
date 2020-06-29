@@ -1,15 +1,23 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
 
 const renderMeals = (meals) => (
   meals.slice('', 12).map((meal, i) => (
-    <RecipeCard
+    <Link
       key={meal.strMeal}
-      index={i}
-      imgSrc={meal.strMealThumb}
-      title={meal.strMeal}
-    />
+      to={{
+        pathname: `/comidas/${meal.idMeal}`,
+        state: { ...meal },
+      }}
+    >
+      <RecipeCard
+        index={i}
+        imgSrc={meal.strMealThumb}
+        title={meal.strMeal}
+      />
+    </Link>
   ))
 );
 
