@@ -1,37 +1,29 @@
 import React, { useContext } from 'react';
+// import { Link } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
 
-const renderMeals = (meals) => (
-  meals.slice('', 12).map((meal, i) => (
+const renderMealsOrDrinks = (item) => (
+  item.map((elem, i) => (
     <RecipeCard
-      key={meal.strMeal}
       index={i}
-      imgSrc={meal.strMealThumb}
-      title={meal.strMeal}
+      title={elem.strMeal || elem.strDrink}
+      key={elem.strMeal || elem.strDrinkThumb}
+      imgSrc={elem.strMealThumb || elem.strDrinkThumb}
     />
   ))
 );
 
-const renderDrinks = (drinks) => (
-  drinks.slice('', 12).map((drink, i) => (
-    <RecipeCard
-      key={drink.strDrink}
-      index={i}
-      imgSrc={drink.strDrinkThumb}
-      title={drink.strDrink}
-    />
-  ))
-);
+// const selectCategory = (array, typeFood) => array.filter((el) => el.strCategory === typeFood);
 
-// Transformar em componente
 const renderCategories = (categories) => (
-  categories.slice('', 5).map(
+  categories.map(
     (category) => (
       <button
         data-testid={`${category.strCategory}-category-filter`}
         key={`${category.strCategory}`}
         type="button"
+        // onClick={() => selectCategory(categories, typeFood)}
       >
         {category.strCategory}
       </button>
@@ -39,33 +31,48 @@ const renderCategories = (categories) => (
   )
 );
 
+// const redirectToDetails = (typeFood) => {
+//   typeFood.map((type, item) => (
+//     <Link to={`/${item}/${type.strCategory}`}>
+//       <div>
+//         <h1>{type}</h1>
+//         <p>{type}</p>
+//       </div>
+//     </Link>
+//   ));
+// };
+
 const RecipesRender = () => {
   const {
-    beverages, foods, requesting, isFood,
+    foods, categoryFood, beverages, categoryDrink,
   } = useContext(recipeContext);
 
-  if (!requesting && isFood) {
-    const { data: { meals } } = foods[3];
-    const { data: { meals: categories } } = foods[0];
+  console.log(categoryFood);
+
+  if (foods) {
     return (
       <div>
-        {renderCategories(categories)}
-        {renderMeals(meals)}
+        {renderCategories(categoryFood, 'Beef')}
+        {renderMealsOrDrinks(foods)}
       </div>
     );
   }
-  if (!requesting && !isFood) {
-    const { data: { drinks } } = beverages[3];
-    const { data: { drinks: categories } } = beverages[0];
+  if (beverages) {
     return (
       <div>
-        {renderCategories(categories)}
-        {renderDrinks(drinks)}
+        {renderCategories(categoryDrink, 'bebidas')}
+        {renderMealsOrDrinks(beverages)}
       </div>
     );
   }
   return (
-    <p>Loading</p>
+    // <>
+    //   {
+    //   foods ? renderCategories(categoryFood, 'comidas') && renderMealsOrDrinks(foods)
+    //     : <p>Loading...</p>
+    //   }
+    // </>
+    <p>carregando</p>
   );
 };
 

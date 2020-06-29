@@ -3,7 +3,7 @@ import RecipesRender from '../Components/RecipesRender';
 
 const MainScreen = () => (
   <div>
-    <h1>Tela principal de receita</h1>
+    <h1 className="title">Tela principal de receita</h1>
     <RecipesRender />
   </div>
 );
