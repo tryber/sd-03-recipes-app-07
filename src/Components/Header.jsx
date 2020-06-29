@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { recipeContext } from '../Hooks/recipeContext';
-
 import profile from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
-
 
 const SearchButton = () => {
   return (
