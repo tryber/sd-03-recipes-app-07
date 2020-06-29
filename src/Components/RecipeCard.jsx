@@ -5,18 +5,19 @@ import '../Layout/RecipeCard.css';
 const RecipeCard = ({ index, imgSrc, title }) => (
   <div
     data-testid={`${index}-recipe-card`}
+    className="card"
   >
+    <h3
+      data-testid={`${index}-card-name`}
+    >
+      {title}
+    </h3>
     <img
       alt="Card recipe name"
       className="cardImage"
       data-testid={`${index}-card-img`}
       src={imgSrc}
     />
-    <h3
-      data-testid={`${index}-card-name`}
-    >
-      {title}
-    </h3>
   </div>
 );
 

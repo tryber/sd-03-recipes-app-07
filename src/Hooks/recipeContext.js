@@ -1,36 +1,31 @@
-import React, { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { foodsRequests, drinksRequests } from '../Services/requestsAPI';
+import React, { createContext } from 'react';
+import useRequestFoods from './useRequestsFoods';
+import useRequestDrinks from './useRequestDrinks';
 
 const recipeContext = createContext();
 
 const useRecipeProvider = ({ children }) => {
-  const [requesting, setRequesting] = useState(true);
-  const [foods, setFoods] = useState([]);
-  const [beverages, setBeverages] = useState([]);
-  const [isFood, setIsFood] = useState(true);
+  const {
+    apiFood, foods, categoryFood, ingredientsFood, areasFood, allFoods,
+  } = useRequestFoods();
 
-  useEffect(() => {
-    foodsRequests().then((data) => {
-      setFoods(data);
-      drinksRequests().then((datas) => {
-        setBeverages(datas);
-        setRequesting(false);
-      });
-    });
-  }, []);
-
-  const newMeal = () => { setIsFood(!isFood); };
+  const {
+    apiDrinks, beverages, categoryDrink, ingredientsDrink,
+  } = useRequestDrinks();
 
   const context = {
-    beverages,
-    isFood,
+    apiFood,
     foods,
-    newMeal,
-    requesting,
+    categoryFood,
+    ingredientsFood,
+    areasFood,
+    apiDrinks,
+    beverages,
+    categoryDrink,
+    allFoods,
+    ingredientsDrink,
   };
-
-  console.log('aqui', context);
 
   return (
     <recipeContext.Provider value={context}>
@@ -44,3 +39,5 @@ useRecipeProvider.propTypes = {
 };
 
 export { useRecipeProvider, recipeContext };
+
+// const newMeal = () => { setIsFood(!isFood); };

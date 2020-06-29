@@ -1,4 +1,18 @@
+.card {
+  display: flex;
+}
+
 .cardImage {
   width: 200px;
 }
 
+.title {
+  background: chocolate;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.categoryCard {
+  color: black;
+}
