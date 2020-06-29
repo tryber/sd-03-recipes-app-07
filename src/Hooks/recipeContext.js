@@ -1,10 +1,36 @@
-import React, { createContext } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { foodsRequests, drinksRequests } from '../Services/requestsAPI';
 
 const recipeContext = createContext();
 
-const recipeProvider = ({ children }) => {
-  const context = {};
+const useRecipeProvider = ({ children }) => {
+  const [requesting, setRequesting] = useState(true);
+  const [foods, setFoods] = useState([]);
+  const [beverages, setBeverages] = useState([]);
+  const [isFood, setIsFood] = useState(true);
+
+  useEffect(() => {
+    foodsRequests().then((data) => {
+      setFoods(data);
+      drinksRequests().then((datas) => {
+        setBeverages(datas);
+        setRequesting(false);
+      });
+    });
+  }, []);
+
+  const newMeal = () => { setIsFood(!isFood); };
+
+  const context = {
+    beverages,
+    isFood,
+    foods,
+    newMeal,
+    requesting,
+  };
+
+  console.log('aqui', context);
 
   return (
     <recipeContext.Provider value={context}>
@@ -13,8 +39,8 @@ const recipeProvider = ({ children }) => {
   );
 };
 
-recipeProvider.propTypes = {
+useRecipeProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export { recipeProvider, recipeContext };
+export { useRecipeProvider, recipeContext };
