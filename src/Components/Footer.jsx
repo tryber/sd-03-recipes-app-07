@@ -10,10 +10,10 @@ const DrinksToFooter = () => (
     to="/bebidas"
   >
     <img
-    className="Footer_icon"
-    data-testid="drinks-bottom-btn"
-    src={DrinkIcon}
-    alt="Drinks redirect"
+      className="Footer_icon"
+      data-testid="drinks-bottom-btn"
+      src={DrinkIcon}
+      alt="Drinks redirect"
     />
   </Link>
 );
@@ -23,10 +23,10 @@ const ExploreToFooter = () => (
     to="/explorar"
   >
     <img
-    className="Footer_icon"
-    data-testid="explore-bottom-btn"
-    src={ExploreIcon}
-    alt="Explore redirect"
+      className="Footer_icon"
+      data-testid="explore-bottom-btn"
+      src={ExploreIcon}
+      alt="Explore redirect"
     />
   </Link>
 );
@@ -36,10 +36,10 @@ const MealsToFooter = () => (
     to="/comidas"
   >
     <img
-    className="Footer_icon"
-    data-testid="food-bottom-btn"
-    src={MealIcon}
-    alt="Meals redirect"
+      className="Footer_icon"
+      data-testid="food-bottom-btn"
+      src={MealIcon}
+      alt="Meals redirect"
     />
   </Link>
 );
