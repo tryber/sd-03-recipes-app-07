@@ -66,7 +66,11 @@ const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
         alert('Sua busca deve conter somente 1 (um) caracter');
       } else {
         requestRadioButtons(btnSelected, searchValue, location)
-          .then((res) => setBtnFunc(res));
+          .then((res) => {
+            if (Object.values(res)[0] === null) {
+              alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+            } setBtnFunc(res);
+          });
       }
     }}
   >
