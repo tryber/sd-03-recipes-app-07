@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import DrinkIcon from '../images/drinkIcon.svg';
 import ExploreIcon from '../images/exploreIcon.svg';
 import MealIcon from '../images/mealIcon.svg';
+import '../Layout/Footer.css';
 
 const DrinksToFooter = () => (
   <Link
@@ -37,6 +38,7 @@ const MealsToFooter = () => (
     <div
       data-testid="food-bottom-btn"
       className="Footer_icon"
+      src="Footer_icon"
     >
       <img src={MealIcon} alt="Meals redirect" />
     </div>
@@ -47,7 +49,9 @@ const Footer = () => {
   const location = useLocation();
   console.log('location aqui', location);
   return (
-    <div className="Footer_all">
+    <div
+      data-testid="Footer"
+      className="Footer_all">
       {DrinksToFooter()}
       {ExploreToFooter()}
       {MealsToFooter()}
