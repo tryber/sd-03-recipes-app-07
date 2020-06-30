@@ -66,7 +66,7 @@ const searchButtonOnClick = (btnSelected, searchValue, location, setBtnFunc) => 
         alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
       } setBtnFunc(res);
     });
-}
+};
 
 const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
   <button
