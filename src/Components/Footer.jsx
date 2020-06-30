@@ -10,10 +10,10 @@ const DrinksToFooter = () => (
     to="/bebidas"
   >
     <div
-      data-testid="drinks-bottom-btn"
-      className="Footer_icon"
+      // data-testid="drinks-bottom-btn"
+      // className="Footer_icon"
     >
-      <img src={DrinkIcon} alt="Drinks redirect" />
+      <img className="Footer_icon" data-testid="drinks-bottom-btn" src={DrinkIcon} alt="Drinks redirect" />
     </div>
   </Link>
 );
@@ -23,10 +23,10 @@ const ExploreToFooter = () => (
     to="/explorar"
   >
     <div
-      data-testid="explore-bottom-btn"
-      className="Footer_icon"
+      // data-testid="explore-bottom-btn"
+      // className="Footer_icon"
     >
-      <img src={ExploreIcon} alt="Explore redirect" />
+      <img className="Footer_icon" data-testid="explore-bottom-btn" src={ExploreIcon} alt="Explore redirect" />
     </div>
   </Link>
 );
@@ -36,11 +36,11 @@ const MealsToFooter = () => (
     to="/comidas"
   >
     <div
-      data-testid="food-bottom-btn"
-      className="Footer_icon"
-      src="Footer_icon"
+      // data-testid="food-bottom-btn"
+      // className="Footer_icon"
+      // src="Footer_icon"
     >
-      <img src={MealIcon} alt="Meals redirect" />
+      <img className="Footer_icon" data-testid="food-bottom-btn" src={MealIcon} alt="Meals redirect" />
     </div>
   </Link>
 );
@@ -50,7 +50,7 @@ const Footer = () => {
   console.log('location aqui', location);
   return (
     <div
-      data-testid="Footer"
+      data-testid="footer"
       className="Footer_all"
     >
       {DrinksToFooter()}
