@@ -4,12 +4,11 @@ import { foodsRequests } from '../Services/requestsAPI';
 
 const useRequestsFoods = () => {
   const [foods, setFoods] = useState([]);
+  const [allFoods, setAllFood] = useState([]);
   const [apiFood, setApiFoood] = useState(true);
   const [areasFood, setAreasFood] = useState([]);
   const [categoryFood, setCategoryFood] = useState([]);
   const [ingredientsFood, setIngredientsFood] = useState([]);
-  const [isFood, setIsFood] = useState(true);
-  const [allFoods, setAllFood] = useState([]);
 
   useEffect(() => {
     foodsRequests().then(
@@ -30,7 +29,6 @@ const useRequestsFoods = () => {
     areasFood,
     allFoods,
     apiFood,
-    isFood,
     foods,
   };
 };
