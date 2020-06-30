@@ -70,7 +70,7 @@ const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
             if (Object.values(res)[0] === null) {
               alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
             } else {
-              setBtnFunc(res)
+              setBtnFunc(res);
             }
           });
       }

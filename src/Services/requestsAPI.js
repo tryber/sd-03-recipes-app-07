@@ -37,8 +37,8 @@ const requestRadioButtons = (radioSelected, inputValue, location) => {
   if (location === '/comidas') {
     typeRecipe = 'themealdb';
   } else if (location === '/bebidas') {
-    typeRecipe = 'thecocktaildb'
-  };
+    typeRecipe = 'thecocktaildb';
+  }
   switch (radioSelected) {
     case 'ingredients':
       return fetch(`https://www.${typeRecipe}.com/api/json/v1/1/filter.php?i=${inputValue}`)
@@ -49,7 +49,9 @@ const requestRadioButtons = (radioSelected, inputValue, location) => {
     case 'letterFirst':
       return fetch(`https://www.${typeRecipe}.com/api/json/v1/1/search.php?f=${inputValue}`)
         .then((res) => res.json());
-  };
+    default:
+      return '';
+  }
 };
 
 export { foodsRequests, drinksRequests, requestRadioButtons };
