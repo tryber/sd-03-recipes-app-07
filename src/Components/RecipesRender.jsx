@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-// import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
+
 
 const renderMealsOrDrinks = (item) => (
   item.map((elem, i) => (
@@ -14,8 +15,6 @@ const renderMealsOrDrinks = (item) => (
   ))
 );
 
-// const selectCategory = (array, typeFood) => array.filter((el) => el.strCategory === typeFood);
-
 const renderCategories = (categories) => (
   categories.map(
     (category) => (
@@ -23,7 +22,6 @@ const renderCategories = (categories) => (
         data-testid={`${category.strCategory}-category-filter`}
         key={`${category.strCategory}`}
         type="button"
-        // onClick={() => selectCategory(categories, typeFood)}
       >
         {category.strCategory}
       </button>
@@ -31,47 +29,41 @@ const renderCategories = (categories) => (
   )
 );
 
-// const redirectToDetails = (typeFood) => {
-//   typeFood.map((type, item) => (
-//     <Link to={`/${item}/${type.strCategory}`}>
-//       <div>
-//         <h1>{type}</h1>
-//         <p>{type}</p>
-//       </div>
-//     </Link>
-//   ));
-// };
+const returnApi = (radioBtnFiltered, foodsOrDrinks, location) => {
+  let valueApi = [];
+  if (radioBtnFiltered && location === '/comidas') {
+    valueApi = radioBtnFiltered.meals;
+  } else if (radioBtnFiltered && location === '/bebidas') {
+    valueApi = radioBtnFiltered.drinks;
+  } else {
+    valueApi = foodsOrDrinks;
+  }
+  return valueApi;
+};
 
 const RecipesRender = () => {
   const {
-    foods, categoryFood, beverages, categoryDrink,
+    foods, categoryFood, beverages, categoryDrink, radioBtnFiltered,
   } = useContext(recipeContext);
 
-  console.log(categoryFood);
+  const location = useLocation().pathname;
 
-  if (foods) {
+  if (location === '/comidas') {
     return (
       <div>
         {renderCategories(categoryFood, 'Beef')}
-        {renderMealsOrDrinks(foods)}
+        {renderMealsOrDrinks(returnApi(radioBtnFiltered, foods, location))}
       </div>
     );
-  }
-  if (beverages) {
+  } else if (location === '/bebidas') {
     return (
       <div>
         {renderCategories(categoryDrink, 'bebidas')}
-        {renderMealsOrDrinks(beverages)}
+        {renderMealsOrDrinks(returnApi(radioBtnFiltered, beverages, location))}
       </div>
     );
   }
   return (
-    // <>
-    //   {
-    //   foods ? renderCategories(categoryFood, 'comidas') && renderMealsOrDrinks(foods)
-    //     : <p>Loading...</p>
-    //   }
-    // </>
     <p>carregando</p>
   );
 };
