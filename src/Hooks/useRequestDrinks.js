@@ -11,7 +11,7 @@ const useRequestDrinks = () => {
   useEffect(() => {
     drinksRequests().then(
       axios.spread((...index) => {
-        const { data: { drinks } } = index[0]; setBeverages(drinks.slice('', 12));
+        const { data: { drinks } } = index[0]; setBeverages(drinks);
         const { data } = index[1]; setCategoryDrink(data.drinks.slice('', 5));
         const resultIngredients = index[2].data.drinks; setingredientsDrink(resultIngredients);
 

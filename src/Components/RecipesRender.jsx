@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react';
-// import { Link } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
 
 const renderMealsOrDrinks = (item, paramState) => {
   const filteredList = paramState.length === 0
-    ? item : item.filter((elem) => elem.strCategory === paramState).slice('', 12);
+    ? item.slice('', 12) : item.filter((elem) => elem.strCategory === paramState);
 
   return (
     <div>
@@ -24,26 +23,37 @@ const renderMealsOrDrinks = (item, paramState) => {
 const RecipesRender = () => {
   const [buttonCategory, setbuttonCategory] = useState('');
   const renderCategories = (categories) => (
-    categories.map(
-      (category) => (
-        <button
-          data-testid={`${category.strCategory}-category-filter`}
-          key={`${category.strCategory}`}
-          type="button"
-          value={`${category.strCategory}`}
-          onClick={(e) => setbuttonCategory(e.target.value)}
-        >
-          {category.strCategory}
-        </button>
-      ),
-    )
+    <div>
+      {categories.map(
+        (category) => (
+          <button
+            type="button"
+            key={`${category.strCategory}`}
+            value={`${category.strCategory}`}
+            onClick={(e) => {
+              if (e.target.value === buttonCategory) return setbuttonCategory('');
+              return setbuttonCategory(e.target.value);
+            }}
+            data-testid={`${category.strCategory}-category-filter`}
+          >
+            {category.strCategory}
+          </button>
+        ),
+      )}
+      <button
+        onClick={() => setbuttonCategory('')}
+        type="button"
+      >
+        All
+      </button>
+    </div>
   );
 
   const {
-    foods, categoryFood, beverages, categoryDrink,
+    foods, isFood, categoryFood, beverages, categoryDrink,
   } = useContext(recipeContext);
 
-  if (foods) {
+  if (!isFood && foods) {
     return (
       <div>
         {renderCategories(categoryFood)}

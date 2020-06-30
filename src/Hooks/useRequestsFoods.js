@@ -8,7 +8,7 @@ const useRequestsFoods = () => {
   const [areasFood, setAreasFood] = useState([]);
   const [categoryFood, setCategoryFood] = useState([]);
   const [ingredientsFood, setIngredientsFood] = useState([]);
-  // const [isFood, setIsFood] = useState(true);
+  const [isFood, setIsFood] = useState(true);
   const [allFoods, setAllFood] = useState([]);
 
   useEffect(() => {
@@ -30,6 +30,7 @@ const useRequestsFoods = () => {
     areasFood,
     allFoods,
     apiFood,
+    isFood,
     foods,
   };
 };
