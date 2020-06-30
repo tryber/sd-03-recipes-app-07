@@ -4,9 +4,8 @@ import Header from '../Components/Header';
 
 const MainScreen = () => (
   <div>
-
+    <Header />
     <h1 className="title">Tela principal de receita</h1>
-
     <RecipesRender />
   </div>
 );

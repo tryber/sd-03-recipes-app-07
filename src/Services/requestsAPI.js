@@ -32,4 +32,24 @@ const drinksRequests = async () => {
   return axios.all([getDrinks, getCategory, getIngredients, getAreas]);
 };
 
-export { foodsRequests, drinksRequests };
+const requestRadioButtons = (radioSelected, inputValue, location) => {
+  let typeRecipe = '';
+  if (location === '/comidas') {
+    typeRecipe = 'themealdb';
+  } else if (location === '/bebidas') {
+    typeRecipe = 'thecocktaildb'
+  };
+  switch (radioSelected) {
+    case 'ingredients':
+      return fetch(`https://www.${typeRecipe}.com/api/json/v1/1/filter.php?i=${inputValue}`)
+        .then((res) => res.json());
+    case 'name':
+      return fetch(`https://www.${typeRecipe}.com/api/json/v1/1/search.php?s=${inputValue}`)
+        .then((res) => res.json());
+    case 'letterFirst':
+      return fetch(`https://www.${typeRecipe}.com/api/json/v1/1/search.php?f=${inputValue}`)
+        .then((res) => res.json());
+  };
+};
+
+export { foodsRequests, drinksRequests, requestRadioButtons };

@@ -23,7 +23,7 @@ const renderCategories = (categories) => (
         data-testid={`${category.strCategory}-category-filter`}
         key={`${category.strCategory}`}
         type="button"
-        // onClick={() => selectCategory(categories, typeFood)}
+      // onClick={() => selectCategory(categories, typeFood)}
       >
         {category.strCategory}
       </button>
@@ -46,8 +46,6 @@ const RecipesRender = () => {
   const {
     foods, categoryFood, beverages, categoryDrink,
   } = useContext(recipeContext);
-
-  console.log(categoryFood);
 
   if (foods) {
     return (
