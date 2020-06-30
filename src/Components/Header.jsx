@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Redirect } from 'react-router-dom';
 import { recipeContext } from '../Hooks/recipeContext';
 import profile from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
@@ -70,6 +70,25 @@ const searchButtonOnClick = (btnSelected, searchValue, location, setBtnFunc) => 
     });
 };
 
+const redirectRecipeDetails = (radioBtnFiltered, location) => {
+  let oneRecipe = ['']
+  let id = '';
+  if (radioBtnFiltered) {
+    oneRecipe = Object.values(radioBtnFiltered);
+    console.log(oneRecipe);
+    if (location === '/comidas') {
+      id = oneRecipe[0][0].idMeal;
+    } else if (location === '/bebidas') {
+      id = oneRecipe[0][0].idDrink;
+    }
+  }
+  let object = {
+    oneRecipe: oneRecipe[0],
+    id,
+  }
+  return object;
+}
+
 const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
   <button
     data-testid="exec-search-btn"
@@ -85,13 +104,15 @@ const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
   </button>
 );
 
-
 const Header = () => {
   const location = useLocation().pathname;
-  const { titlePage, setRadioBtnFilteredFun } = useContext(recipeContext);
+  const { titlePage, setRadioBtnFilteredFun, radioBtnFiltered } = useContext(recipeContext);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [btnSelected, setBtnSel] = useState('');
   const [searchValue, setSearchValue] = useState('');
+  const lengthRecipeList = redirectRecipeDetails(radioBtnFiltered, location).oneRecipe.length;
+  const idRecipe = redirectRecipeDetails(radioBtnFiltered, location).id;
+  if (lengthRecipeList === 1) return <Redirect to={`${location}/${idRecipe}`} />;
 
   return (
     <nav>
