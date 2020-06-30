@@ -67,7 +67,8 @@ const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
       } else {
         requestRadioButtons(btnSelected, searchValue, location)
           .then((res) => {
-            if (Object.values(res)[0] === null) {
+            const objValue = Object.values(res)[0];
+            if (objValue === null) {
               alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
             } setBtnFunc(res);
           });
