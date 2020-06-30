@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
+
 
 const renderMealsOrDrinks = (item) => (
   item.map((elem, i) => (
@@ -33,26 +34,37 @@ const renderCategories = (categories) => (
   )
 );
 
+const returnApi = (radioBtnFiltered, foodsOrDrinks, location) => {
+  let valueApi = [];
+  if (radioBtnFiltered && location === '/comidas') {
+    valueApi = radioBtnFiltered.meals;
+  } else if (radioBtnFiltered && location === '/bebidas') {
+    valueApi = radioBtnFiltered.drinks;
+  } else {
+    valueApi = foodsOrDrinks;
+  }
+  return valueApi;
+};
+
 const RecipesRender = () => {
   const {
-    foods, categoryFood, beverages, categoryDrink,
+    foods, categoryFood, beverages, categoryDrink, radioBtnFiltered,
   } = useContext(recipeContext);
 
-  console.log(categoryFood);
+  const location = useLocation().pathname;
 
-  if (foods) {
+  if (location === '/comidas') {
     return (
       <div>
         {renderCategories(categoryFood, 'Beef')}
-        {renderMealsOrDrinks(foods)}
+        {renderMealsOrDrinks(returnApi(radioBtnFiltered, foods, location))}
       </div>
     );
-  }
-  if (beverages) {
+  } else if (location === '/bebidas') {
     return (
       <div>
         {renderCategories(categoryDrink, 'bebidas')}
-        {renderMealsOrDrinks(beverages)}
+        {renderMealsOrDrinks(returnApi(radioBtnFiltered, beverages, location))}
       </div>
     );
   }

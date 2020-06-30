@@ -1,19 +1,18 @@
 import PropTypes from 'prop-types';
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import useRequestFoods from './useRequestsFoods';
 import useRequestDrinks from './useRequestDrinks';
 
 const recipeContext = createContext();
 
 const useRecipeProvider = ({ children }) => {
+  const [radioBtnFiltered, setRadioBtnFiltered] = useState();
   const {
     apiFood, foods, categoryFood, ingredientsFood, areasFood, allFoods,
   } = useRequestFoods();
-
   const {
     apiDrinks, beverages, categoryDrink, ingredientsDrink,
   } = useRequestDrinks();
-
   const context = {
     apiFood,
     foods,
@@ -25,6 +24,8 @@ const useRecipeProvider = ({ children }) => {
     categoryDrink,
     allFoods,
     ingredientsDrink,
+    radioBtnFiltered,
+    setRadioBtnFilteredFun: (data) => setRadioBtnFiltered(data),
   };
 
   return (
