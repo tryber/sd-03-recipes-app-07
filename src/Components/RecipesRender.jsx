@@ -29,10 +29,12 @@ const renderCategories = (categories) => (
   )
 );
 
-const returnApi = (radioBtnFiltered, foodsOrDrinks) => {
+const returnApi = (radioBtnFiltered, foodsOrDrinks, location) => {
   let valueApi = [];
-  if (radioBtnFiltered) {
+  if (radioBtnFiltered && location === '/comidas') {
     valueApi = radioBtnFiltered.meals;
+  } else if (radioBtnFiltered && location === '/bebidas') {
+    valueApi = radioBtnFiltered.drinks;
   } else {
     valueApi = foodsOrDrinks;
   }
@@ -50,14 +52,14 @@ const RecipesRender = () => {
     return (
       <div>
         {renderCategories(categoryFood, 'Beef')}
-        {renderMealsOrDrinks(returnApi(radioBtnFiltered, foods))}
+        {renderMealsOrDrinks(returnApi(radioBtnFiltered, foods, location))}
       </div>
     );
   } else if (location === '/bebidas') {
     return (
       <div>
         {renderCategories(categoryDrink, 'bebidas')}
-        {renderMealsOrDrinks(returnApi(radioBtnFiltered, beverages))}
+        {renderMealsOrDrinks(returnApi(radioBtnFiltered, beverages, location))}
       </div>
     );
   }

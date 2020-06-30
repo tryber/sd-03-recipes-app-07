@@ -75,7 +75,6 @@ const redirectRecipeDetails = (radioBtnFiltered, location) => {
   let id = '';
   if (radioBtnFiltered) {
     oneRecipe = Object.values(radioBtnFiltered);
-    console.log(oneRecipe);
     if (location === '/comidas') {
       id = oneRecipe[0][0].idMeal;
     } else if (location === '/bebidas') {
