@@ -37,14 +37,14 @@ const DetailsPage = () => {
   const { params: { id }, path } = useRouteMatch();
   const { recipe, requesting } = useRequest(path, id);
 
+  if (!requesting && !recipe.meals && !recipe.drinks) return <h1>Receita não encontrada</h1>;
   if (!requesting && recipe) {
-    if (!recipe.meals && !recipe.drinks) return <h1>Receita não encontrada</h1>;
-
     return (
       <div>
         <h1>Página de detalhes</h1>
         <img
           alt="food or beverage"
+          style={{ width: '200px' }}
           src={recipe.meals[0].strMealThumb || recipe.drinks[0].strDrinkThumb}
         />
         <h2>{recipe.meals[0].strMeal || recipe.drinks[0].strDrink}</h2>
