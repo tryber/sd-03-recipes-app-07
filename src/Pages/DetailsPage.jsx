@@ -72,7 +72,7 @@ const renderTheDish = (dish) => {
       </div>
     );
   }
-  console.log(dish.strYoutube)
+  console.log(dish.strYoutube);
   return (
     <div>
       <img
