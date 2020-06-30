@@ -9,12 +9,12 @@ const DrinksToFooter = () => (
   <Link
     to="/bebidas"
   >
-    <div
-      // data-testid="drinks-bottom-btn"
-      // className="Footer_icon"
-    >
-      <img className="Footer_icon" data-testid="drinks-bottom-btn" src={DrinkIcon} alt="Drinks redirect" />
-    </div>
+    <img
+    className="Footer_icon"
+    data-testid="drinks-bottom-btn"
+    src={DrinkIcon}
+    alt="Drinks redirect"
+    />
   </Link>
 );
 
@@ -22,12 +22,12 @@ const ExploreToFooter = () => (
   <Link
     to="/explorar"
   >
-    <div
-      // data-testid="explore-bottom-btn"
-      // className="Footer_icon"
-    >
-      <img className="Footer_icon" data-testid="explore-bottom-btn" src={ExploreIcon} alt="Explore redirect" />
-    </div>
+    <img
+    className="Footer_icon"
+    data-testid="explore-bottom-btn"
+    src={ExploreIcon}
+    alt="Explore redirect"
+    />
   </Link>
 );
 
@@ -35,13 +35,12 @@ const MealsToFooter = () => (
   <Link
     to="/comidas"
   >
-    <div
-      // data-testid="food-bottom-btn"
-      // className="Footer_icon"
-      // src="Footer_icon"
-    >
-      <img className="Footer_icon" data-testid="food-bottom-btn" src={MealIcon} alt="Meals redirect" />
-    </div>
+    <img
+    className="Footer_icon"
+    data-testid="food-bottom-btn"
+    src={MealIcon}
+    alt="Meals redirect"
+    />
   </Link>
 );
 
