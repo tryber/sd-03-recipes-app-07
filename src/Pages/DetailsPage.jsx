@@ -33,23 +33,77 @@ const useRequest = (path, id) => {
   return { recipe, requesting };
 };
 
+const renderIngredients = (ingredients, measures) => (
+  <div>
+    {ingredients.map((elem, i) => (
+      <p
+        data-testid={`${i}-ingredient-name-and-measure`}
+        key={elem}
+      >
+        {`-${elem}-${measures[i]}`}
+      </p>
+    ))}
+  </div>
+);
+
+const renderTheDish = (dish) => {
+  const ingredients = Object
+    .entries(dish)
+    .filter((elem) => elem[0].includes('Ingredient') && elem[1])
+    .map((elem) => elem[1]);
+  const measures = Object
+    .entries(dish)
+    .filter((elem) => elem[0].includes('Measure') && elem[1] !== ' ')
+    .map((elem) => elem[1]);
+
+  if (dish.strDrink) {
+    return (
+      <div>
+        <img
+          alt="food or beverage"
+          data-testid="recipe-photo"
+          style={{ width: '200px' }}
+          src={dish.strDrinkThumb}
+        />
+        <h2 data-testid="recipe-title">{dish.strDrink}</h2>
+        <h3 data-testid="recipe-category">{dish.strAlcoholic}</h3>
+        {renderIngredients(ingredients, measures)}
+        <p data-testid="instructions">{dish.strInstructions}</p>
+      </div>
+    );
+  }
+  console.log(dish.strYoutube)
+  return (
+    <div>
+      <img
+        alt="food or beverage"
+        data-testid="recipe-photo"
+        style={{ width: '200px' }}
+        src={dish.strMealThumb}
+      />
+      <h2 data-testid="recipe-title">{dish.strMeal}</h2>
+      <h3 data-testid="recipe-category">{dish.strCategory}</h3>
+      {renderIngredients(ingredients, measures)}
+      <p data-testid="instructions">{dish.strInstructions}</p>
+      <iframe
+        data-testid="video"
+        src={dish.strYoutube}
+        title="Video"
+        frameBorder="0"
+      />
+    </div>
+  );
+};
+
 const DetailsPage = () => {
   const { params: { id }, path } = useRouteMatch();
   const { recipe, requesting } = useRequest(path, id);
 
   if (!requesting && !recipe.meals && !recipe.drinks) return <h1>Receita não encontrada</h1>;
   if (!requesting && recipe) {
-    return (
-      <div>
-        <h1>Página de detalhes</h1>
-        <img
-          alt="food or beverage"
-          style={{ width: '200px' }}
-          src={recipe.meals[0].strMealThumb || recipe.drinks[0].strDrinkThumb}
-        />
-        <h2>{recipe.meals[0].strMeal || recipe.drinks[0].strDrink}</h2>
-      </div>
-    );
+    const { meals, drinks } = recipe;
+    console.log(recipe);
+    return renderTheDish((meals ? meals[0] : drinks[0]));
   }
   return <h1>Loading...</h1>;
 };
