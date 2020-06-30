@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useRouteMatch } from 'react-router-dom';
 // import da função que faz requisição
 
-const DetailsPage = (props) => {
+const useRequest = (path, id) => {
   const [recipe, setRecipe] = useState({});
   const [requesting, setRequesting] = useState(true);
-  const { match: { params: { id }, path } } = props;
 
   useEffect(() => {
     if (path.includes('comidas')) {
@@ -29,10 +28,18 @@ const DetailsPage = (props) => {
             });
         });
     }
-  }, []);
+  }, [path, id]);
+
+  return { recipe, requesting };
+};
+
+const DetailsPage = () => {
+  const { params: { id }, path } = useRouteMatch();
+  const { recipe, requesting } = useRequest(path, id);
 
   if (!requesting && recipe) {
-    console.log(recipe);
+    if (!recipe.meals && !recipe.drinks) return <h1>Receita não encontrada</h1>;
+
     return (
       <div>
         <h1>Página de detalhes</h1>
@@ -45,15 +52,6 @@ const DetailsPage = (props) => {
     );
   }
   return <h1>Loading...</h1>;
-};
-
-DetailsPage.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-    }),
-    path: PropTypes.string,
-  }).isRequired,
 };
 
 export default DetailsPage;
