@@ -58,6 +58,16 @@ const SearchBar = (callBackRadios, callBackSearchInput) => (
   </div>
 );
 
+const searchButtonOnClick = (btnSelected, searchValue, location, setBtnFunc) => {
+  requestRadioButtons(btnSelected, searchValue, location)
+    .then((res) => {
+      const objValue = Object.values(res)[0];
+      if (objValue === null) {
+        alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+      } setBtnFunc(res);
+    });
+}
+
 const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
   <button
     data-testid="exec-search-btn"
@@ -65,13 +75,7 @@ const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
       if (btnSelected === 'letterFirst' && searchValue.length > 1) {
         alert('Sua busca deve conter somente 1 (um) caracter');
       } else {
-        requestRadioButtons(btnSelected, searchValue, location)
-          .then((res) => {
-            const objValue = Object.values(res)[0];
-            if (objValue === null) {
-              alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-            } setBtnFunc(res);
-          });
+        searchButtonOnClick(btnSelected, searchValue, location, setBtnFunc);
       }
     }}
   >
