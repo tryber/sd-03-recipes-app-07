@@ -31,7 +31,8 @@ const ExploreToFooter = () => (
 );
 
 const MealsToFooter = () => (
-  <Link to="/comidas"
+  <Link
+    to="/comidas"
   >
     <div
       data-testid="food-bottom-btn"
