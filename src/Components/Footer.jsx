@@ -51,7 +51,8 @@ const Footer = () => {
   return (
     <div
       data-testid="Footer"
-      className="Footer_all">
+      className="Footer_all"
+    >
       {DrinksToFooter()}
       {ExploreToFooter()}
       {MealsToFooter()}
