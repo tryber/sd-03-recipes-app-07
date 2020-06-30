@@ -71,7 +71,7 @@ const searchButtonOnClick = (btnSelected, searchValue, location, setBtnFunc) => 
 };
 
 const redirectRecipeDetails = (radioBtnFiltered, location) => {
-  let oneRecipe = ['']
+  let oneRecipe = [''];
   let id = '';
   if (radioBtnFiltered) {
     oneRecipe = Object.values(radioBtnFiltered);
@@ -82,12 +82,12 @@ const redirectRecipeDetails = (radioBtnFiltered, location) => {
       id = oneRecipe[0][0].idDrink;
     }
   }
-  let object = {
+  const object = {
     oneRecipe: oneRecipe[0],
     id,
-  }
+  };
   return object;
-}
+};
 
 const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
   <button
