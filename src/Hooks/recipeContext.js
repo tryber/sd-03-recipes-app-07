@@ -6,17 +6,13 @@ import useRequestDrinks from './useRequestDrinks';
 const recipeContext = createContext();
 
 const useRecipeProvider = ({ children }) => {
-
   const [radioBtnFiltered, setRadioBtnFiltered] = useState({});
-
   const {
     apiFood, foods, categoryFood, ingredientsFood, areasFood, allFoods,
   } = useRequestFoods();
-
   const {
     apiDrinks, beverages, categoryDrink, ingredientsDrink,
   } = useRequestDrinks();
-
   const context = {
     apiFood,
     foods,
