@@ -88,6 +88,42 @@ const redirectRecipeDetails = (radioBtnFiltered, location) => {
   return object;
 };
 
+const titlePage = (location) => {
+  let title = '';
+  switch (location) {
+    case '/comidas':
+      title = 'Comidas';
+      break;
+    case '/bebidas':
+      title = 'Bebidas';
+      break;
+    case '/explorar':
+      title = 'Explorar';
+      break;
+    case '/explorarcomidas':
+      title = 'Explorar Comidas';
+      break;
+    case '/explorarbebidas':
+      title = 'Explorar Bebidas';
+      break;
+    case '/exploraringredientes':
+      title = 'Explorar Ingredientes';
+      break;
+    case '/explorarorigem':
+      title = 'Explorar Origem';
+      break;
+    case '/receitasfeitas':
+      title = 'Receitas Favoritas';
+      break;
+    case '/perfil':
+      title = 'Perfil';
+      break;
+    default:
+      title = '';
+  }
+  return title;
+};
+
 const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
   <button
     data-testid="exec-search-btn"
