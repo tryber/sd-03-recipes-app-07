@@ -171,11 +171,11 @@ const DetailsPage = () => {
   if (!requesting && !recipe.meals && !recipe.drinks) return <h1>Receita não encontrada</h1>;
   if (!requesting && recipe) {
     const { meals, drinks } = recipe;
-    const mealOrDrink = meals ? meals[0] : drinks[0];
-    const goodRecomen = recomendations.meals ? recomendations.meals : recomendations.drinks;
+    const mealOrDrink = (value) => { if (value) return meals[0]; return drinks[0]; };
+    const goodRecomen = (value) => { if (value.meals) return value.meals; return value.drinks; };
     return makeTheDish(
-      mealOrDrink,
-      goodRecomen,
+      mealOrDrink(meals),
+      goodRecomen(recomendations),
     );
   }
   return <h1>Loading...</h1>;
