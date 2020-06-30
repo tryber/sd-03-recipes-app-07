@@ -34,9 +34,9 @@ const drinksRequests = async () => {
 
 const requestRadioButtons = (radioSelected, inputValue, location) => {
   let typeRecipe = '';
-  if (location === '/comidas') {
+  if (location.includes('comidas')) {
     typeRecipe = 'themealdb';
-  } else if (location === '/bebidas') {
+  } else if (location.includes('bebidas')) {
     typeRecipe = 'thecocktaildb';
   }
   switch (radioSelected) {

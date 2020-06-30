@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-// import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
 
@@ -14,8 +13,6 @@ const renderMealsOrDrinks = (item) => (
   ))
 );
 
-// const selectCategory = (array, typeFood) => array.filter((el) => el.strCategory === typeFood);
-
 const renderCategories = (categories) => (
   categories.map(
     (category) => (
@@ -23,7 +20,6 @@ const renderCategories = (categories) => (
         data-testid={`${category.strCategory}-category-filter`}
         key={`${category.strCategory}`}
         type="button"
-      // onClick={() => selectCategory(categories, typeFood)}
       >
         {category.strCategory}
       </button>
@@ -31,27 +27,26 @@ const renderCategories = (categories) => (
   )
 );
 
-// const redirectToDetails = (typeFood) => {
-//   typeFood.map((type, item) => (
-//     <Link to={`/${item}/${type.strCategory}`}>
-//       <div>
-//         <h1>{type}</h1>
-//         <p>{type}</p>
-//       </div>
-//     </Link>
-//   ));
-// };
-
 const RecipesRender = () => {
   const {
-    foods, categoryFood, beverages, categoryDrink,
+    foods, categoryFood, beverages, categoryDrink, radioBtnFiltered
   } = useContext(recipeContext);
+
+  const [isRadioBtnFiltered, setIsRadioBtnFiltered] = useState(false);
+
+  let valueApi = [];
+
+  if (radioBtnFiltered) {
+    valueApi = radioBtnFiltered.meals;
+  } else {
+    valueApi = foods;
+  }
 
   if (foods) {
     return (
       <div>
         {renderCategories(categoryFood, 'Beef')}
-        {renderMealsOrDrinks(foods)}
+        {renderMealsOrDrinks(valueApi)}
       </div>
     );
   }
@@ -59,17 +54,11 @@ const RecipesRender = () => {
     return (
       <div>
         {renderCategories(categoryDrink, 'bebidas')}
-        {renderMealsOrDrinks(beverages)}
+        {!isRadioBtnFiltered && renderMealsOrDrinks(beverages)}
       </div>
     );
   }
   return (
-    // <>
-    //   {
-    //   foods ? renderCategories(categoryFood, 'comidas') && renderMealsOrDrinks(foods)
-    //     : <p>Loading...</p>
-    //   }
-    // </>
     <p>carregando</p>
   );
 };

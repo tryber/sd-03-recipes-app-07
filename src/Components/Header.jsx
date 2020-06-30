@@ -64,7 +64,9 @@ const searchButtonOnClick = (btnSelected, searchValue, location, setBtnFunc) => 
       const objValue = Object.values(res)[0];
       if (objValue === null) {
         alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-      } setBtnFunc(res);
+      } else {
+        setBtnFunc(res);
+      }
     });
 };
 
@@ -102,7 +104,11 @@ const Header = () => {
       <h1 data-testid="page-title">{titlePage}</h1>
       {SearchButtonShow(setShowSearchBar, !showSearchBar)}
       {showSearchBar && SearchBar(setBtnSel, setSearchValue)}
-      {showSearchBar && searchButton(btnSelected, searchValue, setRadioBtnFilteredFun, location)}
+      {
+        showSearchBar
+        &&
+        searchButton(btnSelected, searchValue, setRadioBtnFilteredFun, location)
+      }
     </nav>
   );
 };
