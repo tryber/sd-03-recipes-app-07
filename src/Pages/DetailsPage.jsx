@@ -171,9 +171,11 @@ const DetailsPage = () => {
   if (!requesting && !recipe.meals && !recipe.drinks) return <h1>Receita não encontrada</h1>;
   if (!requesting && recipe) {
     const { meals, drinks } = recipe;
+    const mealOrDrink = meals ? meals[0] : drinks[0];
+    const goodRecomen = recomendations.meals ? recomendations.meals : recomendations.drinks;
     return makeTheDish(
-      (meals ? meals[0] : drinks[0]),
-      (recomendations.meals ? recomendations.meals : recomendations.drinks),
+      mealOrDrink,
+      goodRecomen,
     );
   }
   return <h1>Loading...</h1>;
