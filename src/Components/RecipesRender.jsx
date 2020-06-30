@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
-import { useLocation } from 'react-router-dom';
+
 
 const renderMealsOrDrinks = (item) => (
   item.map((elem, i) => (
@@ -33,14 +34,14 @@ const returnApi = (radioBtnFiltered, foodsOrDrinks) => {
   if (radioBtnFiltered) {
     valueApi = radioBtnFiltered.meals;
   } else {
-    valueApi =  foodsOrDrinks;
+    valueApi = foodsOrDrinks;
   }
   return valueApi;
-}
+};
 
 const RecipesRender = () => {
   const {
-    foods, categoryFood, beverages, categoryDrink, radioBtnFiltered
+    foods, categoryFood, beverages, categoryDrink, radioBtnFiltered,
   } = useContext(recipeContext);
 
   const location = useLocation().pathname;
