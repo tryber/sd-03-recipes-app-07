@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import RecomCard from '../Components/RecipeCard';
 // import da função que faz requisição
 
 const useRequest = (path, id) => {
@@ -73,12 +72,21 @@ const renderRecomendations = (recom) => {
             key={elem.strMeal}
             to={`/comidas/${elem.idMeal}`}
           >
-            <RecomCard
-              imgSrc={elem.strMealThumb}
-              index={i}
-              key={elem.strMealThumb}
-              title={elem.strMeal}
-            />
+            <div
+              data-testid={`${i}-recomendation-card`}
+              className="card"
+            >
+              <h3
+                data-testid={`${i}-recomendation-title`}
+              >
+                {elem.strMeal}
+              </h3>
+              <img
+                alt="Card recipe name"
+                className="cardImage"
+                src={elem.strMealThumb}
+              />
+            </div>
           </Link>
         ))}
       </div>
@@ -92,12 +100,21 @@ const renderRecomendations = (recom) => {
           key={elem.strDrink}
           to={`/bebidas/${elem.idDrink}`}
         >
-          <RecomCard
-            imgSrc={elem.strDrinkThumb}
-            index={i}
-            key={elem.strDrinkThumb}
-            title={elem.strDrink}
-          />
+          <div
+            data-testid={`${i}-recomendation-card`}
+            className="card"
+          >
+            <h3
+              data-testid={`${i}-recomendation-title`}
+            >
+              {elem.strDrink}
+            </h3>
+            <img
+              alt="Card recipe name"
+              className="cardImage"
+              src={elem.strDrinkThumb}
+            />
+          </div>
         </Link>
       ))}
     </div>
