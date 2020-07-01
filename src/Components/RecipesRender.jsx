@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
+import '../Layout/RecipesRender.css';
 
 
 const renderMealsOrDrinks = (item) => (
@@ -52,14 +53,18 @@ const RecipesRender = () => {
     return (
       <div>
         {renderCategories(categoryFood, 'Beef')}
-        {renderMealsOrDrinks(returnApi(radioBtnFiltered, foods, location))}
+        <div className="card-container">
+          {renderMealsOrDrinks(returnApi(radioBtnFiltered, foods, location))}
+        </div>
       </div>
     );
   } else if (location === '/bebidas') {
     return (
       <div>
         {renderCategories(categoryDrink, 'bebidas')}
-        {renderMealsOrDrinks(returnApi(radioBtnFiltered, beverages, location))}
+        <div className="card-container">
+          {renderMealsOrDrinks(returnApi(radioBtnFiltered, beverages, location))}
+        </div>
       </div>
     );
   }

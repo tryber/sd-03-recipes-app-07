@@ -141,7 +141,7 @@ const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
 
 const Header = () => {
   const location = useLocation().pathname;
-  const { titlePage, setRadioBtnFilteredFun, radioBtnFiltered } = useContext(recipeContext);
+  const { setRadioBtnFilteredFun, radioBtnFiltered } = useContext(recipeContext);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [btnSelected, setBtnSel] = useState('');
   const [searchValue, setSearchValue] = useState('');
@@ -157,7 +157,7 @@ const Header = () => {
           src={profile}
         />
       </Link>
-      <h1 data-testid="page-title">{titlePage}</h1>
+      <h1 data-testid="page-title">{titlePage(location)}</h1>
       {SearchButtonShow(setShowSearchBar, !showSearchBar)}
       {showSearchBar && SearchBar(setBtnSel, setSearchValue)}
       {

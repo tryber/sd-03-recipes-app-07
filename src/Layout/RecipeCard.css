@@ -1,18 +1,37 @@
-.card {
-  display: flex;
+@font-face {
+  font-family: Reis-Regular;
+  src: url('./Fonts/REIS-Regular.otf');
 }
 
-.cardImage {
-  width: 200px;
-}
-
-.title {
-  background: chocolate;
+div, h3, img {
   margin: 0;
   padding: 0;
+}
+
+.card {
+  background-color: #f3a43d;
+  border-radius: 7px;
+  box-shadow: 3px 3px 7px;
+  margin: 10px 0 10px ;
+  width: 150px;
+}
+
+.card:active {
+  box-shadow: none;
+  position: relative;
+  left: 3px;
+  top: 3px;
+}
+
+.card-title {
+  color: white;
+  font-family: Reis-Regular;
+  letter-spacing: 3.5px;
+  padding: 10px;
   text-align: center;
 }
 
-.categoryCard {
-  color: black;
+.card-image {
+  border-radius: 7px 7px 0 0;
+  width: 150px;
 }

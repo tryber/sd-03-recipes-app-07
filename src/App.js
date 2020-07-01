@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useRecipeProvider as Provider } from './Hooks/recipeContext';
 import { Login, MainScreen } from './Pages';
+import './Layout/App.css';
 
 const App = () => (
   <Provider>

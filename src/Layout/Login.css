@@ -1,4 +1,41 @@
+body, div, h1 {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background: wheat;
+  background-color: wheat;
+}
+
+@font-face {
+  font-family: Breathe-Press;
+  src: url('./Fonts/Breathe-Press.otf');
+}
+
+.title {
   color: white;
+  font-family: Breathe-Press;
+  font-size: 52px;
+  letter-spacing: 3px;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  text-shadow: 5px 5px black;
+}
+
+.main-box {
+  align-items: center;
+  background-image: url("https://cdn.pixabay.com/photo/2016/12/10/21/26/food-1898194_960_720.jpg");
+  background-position: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.login-box {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
 }
