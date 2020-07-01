@@ -1,6 +1,12 @@
 @font-face {
-  font-family: Reis-Regular;
-  src: url('./Fonts/REIS-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-family: reisregular;
+  src: url('./Fonts/reis-regular-webfont.eot');
+  src: url('./Fonts/reis-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('./Fonts/reis-regular-webfont.woff2') format('woff2'),
+    url('./Fonts/reis-regular-webfont.woff') format('woff'),
+    url('./Fonts/reis-regular-webfont.ttf') format('truetype');
 }
 
 div , h3 , img {
@@ -25,7 +31,7 @@ div , h3 , img {
 
 .card-title {
   color: white;
-  font-family: Reis-Regular, Arial, Helvetica, sans-serif;
+  font-family: reisregular, Arial, Helvetica, sans-serif;
   letter-spacing: 3.5px;
   padding: 10px;
   text-align: center;

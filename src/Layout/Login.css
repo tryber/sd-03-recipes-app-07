@@ -9,13 +9,13 @@ body {
 
 @font-face {
   font-family: breathepress;
+  font-style: normal;
+  font-weight: 400;
   src: url('./Fonts/breathe-press-webfont.eot');
   src: url('./Fonts/breathe-press-webfont.eot?#iefix') format('embedded-opentype'),
     url('./Fonts/breathe-press-webfont.woff2') format('woff2'),
     url('./Fonts/breathe-press-webfont.woff') format('woff'),
     url('./Fonts/breathe-press-webfont.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
 }
 
 .title {
