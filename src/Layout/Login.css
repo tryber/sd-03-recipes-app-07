@@ -1,4 +1,4 @@
-body, div, h1 {
+body , div , h1 {
   margin: 0;
   padding: 0;
 }
@@ -9,12 +9,13 @@ body {
 
 @font-face {
   font-family: Breathe-Press;
-  src: url('./Fonts/Breathe-Press.otf');
+  src: url('./Fonts/Breathe-Press.woff2') format('woff2'),
+    url('./Fonts/Breathe-Press.woff') format('woff');
 }
 
 .title {
   color: white;
-  font-family: Breathe-Press;
+  font-family: Breathe-Press, Arial, Helvetica, sans-serif;
   font-size: 52px;
   letter-spacing: 3px;
   margin: 0;
@@ -25,7 +26,7 @@ body {
 
 .main-box {
   align-items: center;
-  background-image: url("https://cdn.pixabay.com/photo/2016/12/10/21/26/food-1898194_960_720.jpg");
+  background-image: url('https://cdn.pixabay.com/photo/2016/12/10/21/26/food-1898194_960_720.jpg');
   background-position: center;
   display: flex;
   height: 100vh;

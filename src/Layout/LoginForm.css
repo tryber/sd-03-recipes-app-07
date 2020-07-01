@@ -1,8 +1,8 @@
-.email-box, .password-box {
+.email-box , .password-box {
   border-bottom: 2px solid white;
 }
 
-.email-box input, .password-box input {
+.email-box input , .password-box input {
   background-color: rgba(0, 0, 0, 0);
   border: none;
   color: white;
@@ -12,13 +12,13 @@
   width: 280px;
 }
 
-.email-box input::placeholder, .password-box input::placeholder {
+.email-box input::placeholder , .password-box input::placeholder {
   color: white;
   font-size: 20px;
   text-align: center;
 }
 
-.email-box input:focus, .password-box input:focus {
+.email-box input:focus , .password-box input:focus {
   border: none;
   outline: none;
 }
@@ -31,15 +31,4 @@
   height: 40px;
   margin: 20px auto;
   width: 290px;
-}
-
-.login-btn:active {
-  background-color: wheat;
-  border: 1px solid wheat;
-  
-  outline: none;
-}
-
-.login-btn:focus {
-  outline: none;
 }
