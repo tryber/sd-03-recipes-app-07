@@ -17,7 +17,7 @@ div , h3 , img {
 .card {
   background-color: #f3a43d;
   border-radius: 7px;
-  box-shadow: 3px 3px 7px;
+  box-shadow: 3px 3px 7px black;
   margin: 10px 0;
   width: 150px;
 }

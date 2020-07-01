@@ -8,7 +8,7 @@ const renderMealsOrDrinks = (item, paramState) => {
   const filteredList = paramState.length === 0
     ? item.slice('', 12) : item.filter((elem) => elem.strCategory === paramState);
   return (
-    <div>
+    <div className="card-container">
       {filteredList.map((elem, i) => (
         <Link
           key={elem.strMeal}
@@ -79,7 +79,7 @@ const RecipesRender = () => {
       <div>
         {renderCategories(categoryFood, buttonCategory, setbuttonCategory)}
         {renderMealsOrDrinks(returnApi(radioBtnFiltered, foods, location), buttonCategory)}
-      </div>
+      </div >
     );
   } return (
     <div>
