@@ -89,6 +89,42 @@ const redirectRecipeDetails = (radioBtnFiltered, location) => {
   return object;
 };
 
+const titlePage = (location) => {
+  let title = '';
+  switch (location) {
+    case '/comidas':
+      title = 'Comidas';
+      break;
+    case '/bebidas':
+      title = 'Bebidas';
+      break;
+    case '/explorar':
+      title = 'Explorar';
+      break;
+    case '/explorarcomidas':
+      title = 'Explorar Comidas';
+      break;
+    case '/explorarbebidas':
+      title = 'Explorar Bebidas';
+      break;
+    case '/exploraringredientes':
+      title = 'Explorar Ingredientes';
+      break;
+    case '/explorarorigem':
+      title = 'Explorar Origem';
+      break;
+    case '/receitasfeitas':
+      title = 'Receitas Favoritas';
+      break;
+    case '/perfil':
+      title = 'Perfil';
+      break;
+    default:
+      title = '';
+  }
+  return title;
+};
+
 const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
   <button
     type="button"
@@ -107,7 +143,7 @@ const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
 
 const Header = () => {
   const location = useLocation().pathname;
-  const { titlePage, setRadioBtnFilteredFun, radioBtnFiltered } = useContext(recipeContext);
+  const { setRadioBtnFilteredFun, radioBtnFiltered } = useContext(recipeContext);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [btnSelected, setBtnSel] = useState('');
   const [searchValue, setSearchValue] = useState('');
@@ -123,7 +159,7 @@ const Header = () => {
           src={profile}
         />
       </Link>
-      <h1 data-testid="page-title">{titlePage}</h1>
+      <h1 data-testid="page-title">{titlePage(location)}</h1>
       {SearchButtonShow(setShowSearchBar, !showSearchBar)}
       {showSearchBar && SearchBar(setBtnSel, setSearchValue)}
       {
