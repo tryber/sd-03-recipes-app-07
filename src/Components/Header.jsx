@@ -7,6 +7,7 @@ import { requestRadioButtons } from '../Services/requestsAPI';
 
 const SearchButtonShow = (callBack, value) => (
   <button
+    type="button"
     data-testid="search-top-btn"
     onClick={() => callBack(value)}
   >
@@ -90,6 +91,7 @@ const redirectRecipeDetails = (radioBtnFiltered, location) => {
 
 const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
   <button
+    type="button"
     data-testid="exec-search-btn"
     onClick={() => {
       if (btnSelected === 'letterFirst' && searchValue.length > 1) {
