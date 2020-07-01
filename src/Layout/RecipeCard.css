@@ -25,7 +25,7 @@ div, h3, img {
 
 .card-title {
   color: white;
-  font-family: Reis-Regular;
+  font-family: Reis-Regular, Arial, Helvetica, sans-serif;
   letter-spacing: 3.5px;
   padding: 10px;
   text-align: center;
