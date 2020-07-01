@@ -5,7 +5,6 @@ const foodsRequests = async () => {
   const getFood = await axios.get(requestFood);
 
   const requestCategory = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
-  // const requestCategory = 'https://www.themealdb.com/api/json/v1/1/categories.php';
   const getCategory = await axios.get(requestCategory);
 
   const requestIngredients = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
@@ -55,4 +54,15 @@ const requestRadioButtons = (radioSelected, inputValue, location) => {
   }
 };
 
-export { foodsRequests, drinksRequests, requestRadioButtons };
+const requestCategories = async (food, drink) => {
+  const urlCategoryFood = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${food}`;
+  const categoryFood = await axios.get(urlCategoryFood);
+
+  const urlCategoryDrink = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${drink}`;
+  const categoryDrink = axios.get(urlCategoryDrink);
+  return axios.all([categoryFood, categoryDrink]);
+};
+
+export {
+  foodsRequests, drinksRequests, requestRadioButtons, requestCategories,
+};

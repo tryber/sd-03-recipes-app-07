@@ -12,11 +12,14 @@ const useRequestsFoods = () => {
   useEffect(() => {
     foodsRequests().then(
       axios.spread((...index) => {
-        const { data: { meals } } = index[0]; setFoods(meals);
-        const { data } = index[1]; setCategoryFood(data.meals);
-        const resultIngredients = index[2].data.meals; setIngredientsFood(resultIngredients);
-        setAreasFood(index[3]);
+        const { data } = index[1];
+        const { data: { meals } } = index[0];
+        const resultIngredients = index[2].data.meals;
+        setFoods(meals);
         setApiFoood(false);
+        setAreasFood(index[3]);
+        setCategoryFood(data.meals);
+        setIngredientsFood(resultIngredients);
       }),
     );
   }, []);

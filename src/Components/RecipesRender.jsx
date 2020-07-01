@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
+import useRequestCategories from '../Hooks/useRequestCategories';
 
 const renderMealsOrDrinks = (item, paramState, route) => {
   const filteredList = paramState.length === 0
@@ -44,6 +45,7 @@ const renderCategories = (categories, buttonCategory, setbuttonCategory) => (
       ),
     )}
     <button
+      data-testid=""
       onClick={() => setbuttonCategory('')}
       type="button"
     >
@@ -65,6 +67,7 @@ const returnApi = (radioBtnFiltered, foodsOrDrinks, location) => {
 };
 
 const RecipesRender = () => {
+  console.log('vamos ver', useRequestCategories('Beef', 'Cocoa'));
   const [buttonCategory, setbuttonCategory] = useState('');
 
   const {
