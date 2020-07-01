@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-// import da função que faz requisição
 
+// hook que faz requisicao e deve ser passado para outro arquivo
 const useRequest = (path, id) => {
   const [recipe, setRecipe] = useState({});
   const [recomendations, setRecomendations] = useState({});
@@ -49,7 +49,7 @@ const useRequest = (path, id) => {
 
   return { recipe, recomendations, requesting };
 };
-
+// renderiza a lista de ingredientes
 const renderIngredients = (ingredients, measures) => (
   <div>
     {ingredients.map((elem, i) => (
@@ -62,16 +62,16 @@ const renderIngredients = (ingredients, measures) => (
     ))}
   </div>
 );
-
+// renderiza as recomendacoes
 const renderRecomendations = (recom) => {
   if (!recom[0].strDrink) {
     return (
       <div>
         {recom.map((elem, i) => (
           <Link key={elem.strMeal} to={`/comidas/${elem.idMeal}`}>
-            <div data-testid={`${i}-recomendation-card`} className="card">
-              <h3 data-testid={`${i}-recomendation-title`}>{elem.strMeal}</h3>
-              <img alt="Card recipe name" className="cardImage" src={elem.strMealThumb} />
+            <div className="card" data-testid={`${i}-recomendation-card`}>
+              <h3 className="card-title" data-testid={`${i}-recomendation-title`}>{elem.strMeal}</h3>
+              <img alt="Card recipe name" className="card-image" src={elem.strMealThumb} />
             </div>
           </Link>
         ))}
@@ -92,7 +92,7 @@ const renderRecomendations = (recom) => {
     </div>
   );
 };
-
+// renderiza o prato
 const renderDish = (
   thumb, title, category, ingredients, measures, instructions, recomendations, video,
 ) => (
@@ -118,7 +118,7 @@ const renderDish = (
     {renderRecomendations(recomendations)}
   </div>
 );
-
+// processa o array de pratos e renderiza individualmente
 const makeTheDish = (dish, recomendations) => {
   const ingredients = Object
     .entries(dish)
@@ -152,11 +152,10 @@ const makeTheDish = (dish, recomendations) => {
     dish.strYoutube.replace('watch?v=', 'embed/'),
   ));
 };
-
+// funcoes para passar as comidas ou bebidas para as funcoes renderizarem individualmente
 const mealOrDrink = (meal, drink) => { if (meal) return meal[0]; return drink[0]; };
-
 const goodRecomen = (value) => { if (value.meals) return value.meals; return value.drinks; };
-
+// componente principal
 const DetailsPage = () => {
   const { params: { id }, path } = useRouteMatch();
   const { recipe, recomendations, requesting } = useRequest(path, id);
