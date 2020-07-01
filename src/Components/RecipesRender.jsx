@@ -1,21 +1,25 @@
 import React, { useContext, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
 
 const renderMealsOrDrinks = (item, paramState) => {
   const filteredList = paramState.length === 0
     ? item.slice('', 12) : item.filter((elem) => elem.strCategory === paramState);
-
   return (
     <div>
       {filteredList.map((elem, i) => (
-        <RecipeCard
-          index={i}
-          title={elem.strMeal || elem.strDrink}
-          key={elem.strMeal || elem.strDrinkThumb}
-          imgSrc={elem.strMealThumb || elem.strDrinkThumb}
-        />
+        <Link
+          key={elem.strMeal}
+          to={`/comidas/${elem.idMeal}`}
+        >
+          <RecipeCard
+            index={i}
+            title={elem.strMeal || elem.strDrink}
+            key={elem.strMeal || elem.strDrinkThumb}
+            imgSrc={elem.strMealThumb || elem.strDrinkThumb}
+          />
+        </Link>
       ))}
     </div>
   );
