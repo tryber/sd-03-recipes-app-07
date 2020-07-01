@@ -5,6 +5,7 @@ const foodsRequests = async () => {
   const getFood = await axios.get(requestFood);
 
   const requestCategory = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+  // const requestCategory = 'https://www.themealdb.com/api/json/v1/1/categories.php';
   const getCategory = await axios.get(requestCategory);
 
   const requestIngredients = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
