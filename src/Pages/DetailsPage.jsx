@@ -168,13 +168,14 @@ const DetailsPage = () => {
   const { params: { id }, path } = useRouteMatch();
   const { recipe, recomendations, requesting } = useRequest(path, id);
 
+  const mealOrDrink = (meal, drink) => { if (meal) return meal[0]; return drink[0]; };
+  const goodRecomen = (value) => { if (value.meals) return value.meals; return value.drinks; };
+
   if (!requesting && !recipe.meals && !recipe.drinks) return <h1>Receita não encontrada</h1>;
   if (!requesting && recipe) {
     const { meals, drinks } = recipe;
-    const mealOrDrink = (value) => { if (value) return meals[0]; return drinks[0]; };
-    const goodRecomen = (value) => { if (value.meals) return value.meals; return value.drinks; };
     return makeTheDish(
-      mealOrDrink(meals),
+      mealOrDrink(meals, drinks),
       goodRecomen(recomendations),
     );
   }
