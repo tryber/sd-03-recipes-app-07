@@ -1,7 +1,7 @@
 @font-face {
-  font-weight: 400;
-  font-style: normal;
   font-family: reisregular;
+  font-style: normal;
+  font-weight: 400;
   src: url('./Fonts/reis-regular-webfont.eot');
   src: url('./Fonts/reis-regular-webfont.eot?#iefix') format('embedded-opentype'),
     url('./Fonts/reis-regular-webfont.woff2') format('woff2'),
