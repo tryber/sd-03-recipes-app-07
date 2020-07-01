@@ -8,15 +8,15 @@ body {
 }
 
 @font-face {
-  font-family: 'Breathe-Press';
+  font-family: Breathe-Press;
   src: url('./Fonts/Breathe-Press.woff');
   src: local('Breathe-Press Regular'), local('Breathe-Press'),
-  url('./Fonts/Breathe-Press.woff') format('woff');
+    url('./Fonts/Breathe-Press.woff') format('woff');
 }
 
 .title {
   color: white;
-  font-family: 'Breathe-Press', Arial, Helvetica, sans-serif;
+  font-family: Breathe-Press, Arial, Helvetica, sans-serif;
   font-size: 52px;
   letter-spacing: 3px;
   margin: 0;
