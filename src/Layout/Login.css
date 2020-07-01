@@ -8,19 +8,19 @@ body {
 }
 
 @font-face {
-  font-family: 'breathepress';
-  src: url('breathe-press-webfont.eot');
-  src: url('breathe-press-webfont.eot?#iefix') format('embedded-opentype'),
-      url('breathe-press-webfont.woff2') format('woff2'),
-      url('breathe-press-webfont.woff') format('woff'),
-      url('breathe-press-webfont.ttf') format('truetype');
-  font-weight: normal;
+  font-family: breathepress;
+  src: url('./Fonts/breathe-press-webfont.eot');
+  src: url('./Fonts/breathe-press-webfont.eot?#iefix') format('embedded-opentype'),
+    url('./Fonts/breathe-press-webfont.woff2') format('woff2'),
+    url('./Fonts/breathe-press-webfont.woff') format('woff'),
+    url('./Fonts/breathe-press-webfont.ttf') format('truetype');
+  font-weight: 400;
   font-style: normal;
 }
 
 .title {
   color: white;
-  font-family: Breathe-Press, Arial, Helvetica, sans-serif;
+  font-family: breathepress, Arial, Helvetica, sans-serif;
   font-size: 52px;
   letter-spacing: 3px;
   margin: 0;
