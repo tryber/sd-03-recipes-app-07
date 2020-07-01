@@ -9,9 +9,9 @@ body {
 
 @font-face {
   font-family: Breathe-Press;
-  src: url('./Fonts/Breathe-Press.woff');
-  src: local('Breathe-Press Regular'), local('Breathe-Press'),
-    url('./Fonts/Breathe-Press.woff') format('woff');
+  src: url('./Fonts/Breathe-Regular.eot?') format('eot'),
+    url('./Fonts/Breathe-Press.woff') format('woff'),
+    url('./Fonts/Breathe-Press.ttf') format('truetype');
 }
 
 .title {
