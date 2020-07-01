@@ -8,9 +8,9 @@ body {
 }
 
 @font-face {
-  font-family: 'Breathe-Press';
-  src: local(''), url('./Fonts/Breathe-Press.woff2') format('woff2'),
-    url('./Fonts/Breathe-Press.woff') format('woff');
+  font-family: Breathe-Press;
+  src: url('./Fonts/Breathe-Press.woff2') format('woff2');
+  src: url('./Fonts/Breathe-Press.woff') format('woff');
 }
 
 .title {
