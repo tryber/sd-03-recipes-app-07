@@ -51,7 +51,8 @@ const useRequest = (path, id) => {
 };
 
 const renderIngredients = (ingredients, measures) => (
-  <div>
+  <div className="ingredients-container">
+    <h3>Ingredientes</h3>
     {ingredients.map((elem, i) => (
       <p
         data-testid={`${i}-ingredient-name-and-measure`}
@@ -93,31 +94,56 @@ const renderRecomendations = (recom) => {
   );
 };
 
+const renderButtons = () => (
+  <div className="buttons-container">
+    <button>Comp</button>
+    <button>Curtir</button>
+  </div>
+);
+
+const renderTitles = (title, category) => (
+  <div className="titles-container">
+    <h2 data-testid="recipe-title">{title}</h2>
+    <h3 data-testid="recipe-category">{category}</h3>
+  </div>
+);
+
+const renderIntructions = (instructions) => (
+  <div className="instructions-container">
+    <h3>Instruções</h3>
+    <p data-testid="instructions">{instructions}</p>
+  </div>
+);
+
 const renderDish = (
   thumb, title, category, ingredients, measures, instructions, recomendations, video,
 ) => (
-  <div>
-    <img
-      alt="food or beverage"
-      data-testid="recipe-photo"
-      style={{ width: '200px' }}
-      src={thumb}
-    />
-    <h2 data-testid="recipe-title">{title}</h2>
-    <h3 data-testid="recipe-category">{category}</h3>
-    {renderIngredients(ingredients, measures)}
-    <p data-testid="instructions">{instructions}</p>
-    {video && (
-      <iframe
-        data-testid="video"
-        src={video}
-        title="Video"
-        frameBorder="0"
+    <div>
+      <img
+        alt="food or beverage"
+        data-testid="recipe-photo"
+        src={thumb}
+        className="recipe-img"
       />
-    )}
-    {renderRecomendations(recomendations)}
-  </div>
-);
+      <div className="recipe-container">
+        <div className="recipe-header">
+          {renderTitles(title, category)}
+          {renderButtons()}
+        </div>
+        {renderIngredients(ingredients, measures)}
+        {renderIntructions(instructions)}
+        {video && (
+          <iframe
+            data-testid="video"
+            src={video}
+            title="Video"
+            frameBorder="0"
+          />
+        )}
+        {renderRecomendations(recomendations)}
+      </div>
+    </div>
+  );
 
 const makeTheDish = (dish, recomendations) => {
   const ingredients = Object
