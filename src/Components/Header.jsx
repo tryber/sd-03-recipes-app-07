@@ -4,12 +4,14 @@ import { recipeContext } from '../Hooks/recipeContext';
 import profile from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import { requestRadioButtons } from '../Services/requestsAPI';
+import '../Layout/Header.css';
 
 const SearchButtonShow = (callBack, value) => (
   <button
     type="button"
     data-testid="search-top-btn"
     onClick={() => callBack(value)}
+    className="btn-show"
   >
     <img src={searchIcon} alt="botao-de-busca" />
   </button>
@@ -152,14 +154,18 @@ const Header = () => {
   if (lengthRecipeList === 1) return <Redirect to={`${location}/${idRecipe}`} />;
 
   return (
-    <nav>
+    <nav className="nav-header-container">
       <Link to="/perfil" data-testid="profile-top-btn">
         <img
           alt="titulo"
           src={profile}
         />
       </Link>
-      <h1 data-testid="page-title">{titlePage(location)}</h1>
+      <h1
+        data-testid="page-title"
+        className="page-title"
+      >
+        {titlePage(location)}</h1>
       {SearchButtonShow(setShowSearchBar, !showSearchBar)}
       {showSearchBar && SearchBar(setBtnSel, setSearchValue)}
       {

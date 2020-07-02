@@ -2,5 +2,37 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding-bottom: 70px;
   width: 360px;
+}
+
+.card-container a {
+  text-decoration: none;
+}
+
+.categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+
+.btn-categories, .btn-categories-all {
+  background-color: #f3a43d;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 3px 4px black;
+  color: white;
+  margin: 5px;
+  outline: none;
+  padding: 7px 0;
+  width: 96.67px;
+}
+
+.active-btn, .btn-categories-all:active {
+  box-shadow: none;
+  left: 3px;
+  outline: none;
+  position: relative;
+  top: 3px;
 }

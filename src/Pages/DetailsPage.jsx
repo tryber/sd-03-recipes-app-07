@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-// import da função que faz requisição
+import '../Layout/DetailsPage.css';
 
 const useRequest = (path, id) => {
   const [recipe, setRecipe] = useState({});
