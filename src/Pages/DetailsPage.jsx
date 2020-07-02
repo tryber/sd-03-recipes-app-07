@@ -1,53 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-
-const useRequest = (path, id) => {
-  const [recipe, setRecipe] = useState({});
-  const [recomendations, setRecomendations] = useState({});
-  const [requesting, setRequesting] = useState(true);
-
-  useEffect(() => {
-    if (path.includes('comidas')) {
-      fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-        .then((res) => {
-          res
-            .json()
-            .then((json) => {
-              setRecipe(json);
-            });
-        });
-      fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
-        .then((res) => {
-          res
-            .json()
-            .then((json) => {
-              setRecomendations(json);
-              setRequesting(false);
-            });
-        });
-    } else {
-      fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-        .then((res) => {
-          res
-            .json()
-            .then((json) => {
-              setRecipe(json);
-            });
-        });
-      fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
-        .then((res) => {
-          res
-            .json()
-            .then((json) => {
-              setRecomendations(json);
-              setRequesting(false);
-            });
-        });
-    }
-  }, [path, id]);
-
-  return { recipe, recomendations, requesting };
-};
+import useRequestId from '../Hooks/useRequestId';
 
 const renderIngredients = (ingredients, measures) => (
   <div>
@@ -158,7 +111,7 @@ const goodRecomen = (value) => { if (value.meals) return value.meals; return val
 
 const DetailsPage = () => {
   const { params: { id }, path } = useRouteMatch();
-  const { recipe, recomendations, requesting } = useRequest(path, id);
+  const { recipe, recomendations, requesting } = useRequestId(path, id);
 
   if (!requesting && !recipe.meals && !recipe.drinks) return <h1>Receita não encontrada</h1>;
   if (!requesting && recipe) {
