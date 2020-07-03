@@ -83,7 +83,7 @@ img , div , h3 , h2 , button {
   width: 150px;
 }
 
-.start-btn:focus {
+.start-btn {
   background-color: green;
   border: none;
   bottom: 0;
@@ -91,7 +91,6 @@ img , div , h3 , h2 , button {
   font-size: 26px;
   height: 60px;
   margin-left: 10px;
-  outline: none;
   position: fixed;
   text-align: center;
   width: 340px;
