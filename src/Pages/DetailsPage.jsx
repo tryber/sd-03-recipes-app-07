@@ -118,32 +118,32 @@ const renderIntructions = (instructions) => (
 const renderDish = (
   thumb, title, category, ingredients, measures, instructions, recomendations, video,
 ) => (
-    <div>
-      <img
-        alt="food or beverage"
-        data-testid="recipe-photo"
-        src={thumb}
-        className="recipe-img"
-      />
-      <div className="recipe-container">
-        <div className="recipe-header">
-          {renderTitles(title, category)}
-          {renderButtons()}
-        </div>
-        {renderIngredients(ingredients, measures)}
-        {renderIntructions(instructions)}
-        {video && (
-          <iframe
-            data-testid="video"
-            src={video}
-            title="Video"
-            frameBorder="0"
-          />
-        )}
-        {renderRecomendations(recomendations)}
+  <div>
+    <img
+      alt="food or beverage"
+      data-testid="recipe-photo"
+      src={thumb}
+      className="recipe-img"
+    />
+    <div className="recipe-container">
+      <div className="recipe-header">
+        {renderTitles(title, category)}
+        {renderButtons()}
       </div>
+      {renderIngredients(ingredients, measures)}
+      {renderIntructions(instructions)}
+      {video && (
+        <iframe
+          data-testid="video"
+          src={video}
+          title="Video"
+          frameBorder="0"
+        />
+      )}
+      {renderRecomendations(recomendations)}
     </div>
-  );
+  </div>
+);
 
 const makeTheDish = (dish, recomendations) => {
   const ingredients = Object
