@@ -1,0 +1,98 @@
+@font-face {
+  font-family: reisregular;
+  font-style: normal;
+  font-weight: 400;
+  src: url('./Fonts/reis-regular-webfont.eot');
+  src: url('./Fonts/reis-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('./Fonts/reis-regular-webfont.woff2') format('woff2'),
+    url('./Fonts/reis-regular-webfont.woff') format('woff'),
+    url('./Fonts/reis-regular-webfont.ttf') format('truetype');
+}
+
+img , div , h3 , h2 , button {
+  margin: 0;
+  padding: 0;
+}
+
+.recipe-img {
+  width: 360px;
+}
+
+.recipe-container {
+  margin-top: -5px;
+}
+
+.recipe-header {
+  align-items: center;
+  background-color: #f3a43d;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.titles-container {
+  color: white;
+  font-family: reisregular, Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  letter-spacing: 3px;
+}
+
+.buttons-container button {
+  margin: 10px;
+}
+
+.ingredients-container , .instructions-container {
+  background-color: #f3a43d;
+  box-sizing: border-box;
+  margin: 15px auto;
+  padding: 10px 15px 0.5px;
+  width: 340px;
+}
+
+.instruction-video {
+  margin-left: 10px;
+  width: 340px;
+}
+
+.recom-container {
+  display: flex;
+  overflow: scroll;
+  padding-bottom: 65px;
+}
+
+.recom-container a {
+  text-decoration: none;
+}
+
+.card {
+  height: 191px;
+  margin: 10px;
+  width: 150px;
+}
+
+.title-c {
+  color: white;
+  font-family: reisregular, Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.cardImage {
+  height: 150px;
+  width: 150px;
+}
+
+.start-btn {
+  background-color: green;
+  border: none;
+  bottom: 0;
+  color: white;
+  font-size: 26px;
+  height: 60px;
+  margin-left: 10px;
+  outline: none;
+  position: fixed;
+  text-align: center;
+  width: 340px;
+}
