@@ -30,6 +30,13 @@ img , div , h3 , h2 , button {
   padding: 10px;
 }
 
+.titles-container {
+  color: white;
+  font-family: reisregular, Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  letter-spacing: 3px;
+}
+
 .buttons-container button {
   margin: 10px;
 }
@@ -40,4 +47,38 @@ img , div , h3 , h2 , button {
   margin: 15px auto;
   padding: 10px 15px 0.5px;
   width: 340px;
+}
+
+.intruction-video {
+  margin-left: 10px;
+  width: 340px;
+}
+
+.recom-container {
+  display: flex;
+  overflow: scroll;
+  scroll-behavior: smooth;
+}
+
+.recom-container a {
+  text-decoration: none;
+}
+
+.card {
+  height: 191px;
+  margin: 10px;
+  width: 150px;
+}
+
+.card h3 {
+  color: white;
+  font-family: reisregular, Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.cardImage {
+  height: 150px;
+  width: 150px;
 }
