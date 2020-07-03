@@ -32,7 +32,6 @@
 .active-btn:focus , .btn-categories-all:focus {
   box-shadow: none;
   left: 3px;
-  outline: none;
   position: relative;
   top: 3px;
 }
