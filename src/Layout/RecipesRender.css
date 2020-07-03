@@ -24,7 +24,6 @@
   box-shadow: 3px 3px 4px black;
   color: white;
   margin: 5px;
-  outline: none;
   padding: 7px 0;
   width: 96.67px;
 }
@@ -32,6 +31,7 @@
 .active-btn:focus , .btn-categories-all:focus {
   box-shadow: none;
   left: 3px;
+  outline: none;
   position: relative;
   top: 3px;
 }
