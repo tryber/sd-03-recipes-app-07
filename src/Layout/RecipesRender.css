@@ -17,7 +17,7 @@
   padding: 5px 15px;
 }
 
-.btn-categories, .btn-categories-all {
+.btn-categories , .btn-categories-all {
   background-color: #f3a43d;
   border: none;
   border-radius: 5px;
@@ -29,7 +29,7 @@
   width: 96.67px;
 }
 
-.active-btn, .btn-categories-all:active {
+.active-btn , .btn-categories-all:focus {
   box-shadow: none;
   left: 3px;
   outline: none;

@@ -30,22 +30,11 @@ img , div , h3 , h2 , button {
   padding: 10px;
 }
 
-.recipe-header h2 {
-  color: white;
-  font-family: reisregular, Arial, Helvetica, sans-serif;
-  font-size: 45px;
-  letter-spacing: 4px;
-}
-
-.titles-container {
-
-}
-
 .buttons-container button {
   margin: 10px;
 }
 
-.ingredients-container, .instructions-container {
+.ingredients-container , .instructions-container {
   background-color: #f3a43d;
   box-sizing: border-box;
   margin: 15px auto;
