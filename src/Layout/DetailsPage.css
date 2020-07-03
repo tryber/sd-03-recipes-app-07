@@ -57,7 +57,6 @@ img , div , h3 , h2 , button {
 .recom-container {
   display: flex;
   overflow: scroll;
-  scroll-behavior: smooth;
 }
 
 .recom-container a {
@@ -70,7 +69,7 @@ img , div , h3 , h2 , button {
   width: 150px;
 }
 
-.card h3 {
+.title-c {
   color: white;
   font-family: reisregular, Arial, Helvetica, sans-serif;
   font-size: 30px;

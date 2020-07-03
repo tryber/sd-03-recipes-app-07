@@ -71,7 +71,7 @@ const renderRecomendations = (recom) => {
         {recom.map((elem, i) => (
           <Link key={elem.strMeal} to={`/comidas/${elem.idMeal}`}>
             <div data-testid={`${i}-recomendation-card`} className="card">
-              <h3 data-testid={`${i}-recomendation-title`}>{elem.strMeal}</h3>
+              <h3 data-testid={`${i}-recomendation-title`} className="title-c">{elem.strMeal}</h3>
               <img alt="Card recipe name" className="cardImage" src={elem.strMealThumb} />
             </div>
           </Link>
@@ -85,7 +85,7 @@ const renderRecomendations = (recom) => {
       {recom.map((elem, i) => (
         <Link key={elem.strDrink} to={`/bebidas/${elem.idDrink}`}>
           <div data-testid={`${i}-recomendation-card`} className="card">
-            <h3 data-testid={`${i}-recomendation-title`}>{elem.strDrink}</h3>
+            <h3 data-testid={`${i}-recomendation-title`} className="title-c">{elem.strDrink}</h3>
             <img alt="Card recipe name" className="cardImage" src={elem.strDrinkThumb} />
           </div>
         </Link>
