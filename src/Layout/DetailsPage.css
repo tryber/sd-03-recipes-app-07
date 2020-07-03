@@ -83,7 +83,7 @@ img , div , h3 , h2 , button {
   width: 150px;
 }
 
-.start-btn {
+.start-btn:focus {
   background-color: green;
   border: none;
   bottom: 0;
