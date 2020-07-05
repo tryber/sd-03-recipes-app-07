@@ -3,12 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
 import { requestCategoriesFood, requestCategoriesDrinks } from '../Services/requestsAPI';
+import '../Layout/RecipesRender.css';
 
 const renderMealsOrDrinks = (item, paramState, route, categories) => {
   const filteredList = paramState.length === 0 ? item.slice('', 12) : categories.slice(0, 12);
   console.log('william', categories);
   return (
-    <div>
+    <div className="card-container">
       {filteredList.map((elem, i) => (
         <Link
           key={elem.strMeal || elem.strDrink}
