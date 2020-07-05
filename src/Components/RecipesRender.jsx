@@ -86,9 +86,6 @@ const RecipesRender = () => {
     foods, categoryFood, beverages, categoryDrink, radioBtnFiltered,
   } = useContext(recipeContext);
 
-  // console.log('agora chegou requisicao', buttonCategory);
-  console.log('set requisicao', categories);
-
   const location = useLocation().pathname;
 
   if (location === '/comidas') {
