@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { requestCategories } from '../Services/requestsAPI';
 
-const useRequestCategories = (food, drinks) => {
+const useRequestCategories = (food, drinks, callBack) => {
   const [categories, setCategories] = useState([]);
   const [categoriesDrinks, setCategoriesDrinks] = useState([]);
 
@@ -14,7 +14,9 @@ const useRequestCategories = (food, drinks) => {
         setCategoriesDrinks(index[1]);
       }),
     );
-  }, []);
+  }, [food, drinks]);
+
+  console.log('oq ta no hooks', categories);
 
   return {
     categories,

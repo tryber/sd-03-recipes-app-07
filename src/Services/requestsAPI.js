@@ -54,15 +54,19 @@ const requestRadioButtons = (radioSelected, inputValue, location) => {
   }
 };
 
-const requestCategories = async (food, drink) => {
+const requestCategoriesFood = async (food) => {
   const urlCategoryFood = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${food}`;
   const categoryFood = await axios.get(urlCategoryFood);
+  return categoryFood;
+};
 
+const requestCategoriesDrinks = async (drink) => {
   const urlCategoryDrink = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${drink}`;
-  const categoryDrink = axios.get(urlCategoryDrink);
-  return axios.all([categoryFood, categoryDrink]);
+  const categoryDrink = await axios.get(urlCategoryDrink);
+  return categoryDrink;
 };
 
 export {
-  foodsRequests, drinksRequests, requestRadioButtons, requestCategories,
+  foodsRequests, drinksRequests, requestRadioButtons, requestCategoriesFood,
+  requestCategoriesDrinks,
 };
