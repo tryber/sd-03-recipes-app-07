@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { setLocalStorage } from '../Services';
-// import { recipeContext } from '../Hooks/recipeContext';
+import '../Layout/LoginForm.css';
 
 const RenderEmail = (callback, value) => (
-  <label htmlFor="email">
-    Email:
+  <div className="email-box">
     <input
       data-testid="email-input"
       id="email"
@@ -14,12 +13,11 @@ const RenderEmail = (callback, value) => (
       onChange={(e) => callback(e.target.value)}
       value={value}
     />
-  </label>
+  </div>
 );
 
 const RenderPassword = (callback, value) => (
-  <label htmlFor="password">
-    Senha:
+  <div className="password-box">
     <input
       data-testid="password-input"
       id="password"
@@ -28,11 +26,12 @@ const RenderPassword = (callback, value) => (
       onChange={(e) => callback(e.target.value)}
       value={value}
     />
-  </label>
+  </div>
 );
 
 const RenderLoginButton = (disabled, callback) => (
   <button
+    className="login-btn"
     data-testid="login-submit-btn"
     disabled={disabled}
     type="button"

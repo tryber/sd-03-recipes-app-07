@@ -1,18 +1,43 @@
-.card {
-  display: flex;
+@font-face {
+  font-family: reisregular;
+  font-style: normal;
+  font-weight: 400;
+  src: url('./Fonts/reis-regular-webfont.eot');
+  src: url('./Fonts/reis-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('./Fonts/reis-regular-webfont.woff2') format('woff2'),
+    url('./Fonts/reis-regular-webfont.woff') format('woff'),
+    url('./Fonts/reis-regular-webfont.ttf') format('truetype');
 }
 
-.cardImage {
-  width: 200px;
-}
-
-.title {
-  background: chocolate;
+div , h3 , img {
   margin: 0;
   padding: 0;
+}
+
+.card {
+  background-color: #f3a43d;
+  border-radius: 7px;
+  box-shadow: 3px 3px 7px black;
+  margin: 10px 0;
+  width: 150px;
+}
+
+.card:active {
+  box-shadow: none;
+  left: 3px;
+  position: relative;
+  top: 3px;
+}
+
+.card-title {
+  color: white;
+  font-family: reisregular, Arial, Helvetica, sans-serif;
+  letter-spacing: 3.5px;
+  padding: 10px;
   text-align: center;
 }
 
-.categoryCard {
-  color: black;
+.card-image {
+  border-radius: 7px 7px 0 0;
+  width: 150px;
 }
