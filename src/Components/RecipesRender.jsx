@@ -15,6 +15,7 @@ const renderMealsOrDrinks = (item, paramState, route, categories) => {
           to={`/${route}/${elem.idMeal || elem.idDrink}`}
         >
           <RecipeCard
+            midle="recipe"
             index={i}
             title={elem.strMeal || elem.strDrink}
             key={elem.strMeal || elem.strDrinkThumb}
