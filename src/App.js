@@ -1,12 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useRecipeProvider as Provider } from './Hooks/recipeContext';
+
 import {
   DetailsPage,
   Login,
   MainScreen,
   ExplorerScreen,
 } from './Pages';
+
+import ExplorerFoods from './Components/ExplorerFoods';
+import ExplorerDrinks from './Components/ExplorerDrinks';
 
 const App = () => (
   <Provider>
@@ -20,8 +24,8 @@ const App = () => (
         <Route exact path="/comidas/:id/in-progess" component={Login} />
         <Route exact path="/bebidas/:id/in-progess" component={Login} />
         <Route exact path="/explorar" component={ExplorerScreen} />
-        <Route exact path="/explorar/comidas" component={Login} />
-        <Route exact path="/explorar/bebidas" component={Login} />
+        <Route exact path="/explorar/comidas" component={ExplorerFoods} />
+        <Route exact path="/explorar/bebidas" component={ExplorerDrinks} />
         <Route exact path="/explorar/comidas/ingredientes" component={Login} />
         <Route exact path="/explorar/bebidas/ingredientes" component={Login} />
         <Route exact path="/explorar/comidas/area" component={Login} />
