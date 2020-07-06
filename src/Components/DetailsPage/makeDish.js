@@ -1,5 +1,3 @@
-import renderDish from './renderDish';
-
 const makeTheDish = (dish, recomendations, path, favorites) => {
   const ingredients = Object
     .entries(dish)
@@ -12,39 +10,32 @@ const makeTheDish = (dish, recomendations, path, favorites) => {
   const recom = recomendations.slice('', 6);
 
   if (dish.strDrink) {
-    return (renderDish(
-      false,
+    return ({
+      done: false,
       path,
       favorites,
-      dish.strDrinkThumb,
-      dish.strDrink,
-      dish.strAlcoholic,
+      thumb: dish.strDrinkThumb,
+      title: dish.strDrink,
+      category: dish.strAlcoholic,
       ingredients,
       measures,
-      dish.strInstructions,
+      instructions: dish.strInstructions,
       recom,
-    ));
+    });
   }
-  return (renderDish(
-    false,
+  return ({
+    done: false,
     path,
     favorites,
-    dish.strMealThumb,
-    dish.strMeal,
-    dish.strCategory,
+    thumb: dish.strMealThumb,
+    title: dish.strMeal,
+    category: dish.strCategory,
     ingredients,
     measures,
-    dish.strInstructions,
+    instructions: dish.strInstructions,
     recom,
-    dish.strYoutube.replace('watch?v=', 'embed/'),
-  ));
+    video: dish.strYoutube.replace('watch?v=', 'embed/'),
+  });
 };
-
-// makeTheDish.propTypes = {
-//   dish: PropTypes.shape(),
-//   recomendations:,
-//   path:,
-//   favorites:,
-// };
 
 export default makeTheDish;

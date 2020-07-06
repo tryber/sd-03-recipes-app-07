@@ -18,7 +18,7 @@ const renderButtons = (path, favorites, favoriteFunc) => {
     <div className="buttons-container">
       <button
         data-testid="share-btn"
-        onClick={() => { navigator.clipboard.writeText(urlPath); alert('Link copiado!'); }}
+        onClick={() => { navigator.clipboard.writeText(`https://${urlPath}`); alert('Link copiado!'); }}
         src={shareIcon}
         type="button"
       >
@@ -89,9 +89,9 @@ const renderRecomendations = (recom) => {
   );
 };
 
-const startBtn = (doing) => (
+const startBtn = (doing, path) => (
   <div>
-    <Link to="/comidas/52977/in-progress">
+    <Link to={`${path}/in-progress`}>
       <button
         className="start-btn"
         data-testid="start-recipe-btn"
@@ -105,10 +105,10 @@ const startBtn = (doing) => (
   </div>
 );
 
-const renderDish = (
+const renderDish = ({
   done, path, favorites, thumb, title, category,
-  ingredients, measures, instructions, recomendations, video,
-) => (
+  ingredients, measures, instructions, recom, video,
+}) => (
   <div>
     <img
       alt="food or beverage"
@@ -132,9 +132,9 @@ const renderDish = (
           frameBorder="0"
         />
       )}
-      {renderRecomendations(recomendations)}
+      {renderRecomendations(recom)}
     </div>
-    {!done && startBtn()}
+    {!done && startBtn(done, path)}
   </div>
 );
 
