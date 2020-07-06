@@ -29,7 +29,7 @@ const radioButtons = (callBack) => (
     />
     <label className="labels-radios" htmlFor="selectButtonsradios">Ingredientes</label>
     <input
-    className="radios-inputs"
+      className="radios-inputs"
       value="name"
       type="radio"
       name="selectButtonsradios"
@@ -38,7 +38,7 @@ const radioButtons = (callBack) => (
     />
     <label className="labels-radios" htmlFor="selectButtonsradios">Nome</label>
     <input
-    className="radios-inputs"
+      className="radios-inputs"
       value="letterFirst"
       type="radio"
       name="selectButtonsradios"
@@ -160,9 +160,9 @@ const Header = () => {
 
   if (showSearchBar) {
     window.addEventListener('scroll', () => {
-      setShowSearchBar(false)
+      setShowSearchBar(false);
     });
-  };
+  }
 
   return (
     <nav>
