@@ -90,7 +90,7 @@ const renderRecomendations = (recom) => {
     <div className="recom-container">
       {recom.map((elem, i) => (
         <Link key={elem.strDrink} to={`/bebidas/${elem.idDrink}`}>
-          <div data-testid={`${i}-recomendation-card`} className="card">            
+          <div data-testid={`${i}-recomendation-card`} className="card">
             <h3 className="title-c" data-testid={`${i}-recomendation-title`}>{elem.strDrink}</h3>
             <img alt="Card recipe name" className="cardImage" src={elem.strDrinkThumb} />
           </div>
