@@ -27,10 +27,14 @@ const renderMealsOrDrinks = (item, paramState) => {
 };
 
 const renderCategories = (categories, buttonCategory, setbuttonCategory) => (
-  <div>
+  <div className="categories-container">
     {categories.map(
       (category) => (
         <button
+          className={
+            `btn-categories
+            ${buttonCategory === category.strCategory ? ' active-btn' : ''}`
+          }
           type="button"
           key={`${category.strCategory}`}
           value={`${category.strCategory}`}
@@ -47,6 +51,7 @@ const renderCategories = (categories, buttonCategory, setbuttonCategory) => (
     <button
       onClick={() => setbuttonCategory('')}
       type="button"
+      className="btn-categories-all"
     >
       All
     </button>
