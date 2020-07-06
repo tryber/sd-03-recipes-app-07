@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
@@ -105,7 +106,7 @@ const startBtn = (doing, path) => (
   </div>
 );
 
-const renderDish = ({
+const RenderDish = ({
   done, path, favorites, thumb, title, category,
   ingredients, measures, instructions, recom, video,
 }) => (
@@ -138,4 +139,22 @@ const renderDish = ({
   </div>
 );
 
-export default renderDish;
+RenderDish.defaultProps = {
+  video: '',
+};
+
+RenderDish.propTypes = {
+  done: PropTypes.bool.isRequired,
+  path: PropTypes.string.isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
+  thumb: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+  measures: PropTypes.arrayOf(PropTypes.string).isRequired,
+  instructions: PropTypes.string.isRequired,
+  recom: PropTypes.arrayOf(PropTypes.object).isRequired,
+  video: PropTypes.string,
+};
+
+export default RenderDish;

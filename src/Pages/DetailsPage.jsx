@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
-import renderDish from '../Components/DetailsPage/renderDish';
 import { getLocalStorage, setLocalStorage } from '../Services';
+import RenderDish from '../Components/DetailsPage/RenderDish';
 import makeTheDish from '../Components/DetailsPage/makeDish';
 import useRequestId from '../Hooks/useRequestId';
 import '../Layout/DetailsPage.css';
@@ -21,7 +21,6 @@ const DetailsPage = () => {
     setLocalStorage('favoriteRecipes', []);
   }
   const favorites = getLocalStorage('favoriteRecipes');
-  console.log(favorites);
 
   if (!requesting && !recipe.meals && !recipe.drinks) return <h1>Receita não encontrada</h1>;
   if (!requesting && recipe) {
@@ -32,8 +31,7 @@ const DetailsPage = () => {
       url,
       favorites,
     );
-    console.log(dish)
-    return renderDish(dish);
+    return RenderDish(dish);
   }
   return <h1>Loading...</h1>;
 };
