@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import renderDish from './renderDish';
 
 const makeTheDish = (dish, recomendations, path, favorites) => {
