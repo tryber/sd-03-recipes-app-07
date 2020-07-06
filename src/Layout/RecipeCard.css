@@ -18,9 +18,9 @@ div , h3 , img {
   background-color: #f3a43d;
   border-radius: 7px;
   box-shadow: 3px 3px 7px black;
-  height: 191px;
+  height: 205px;
   margin: 10px 0;
-  width: 150px;
+  width: 150px
 }
 
 .card:active {

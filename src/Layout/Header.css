@@ -19,6 +19,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
+  position: relative;
 }
 
 .btn-show {
@@ -31,4 +32,45 @@ body {
   font-family: reisregular, Arial, Helvetica, sans-serif;
   font-size: 45px;
   letter-spacing: 3px;
+}
+
+.search-bar-container {
+  background-color: wheat;
+  height: 101px;
+  left: 0;
+  padding: 10px 20px;
+  position: fixed;
+  top: 61px;
+  width: 360px;
+}
+
+.search-input {
+  border: 2px solid #f3a43d;
+  border-radius: 5px;
+  height: 30px;
+  padding-left: 5px;
+  width: 220px;
+}
+
+.radios-box {
+  margin-top: 10px;
+  width: 320px
+}
+
+.labels-radios {
+  font-size: 14.5px;
+  margin-right: 6px ;
+}
+
+.search-button {
+  background-color: #f3a43d;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 800;
+  height: 34px;
+  left: 264px;
+  position: relative;
+  top: 11px;
+  width: 68px
 }
