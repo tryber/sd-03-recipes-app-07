@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { recipeContext } from '../Hooks/recipeContext';
-import useRequestId from '../Hooks/useRequestId';
-import shareIcon from '../images/shareIcon.svg';
+import { getLocalStorage, setLocalStorage } from '../Services';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
+import useRequestId from '../Hooks/useRequestId';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import '../Layout/DetailsPage.css';
 
@@ -14,15 +14,15 @@ const renderTitles = (title, category) => (
   </div>
 );
 
-const changeFavorite = (favorite, setFavorite, id) => {
+const changeFavorite = (favorite, id) => {
   if (favorite.includes(id)) {
-    setFavorite(favorite.filter((e) => e !== id));
+    (favorite.filter((e) => e !== id));
   } else {
-    setFavorite([...favorite, `${id}`]);
+    ([...favorite, `${id}`]);
   }
 };
 
-const renderButtons = (path, favorite, setFavorite) => {
+const renderButtons = (path, favorite) => {
   const urlPath = `localhost:3000${path}`;
   const id = path.slice(-5);
   return (
@@ -37,7 +37,7 @@ const renderButtons = (path, favorite, setFavorite) => {
       </button>
       <button
         data-testid="favorite-btn"
-        onClick={() => changeFavorite(favorite, setFavorite, id)}
+        onClick={() => changeFavorite(id)}
         src={favorite.includes(id) ? blackHeartIcon : whiteHeartIcon}
         type="button"
       >
@@ -117,8 +117,8 @@ const startBtn = (doing) => (
 );
 
 const renderDish = (
-  favorite, setFavorite, done, path, thumb, title,
-  category, ingredients, measures, instructions, recomendations, video,
+  done, path, favorites, thumb, title, category,
+  ingredients, measures, instructions, recomendations, video,
 ) => (
   <div>
     <img
@@ -130,7 +130,7 @@ const renderDish = (
     <div className="recipe-container">
       <div className="recipe-header">
         {renderTitles(title, category)}
-        {renderButtons(path, favorite, setFavorite)}
+        {renderButtons(path, favorites)}
       </div>
       {renderIngredients(ingredients, measures)}
       {renderIntructions(instructions)}
@@ -149,7 +149,7 @@ const renderDish = (
   </div>
 );
 
-const makeTheDish = (dish, recomendations, path, favorite, setFavorite) => {
+const makeTheDish = (dish, recomendations, path, favorites) => {
   const ingredients = Object
     .entries(dish)
     .filter((elem) => elem[0].includes('Ingredient') && elem[1])
@@ -162,10 +162,9 @@ const makeTheDish = (dish, recomendations, path, favorite, setFavorite) => {
 
   if (dish.strDrink) {
     return (renderDish(
-      favorite,
-      setFavorite,
       false,
       path,
+      favorites,
       dish.strDrinkThumb,
       dish.strDrink,
       dish.strAlcoholic,
@@ -176,10 +175,9 @@ const makeTheDish = (dish, recomendations, path, favorite, setFavorite) => {
     ));
   }
   return (renderDish(
-    favorite,
-    setFavorite,
     false,
     path,
+    favorites,
     dish.strMealThumb,
     dish.strMeal,
     dish.strCategory,
@@ -196,9 +194,9 @@ const mealOrDrink = (meal, drink) => { if (meal) return meal[0]; return drink[0]
 const goodRecomen = (value) => { if (value.meals) return value.meals; return value.drinks; };
 
 const DetailsPage = () => {
-  const { favorite, setFavorite } = useContext(recipeContext);
   const { params: { id }, path, url } = useRouteMatch();
   const { recipe, recomendations, requesting } = useRequestId(path, id);
+  const favorites = [];
 
   if (!requesting && !recipe.meals && !recipe.drinks) return <h1>Receita não encontrada</h1>;
   if (!requesting && recipe) {
@@ -207,8 +205,7 @@ const DetailsPage = () => {
       mealOrDrink(meals, drinks),
       goodRecomen(recomendations),
       url,
-      favorite,
-      setFavorite,
+      favorites,
     );
   }
   return <h1>Loading...</h1>;

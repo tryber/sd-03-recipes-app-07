@@ -7,7 +7,6 @@ const recipeContext = createContext();
 
 const useRecipeProvider = ({ children }) => {
   const [radioBtnFiltered, setRadioBtnFiltered] = useState();
-  const [favorite, setFavorite] = useState(['52977']);
   const {
     apiFood, foods, categoryFood, ingredientsFood, areasFood, allFoods,
   } = useRequestFoods();
@@ -27,8 +26,6 @@ const useRecipeProvider = ({ children }) => {
     ingredientsDrink,
     radioBtnFiltered,
     setRadioBtnFilteredFun: (data) => setRadioBtnFiltered(data),
-    favorite,
-    setFavorite,
   };
 
   return (
