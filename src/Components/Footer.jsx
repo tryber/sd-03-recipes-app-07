@@ -48,14 +48,14 @@ const Footer = () => {
   const location = useLocation();
   console.log('location aqui', location);
   return (
-    <div
+    <footer
       data-testid="footer"
       className="Footer_all"
     >
       {DrinksToFooter()}
       {ExploreToFooter()}
       {MealsToFooter()}
-    </div>
+    </footer>
   );
 };
 
