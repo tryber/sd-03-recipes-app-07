@@ -41,7 +41,7 @@ const callCategory = (event, setButton, location) => {
 
 const renderCategories = (categories, buttonCategory, setbuttonCategory, location, setAPI) => (
   <div className="categories-container">
-    {categories.slice('', 5).map(
+    {categories.slice(0, 5).map(
       (category) => (
         <button
           className={
