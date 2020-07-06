@@ -4,7 +4,6 @@ import { foodsRequests } from '../Services/requestsAPI';
 
 const useRequestsFoods = () => {
   const [foods, setFoods] = useState([]);
-  const [allFoods, setAllFood] = useState([]);
   const [apiFood, setApiFoood] = useState(true);
   const [areasFood, setAreasFood] = useState([]);
   const [categoryFood, setCategoryFood] = useState([]);
@@ -13,12 +12,14 @@ const useRequestsFoods = () => {
   useEffect(() => {
     foodsRequests().then(
       axios.spread((...index) => {
-        const { data: { meals } } = index[0]; setFoods(meals);
-        const { data } = index[1]; setCategoryFood(data.meals.slice('', 5));
-        const resultIngredients = index[2].data.meals; setIngredientsFood(resultIngredients);
-        setAreasFood(index[3]);
-        setAllFood(index[0].data.meals);
+        const { data } = index[1];
+        const { data: { meals } } = index[0];
+        const resultIngredients = index[2].data.meals;
+        setFoods(meals);
         setApiFoood(false);
+        setAreasFood(index[3]);
+        setCategoryFood(data.meals);
+        setIngredientsFood(resultIngredients);
       }),
     );
   }, []);
@@ -27,7 +28,6 @@ const useRequestsFoods = () => {
     ingredientsFood,
     categoryFood,
     areasFood,
-    allFoods,
     apiFood,
     foods,
   };
