@@ -6,10 +6,11 @@ import { requestCategoriesFood, requestCategoriesDrinks } from '../Services/requ
 import '../Layout/RecipesRender.css';
 
 const renderMealsOrDrinks = (item, paramState, route, categories) => {
-  const filteredList = paramState.length === 0 ? item.slice('', 12) : categories.slice(0, 12);
+  const filteredList = paramState.length === 0 ? item.slice(0, 12) : categories.slice(0, 12);
+  const filterIngredients = filteredList;
   return (
     <div className="card-container">
-      {filteredList.map((elem, i) => (
+      {filterIngredients.map((elem, i) => (
         <Link
           key={elem.strMeal || elem.strDrink}
           to={`/${route}/${elem.idMeal || elem.idDrink}`}
@@ -40,7 +41,7 @@ const callCategory = (event, setButton, location) => {
 
 const renderCategories = (categories, buttonCategory, setbuttonCategory, location, setAPI) => (
   <div>
-    {categories.slice('', 5).map(
+    {categories.slice(0, 5).map(
       (category) => (
         <button
           type="button"

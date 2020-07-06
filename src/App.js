@@ -12,6 +12,8 @@ import {
 import ExplorerFoods from './Components/ExplorerFoods';
 import ExplorerDrinks from './Components/ExplorerDrinks';
 import ExplorerIngredients from './Components/ExplorerIngredients';
+import ExplorerArea from './Components/ExplorerArea';
+import NotFound from './Components/NotFound';
 
 const App = () => (
   <Provider>
@@ -29,7 +31,8 @@ const App = () => (
         <Route exact path="/explorar/bebidas" component={ExplorerDrinks} />
         <Route exact path="/explorar/comidas/ingredientes" component={ExplorerIngredients} />
         <Route exact path="/explorar/bebidas/ingredientes" component={ExplorerIngredients} />
-        <Route exact path="/explorar/comidas/area" component={Login} />
+        <Route exact path="/explorar/comidas/area" component={ExplorerArea} />
+        <Route exact path="/explorar/bebidas/area" component={NotFound} />
         <Route exact path="/perfil" component={Login} />
         <Route exact path="/receitas-feitas" component={Login} />
         <Route exact path="/receitas-favoritas" component={Login} />
