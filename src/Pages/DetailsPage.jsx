@@ -10,6 +10,10 @@ import '../Layout/DetailsPage.css';
 //   console.log('test', favorite, id);
 // };
 
+const mealOrDrink = (meal, drink) => { if (meal) return meal[0]; return drink[0]; };
+
+const goodRecomen = (value) => { if (value.meals) return value.meals; return value.drinks; };
+
 const DetailsPage = () => {
   const { params: { id }, path, url } = useRouteMatch();
   const { recipe, recomendations, requesting } = useRequestId(path, id);
@@ -17,10 +21,6 @@ const DetailsPage = () => {
     setLocalStorage('favoriteRecipes', []);
   }
   const favorites = getLocalStorage('favoriteRecipes');
-
-  const mealOrDrink = (meal, drink) => { if (meal) return meal[0]; return drink[0]; };
-
-  const goodRecomen = (value) => { if (value.meals) return value.meals; return value.drinks; };
 
   if (!requesting && !recipe.meals && !recipe.drinks) return <h1>Receita não encontrada</h1>;
   if (!requesting && recipe) {
