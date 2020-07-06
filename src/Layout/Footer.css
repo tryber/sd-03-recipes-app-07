@@ -1,17 +1,12 @@
 .Footer_all {
   align-items: center;
-  background-color: rgb(196, 196, 196);
+  background-color: #f3a43d;
   bottom: 0;
+  box-sizing: border-box;
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  padding: 1em 0;
+  height: 61px;
+  justify-content: space-between;
+  padding: 10px 20px;
   position: fixed;
-  width: 100vw;
-}
-
-.Footer_icon {
-  align-items: center;
-  display: flex;
-  justify-content: center;
+  width: 360px;
 }

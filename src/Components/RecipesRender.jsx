@@ -40,10 +40,14 @@ const callCategory = (event, setButton, location) => {
 };
 
 const renderCategories = (categories, buttonCategory, setbuttonCategory, location, setAPI) => (
-  <div>
-    {categories.slice(0, 5).map(
+  <div className="categories-container">
+    {categories.slice('', 5).map(
       (category) => (
         <button
+          className={
+            `btn-categories
+            ${buttonCategory === category.strCategory ? ' active-btn' : ''}`
+          }
           type="button"
           key={`${category.strCategory}`}
           value={`${category.strCategory}`}
@@ -62,6 +66,7 @@ const renderCategories = (categories, buttonCategory, setbuttonCategory, locatio
       data-testid="All-category-filter"
       onClick={() => setbuttonCategory('')}
       type="button"
+      className="btn-categories-all"
     >
       All
     </button>

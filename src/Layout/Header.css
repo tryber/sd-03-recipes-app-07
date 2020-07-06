@@ -1,3 +1,34 @@
+@font-face {
+  font-family: reisregular;
+  font-style: normal;
+  font-weight: 400;
+  src: url('./Fonts/reis-regular-webfont.eot');
+  src: url('./Fonts/reis-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('./Fonts/reis-regular-webfont.woff2') format('woff2'),
+    url('./Fonts/reis-regular-webfont.woff') format('woff'),
+    url('./Fonts/reis-regular-webfont.ttf') format('truetype');
+}
+
 body {
   background-color: blanchedalmond;
+}
+
+.nav-header-container {
+  align-items: center;
+  background-color: #f3a43d;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.btn-show {
+  background-color: rgba(245, 222, 179, 0);
+  border: none;
+}
+
+.page-title {
+  color: white;
+  font-family: reisregular, Arial, Helvetica, sans-serif;
+  font-size: 45px;
+  letter-spacing: 3px;
 }
