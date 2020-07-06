@@ -28,7 +28,7 @@ const ExplorerDrinks = () => {
       >
         Me Surpreenda!
       </button>
-      {id !== '' && <Redirect to={`/bebidas/178319`} />}
+      {id !== '' && <Redirect to="bebidas/178319" />}
       <Footer />
     </div>
   );

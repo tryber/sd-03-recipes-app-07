@@ -35,8 +35,6 @@ const ExplorerArea = () => {
   const [country, setcountry] = useState('');
   const [renderArea, setRenderArea] = useState([]);
 
-  console.log('asdasd', country);
-  console.log('asdasd', renderArea);
   return (
     <div>
       <select
