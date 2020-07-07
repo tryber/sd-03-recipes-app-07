@@ -5,12 +5,12 @@ import { recipeContext } from '../Hooks/recipeContext';
 import { requestCategoriesFood, requestCategoriesDrinks } from '../Services/requestsAPI';
 import '../Layout/RecipesRender.css';
 
-const renderMealsOrDrinks = (item, paramState, route, categories) => {
-  const filteredList = paramState.length === 0 ? item.slice(0, 12) : categories.slice(0, 12);
-  const filterIngredients = filteredList;
+const renderMealsOrDrinks = (item, paramState, route, categories, renderIngredients) => {
+  const filteredList = paramState.length === 0 ? item : categories;
+  const filterIngredients = renderIngredients.length > 1 ? renderIngredients : filteredList;
   return (
     <div className="card-container">
-      {filterIngredients.map((elem, i) => (
+      {filterIngredients.slice(0, 12).map((elem, i) => (
         <Link
           key={elem.strMeal || elem.strDrink}
           to={`/${route}/${elem.idMeal || elem.idDrink}`}
@@ -90,7 +90,7 @@ const RecipesRender = () => {
   const [categories, setCategories] = useState([]);
 
   const {
-    foods, categoryFood, beverages, categoryDrink, radioBtnFiltered,
+    foods, categoryFood, beverages, categoryDrink, radioBtnFiltered, renderIngredients,
   } = useContext(recipeContext);
 
   const location = useLocation().pathname;
@@ -99,13 +99,13 @@ const RecipesRender = () => {
     return (
       <div>
         {renderCategories(categoryFood, buttonCategory, setbuttonCategory, location, setCategories)}
-        {renderMealsOrDrinks(returnApi(radioBtnFiltered, foods, location), buttonCategory, 'comidas', categories)}
+        {renderMealsOrDrinks(returnApi(radioBtnFiltered, foods, location), buttonCategory, 'comidas', categories, renderIngredients)}
       </div>
     );
   } return (
     <div>
       {renderCategories(categoryDrink, buttonCategory, setbuttonCategory, location, setCategories)}
-      {renderMealsOrDrinks(returnApi(radioBtnFiltered, beverages, location), buttonCategory, 'bebidas', categories)}
+      {renderMealsOrDrinks(returnApi(radioBtnFiltered, beverages, location), buttonCategory, 'bebidas', categories, renderIngredients)}
     </div>
   );
 };

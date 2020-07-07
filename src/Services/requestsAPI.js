@@ -71,7 +71,12 @@ const requestByAreas = async (area) => {
   return areaFood;
 };
 
+const requestByIngredients = async (ingredients, type) => {
+  const filterIngredients = await axios.get(`https://www.the${type}db.com/api/json/v1/1/filter.php?i=${ingredients}`);
+  return filterIngredients;
+};
+
 export {
   foodsRequests, drinksRequests, requestRadioButtons, requestCategoriesFood,
-  requestCategoriesDrinks, requestByAreas,
+  requestCategoriesDrinks, requestByAreas, requestByIngredients,
 };
