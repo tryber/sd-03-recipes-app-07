@@ -5,6 +5,7 @@ import {
   DetailsPage,
   Login,
   MainScreen,
+  Profile,
 } from './Pages';
 
 const App = () => (
@@ -24,7 +25,7 @@ const App = () => (
         <Route exact path="/explorar/comidas/ingredientes" component={Login} />
         <Route exact path="/explorar/bebidas/ingredientes" component={Login} />
         <Route exact path="/explorar/comidas/area" component={Login} />
-        <Route exact path="/perfil" component={Login} />
+        <Route exact path="/perfil" component={Profile} />
         <Route exact path="/receitas-feitas" component={Login} />
         <Route exact path="/receitas-favoritas" component={Login} />
       </Switch>

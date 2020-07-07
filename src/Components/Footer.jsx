@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DrinkIcon from '../images/drinkIcon.svg';
 import ExploreIcon from '../images/exploreIcon.svg';
 import MealIcon from '../images/mealIcon.svg';
@@ -45,8 +45,6 @@ const MealsToFooter = () => (
 );
 
 const Footer = () => {
-  const location = useLocation();
-  console.log('location aqui', location);
   return (
     <div
       data-testid="footer"
