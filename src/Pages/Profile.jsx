@@ -6,11 +6,15 @@ import Footer from '../Components/Footer';
 const renderContent = (userEmail) => {
   return (
     <div className="profileContainer">
-      <div className="userEmail" data-testid="profile-email">
+      <div
+        className="userEmail"
+        data-testid="profile-email"
+        >
         {userEmail.email}
       </div>
       <Link to="/receitas-feitas">
-        <button className="done-recipes-btn"
+        <button
+          className="done-recipes-btn"
           data-testid="profile-done-btn"
           type="button"
         >
@@ -18,7 +22,8 @@ const renderContent = (userEmail) => {
         </button>
       </Link>
       <Link to="/receitas-favoritas">
-        <button className="fav-recipes-btn"
+        <button
+          className="fav-recipes-btn"
           data-testid="profile-favorite-btn"
           type="button"
         >
@@ -26,11 +31,12 @@ const renderContent = (userEmail) => {
         </button>
       </Link>
       <Link to="/">
-        <button className="logout-btn"
+        <button
+          className="logout-btn"
           data-testid="profile-logout-btn"
           type="button"
           onClick={() => localStorage.clear()}
-          >
+        >
           Sair
         </button>
       </Link>
