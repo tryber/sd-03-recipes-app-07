@@ -27,14 +27,8 @@ const setFavorite = (
 };
 
 const makeTheDish = (dish, recomendations, path, forceUpdate) => {
-  const ingredients = Object
-    .entries(dish)
-    .filter((elem) => elem[0].includes('Ingredient') && elem[1])
-    .map((elem) => elem[1]);
-  const measures = Object
-    .entries(dish)
-    .filter((elem) => elem[0].includes('Measure') && elem[1] !== ' ')
-    .map((elem) => elem[1]);
+  const ingredients = Object.entries(dish).filter((elem) => elem[0].includes('Ingredient') && elem[1]).map((elem) => elem[1]);
+  const measures = Object.entries(dish).filter((elem) => elem[0].includes('Measure') && elem[1] !== ' ').map((elem) => elem[1]);
   const recom = recomendations.slice('', 6);
 
   const favorites = favoriteRecipesHandler();
