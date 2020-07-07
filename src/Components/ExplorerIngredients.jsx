@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLocation, Redirect } from 'react-router-dom';
+import { useLocation, Redirect } from 'react-router-dom';
 import Footer from './Footer';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
@@ -11,9 +11,9 @@ const callIngredients = (ingred, setIngred, type) => {
 };
 
 const ExplorerIngredients = () => {
-  const { ingredientsFood, ingredientsDrink, setRenderIngredients, renderIngredients } = useContext(recipeContext);
-  const [filterIngredients, setFilterIngredients] = useState([]);
-
+  const {
+    ingredientsFood, ingredientsDrink, setRenderIngredients, renderIngredients,
+  } = useContext(recipeContext);
   console.log('filterringredients', renderIngredients);
 
   const location = useLocation().pathname;
