@@ -149,8 +149,9 @@ const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
 );
 
 const searchHeaderShow = (location) => {
-  if (location === '/comidas' || location === '/bebidas' || location === '/explorarorigem')
+  if (location === '/comidas' || location === '/bebidas' || location === '/explorarorigem') {
     return true;
+  }
   return false;
 };
 
