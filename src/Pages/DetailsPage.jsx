@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { getLocalStorage, setLocalStorage } from '../Services';
 import RenderDish from '../Components/DetailsPage/RenderDish';
@@ -15,6 +15,7 @@ const mealOrDrink = (meal, drink) => { if (meal) return meal[0]; return drink[0]
 const goodRecomen = (value) => { if (value.meals) return value.meals; return value.drinks; };
 
 const DetailsPage = () => {
+  const [recipeData, setRecipeData] = useState({});
   const { params: { id }, path, url } = useRouteMatch();
   const { recipe, recomendations, requesting } = useRequestId(path, id);
   if (!getLocalStorage('favoriteRecipes')) {
@@ -30,6 +31,8 @@ const DetailsPage = () => {
       goodRecomen(recomendations),
       url,
       favorites,
+      recipeData,
+      setRecipeData,
     );
     return RenderDish(dish);
   }
