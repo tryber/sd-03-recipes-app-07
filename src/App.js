@@ -6,6 +6,7 @@ import {
   Login,
   MainScreen,
   Profile,
+  ExplorerScreen,
 } from './Pages';
 
 const App = () => (
@@ -19,7 +20,7 @@ const App = () => (
         <Route exact path="/bebidas/:id" component={DetailsPage} />
         <Route exact path="/comidas/:id/in-progess" component={Login} />
         <Route exact path="/bebidas/:id/in-progess" component={Login} />
-        <Route exact path="/explorar" component={MainScreen} />
+        <Route exact path="/explorar" component={ExplorerScreen} />
         <Route exact path="/explorar/comidas" component={Login} />
         <Route exact path="/explorar/bebidas" component={Login} />
         <Route exact path="/explorar/comidas/ingredientes" component={Login} />

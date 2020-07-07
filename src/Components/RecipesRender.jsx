@@ -2,17 +2,17 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
+import { requestCategoriesFood, requestCategoriesDrinks } from '../Services/requestsAPI';
 import '../Layout/RecipesRender.css';
 
-const renderMealsOrDrinks = (item, paramState) => {
-  const filteredList = paramState.length === 0
-    ? item.slice('', 12) : item.filter((elem) => elem.strCategory === paramState);
+const renderMealsOrDrinks = (item, paramState, route, categories) => {
+  const filteredList = paramState.length === 0 ? item.slice('', 12) : categories.slice(0, 12);
   return (
     <div className="card-container">
       {filteredList.map((elem, i) => (
         <Link
-          key={elem.strMeal}
-          to={`/comidas/${elem.idMeal}`}
+          key={elem.strMeal || elem.strDrink}
+          to={`/${route}/${elem.idMeal || elem.idDrink}`}
         >
           <RecipeCard
             index={i}
@@ -26,15 +26,31 @@ const renderMealsOrDrinks = (item, paramState) => {
   );
 };
 
-const renderCategories = (categories, buttonCategory, setbuttonCategory) => (
-  <div>
-    {categories.map(
+const callCategory = (event, setButton, location) => {
+  if (location === '/comidas') {
+    return (
+      requestCategoriesFood(event).then((data) => setButton(data.data.meals))
+    );
+  }
+  return (
+    requestCategoriesDrinks(event).then((data) => setButton(data.data.drinks))
+  );
+};
+
+const renderCategories = (categories, buttonCategory, setbuttonCategory, location, setAPI) => (
+  <div className="categories-container">
+    {categories.slice('', 5).map(
       (category) => (
         <button
+          className={
+            `btn-categories
+            ${buttonCategory === category.strCategory ? ' active-btn' : ''}`
+          }
           type="button"
           key={`${category.strCategory}`}
           value={`${category.strCategory}`}
           onClick={(e) => {
+            callCategory(e.target.value, setAPI, location);
             if (e.target.value === buttonCategory) return setbuttonCategory('');
             return setbuttonCategory(e.target.value);
           }}
@@ -45,8 +61,10 @@ const renderCategories = (categories, buttonCategory, setbuttonCategory) => (
       ),
     )}
     <button
+      data-testid="All-category-filter"
       onClick={() => setbuttonCategory('')}
       type="button"
+      className="btn-categories-all"
     >
       All
     </button>
@@ -67,6 +85,7 @@ const returnApi = (radioBtnFiltered, foodsOrDrinks, location) => {
 
 const RecipesRender = () => {
   const [buttonCategory, setbuttonCategory] = useState('');
+  const [categories, setCategories] = useState([]);
 
   const {
     foods, categoryFood, beverages, categoryDrink, radioBtnFiltered,
@@ -77,14 +96,14 @@ const RecipesRender = () => {
   if (location === '/comidas') {
     return (
       <div>
-        {renderCategories(categoryFood, buttonCategory, setbuttonCategory)}
-        {renderMealsOrDrinks(returnApi(radioBtnFiltered, foods, location), buttonCategory)}
-      </div >
+        {renderCategories(categoryFood, buttonCategory, setbuttonCategory, location, setCategories)}
+        {renderMealsOrDrinks(returnApi(radioBtnFiltered, foods, location), buttonCategory, 'comidas', categories)}
+      </div>
     );
   } return (
     <div>
-      {renderCategories(categoryDrink, buttonCategory, setbuttonCategory)}
-      {renderMealsOrDrinks(returnApi(radioBtnFiltered, beverages, location), buttonCategory)}
+      {renderCategories(categoryDrink, buttonCategory, setbuttonCategory, location, setCategories)}
+      {renderMealsOrDrinks(returnApi(radioBtnFiltered, beverages, location), buttonCategory, 'bebidas', categories)}
     </div>
   );
 };

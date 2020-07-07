@@ -44,15 +44,18 @@ const MealsToFooter = () => (
   </Link>
 );
 
-const Footer = () => (
-  <div
-    data-testid="footer"
-    className="Footer_all"
-  >
-    {DrinksToFooter()}
-    {ExploreToFooter()}
-    {MealsToFooter()}
-  </div>
+const Footer = () => {
+  const location = useLocation();
+  console.log('location aqui', location);
+  return (
+    <footer
+      data-testid="footer"
+      className="Footer_all"
+    >
+      {DrinksToFooter()}
+      {ExploreToFooter()}
+      {MealsToFooter()}
+    </footer>
   );
 
 export default Footer;
