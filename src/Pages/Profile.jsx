@@ -5,32 +5,38 @@ import Footer from '../Components/Footer';
 
 const renderContent = (userEmail) => {
   return (
-  <div className="profileContainer">
-    <div className="userEmail" data-testid="profile-email">
-      {userEmail.email}
-    </div>
-    <Link to="/receitas-feitas">
-      <button className="" data-testid="profile-done-btn" type="button">
-        Receitas Feitas
-      </button>
-    </Link>
-    <Link to="/receitas-favoritas">
-      <button className="" data-testid="profile-favorite-btn" type="button">
-        Receitas Favoritas
-      </button>
-    </Link>
-    <Link to="/">
-      <button className=""
-        data-testid="profile-logout-btn"
-        type="button"
-        onClick={() => localStorage.clear()}
+    <div className="profileContainer">
+      <div className="userEmail" data-testid="profile-email">
+        {userEmail.email}
+      </div>
+      <Link to="/receitas-feitas">
+        <button className="done-recipes-btn"
+          data-testid="profile-done-btn"
+          type="button"
         >
-        Sair
-      </button>
-    </Link>
-  </div>
+          Receitas Feitas
+        </button>
+      </Link>
+      <Link to="/receitas-favoritas">
+        <button className="fav-recipes-btn"
+          data-testid="profile-favorite-btn"
+          type="button"
+        >
+          Receitas Favoritas
+        </button>
+      </Link>
+      <Link to="/">
+        <button className="logout-btn"
+          data-testid="profile-logout-btn"
+          type="button"
+          onClick={() => localStorage.clear()}
+          >
+          Sair
+        </button>
+      </Link>
+    </div>
   );
-}
+};
 
 const Profile = () => {
   const userEmail = JSON.parse(localStorage.getItem('user'));
@@ -41,6 +47,6 @@ const Profile = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default Profile;
