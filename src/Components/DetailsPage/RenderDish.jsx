@@ -29,7 +29,7 @@ const renderButtons = (path, favorites, setFavorite, {
       </button>
       <button
         data-testid="favorite-btn"
-        src={favorites.includes(id) ? blackHeartIcon : whiteHeartIcon}
+        src={isFavorite ? blackHeartIcon : whiteHeartIcon}
         onClick={() => { setFavorite(id, type, area, category, title, thumb); }}
         type="button"
       >
