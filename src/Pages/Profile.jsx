@@ -4,33 +4,36 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 
 const renderContent = (userEmail) => (
-  <div className='profileContainer'>
-    <div className='userEmail' data-testid='profile-email'>
+  <div className="profileContainer">
+    <div
+      className="userEmail"
+      data-testid="profile-email"
+    >
       {userEmail.email}
     </div>
-    <Link to='/receitas-feitas'>
+    <Link to="/receitas-feitas">
       <button
-        className='done-recipes-btn'
-        data-testid='profile-done-btn'
-        type='button'
+        className="done-recipes-btn"
+        data-testid="profile-done-btn"
+        type="button"
       >
         Receitas Feitas
       </button>
     </Link>
-    <Link to='/receitas-favoritas'>
+    <Link to="/receitas-favoritas">
       <button
-        className='fav-recipes-btn'
-        data-testid='profile-favorite-btn'
-        type='button'
+        className="fav-recipes-btn"
+        data-testid="profile-favorite-btn"
+        type="button"
       >
         Receitas Favoritas
       </button>
     </Link>
-    <Link to='/'>
+    <Link to="/">
       <button
-        className='logout-btn'
-        data-testid='profile-logout-btn'
-        type='button'
+        className="logout-btn"
+        data-testid="profile-logout-btn"
+        type="button"
         onClick={() => localStorage.clear()}
       >
         Sair
