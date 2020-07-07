@@ -7,14 +7,14 @@ const favoriteRecipesHandler = () => {
   return getLocalStorage('favoriteRecipes');
 };
 
-const setFavorite = (id, type, area, category, title, thumb, forceUpdate) => {
+const setFavorite = (id, type, area, category, alcoholicOrNot, title, thumb, forceUpdate) => {
   const favorites = getLocalStorage('favoriteRecipes');
   if (favorites.find((elem) => elem.id === id)) {
     setLocalStorage('favoriteRecipes', [...favorites.filter((elem) => elem.id !== id)]);
     forceUpdate(false);
   } else {
     setLocalStorage('favoriteRecipes', [...favorites, {
-      id, type, area, category, title, thumb,
+      id, type, area, category, alcoholicOrNot, title, thumb,
     }]);
     forceUpdate(true);
   }
@@ -37,13 +37,14 @@ const makeTheDish = (dish, recomendations, path, forceUpdate) => {
     return ({
       id: dish.idDrink,
       type: 'Drink',
-      area: dish.strArea,
+      area: '',
+      alcoholicOrNot: dish.strAlcoholic,
       done: false,
       path,
       favorites,
       thumb: dish.strDrinkThumb,
       title: dish.strDrink,
-      category: dish.strAlcoholic,
+      category: dish.strCategory,
       ingredients,
       measures,
       instructions: dish.strInstructions,
@@ -56,6 +57,7 @@ const makeTheDish = (dish, recomendations, path, forceUpdate) => {
     type: 'Meal',
     area: dish.strArea,
     done: false,
+    alcoholicOrNot: '',
     path,
     favorites,
     thumb: dish.strMealThumb,
