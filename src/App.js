@@ -6,6 +6,7 @@ import {
   DetailsPage,
   Login,
   MainScreen,
+  Profile,
   ExplorerScreen,
 } from './Pages';
 
@@ -33,7 +34,7 @@ const App = () => (
         <Route exact path="/explorar/bebidas/ingredientes" component={ExplorerIngredients} />
         <Route exact path="/explorar/comidas/area" component={ExplorerArea} />
         <Route exact path="/explorar/bebidas/area" component={NotFound} />
-        <Route exact path="/perfil" component={Login} />
+        <Route exact path="/perfil" component={Profile} />
         <Route exact path="/receitas-feitas" component={Login} />
         <Route exact path="/receitas-favoritas" component={Login} />
       </Switch>
