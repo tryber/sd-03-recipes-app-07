@@ -44,8 +44,7 @@ const MealsToFooter = () => (
   </Link>
 );
 
-const Footer = () => {
-  return (
+const Footer = () => (
     <div
       data-testid="footer"
       className="Footer_all"
@@ -55,6 +54,5 @@ const Footer = () => {
       {MealsToFooter()}
     </div>
   );
-};
 
 export default Footer;

@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 
-const renderContent = (userEmail) => {
-  return (
+const renderContent = (userEmail) => (
     <div className="profileContainer">
       <div
         className="userEmail"
         data-testid="profile-email"
-        >
+      >
         {userEmail.email}
       </div>
       <Link to="/receitas-feitas">
@@ -42,7 +41,6 @@ const renderContent = (userEmail) => {
       </Link>
     </div>
   );
-};
 
 const Profile = () => {
   const userEmail = JSON.parse(localStorage.getItem('user'));
