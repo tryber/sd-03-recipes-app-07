@@ -148,6 +148,12 @@ const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
   </button>
 );
 
+const searchHeaderShow = (location) => {
+  if (location === '/comidas' || location === '/bebidas' || location === '/explorarorigem')
+    return true;
+  return false;
+};
+
 const Header = () => {
   const location = useLocation().pathname;
   const { setRadioBtnFilteredFun, radioBtnFiltered } = useContext(recipeContext);
@@ -157,13 +163,11 @@ const Header = () => {
   const lengthRecipeList = redirectRecipeDetails(radioBtnFiltered, location).oneRecipe.length;
   const idRecipe = redirectRecipeDetails(radioBtnFiltered, location).id;
   if (lengthRecipeList === 1) return <Redirect to={`${location}/${idRecipe}`} />;
-
   if (showSearchBar) {
     window.addEventListener('scroll', () => {
       setShowSearchBar(false);
     });
   }
-
   return (
     <nav>
       <div className="nav-header-container">
@@ -178,9 +182,8 @@ const Header = () => {
           className="page-title"
         >
           {titlePage(location)}</h1>
-        {SearchButtonShow(setShowSearchBar, !showSearchBar)}
+        {searchHeaderShow(location) && SearchButtonShow(setShowSearchBar, !showSearchBar)}
         {showSearchBar && SearchBar(setBtnSel, setSearchValue)}
-
       </div>
       {
         showSearchBar
