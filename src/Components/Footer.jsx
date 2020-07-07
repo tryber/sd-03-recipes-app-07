@@ -45,14 +45,14 @@ const MealsToFooter = () => (
 );
 
 const Footer = () => (
-    <div
-      data-testid="footer"
-      className="Footer_all"
-    >
-      {DrinksToFooter()}
-      {ExploreToFooter()}
-      {MealsToFooter()}
-    </div>
+  <div
+    data-testid="footer"
+    className="Footer_all"
+  >
+    {DrinksToFooter()}
+    {ExploreToFooter()}
+    {MealsToFooter()}
+  </div>
   );
 
 export default Footer;
