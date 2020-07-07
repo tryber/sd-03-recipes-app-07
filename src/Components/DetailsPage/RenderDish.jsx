@@ -13,7 +13,7 @@ const renderTitles = (title, category) => (
 );
 
 const renderButtons = (path, favorites, setFavorite, {
-  id, type, area, category, alcoholicOrNot, title, thumb,
+  id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
 }) => {
   const isFavorite = favorites.find((elem) => elem.id === id);
   const urlPath = `http://localhost:3000${path}`;
@@ -30,7 +30,7 @@ const renderButtons = (path, favorites, setFavorite, {
       <button
         data-testid="favorite-btn"
         src={isFavorite ? blackHeartIcon : whiteHeartIcon}
-        onClick={() => { setFavorite(id, type, area, category, alcoholicOrNot, title, thumb); }}
+        onClick={() => { setFavorite(id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb); }}
         type="button"
       >
         {isFavorite
@@ -109,7 +109,7 @@ const startBtn = (doing, path) => (
 );
 
 const RenderDish = ({
-  id, type, area, alcoholicOrNot, done, path, favorites, thumb, title, category,
+  id, type, area, drinkCategory, alcoholicOrNot, done, path, favorites, thumb, title, category,
   ingredients, measures, instructions, recom, video, setFavorite,
 }) => (
   <div>
@@ -123,7 +123,7 @@ const RenderDish = ({
       <div className="recipe-header">
         {renderTitles(title, category)}
         {renderButtons(path, favorites, setFavorite, {
-          id, type, area, category, alcoholicOrNot, title, thumb,
+          id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
         })}
       </div>
       {renderIngredients(ingredients, measures)}
@@ -151,6 +151,7 @@ RenderDish.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   area: PropTypes.string.isRequired,
+  drinkCategory: PropTypes.string.isRequired,
   alcoholicOrNot: PropTypes.string.isRequired,
   done: PropTypes.bool.isRequired,
   path: PropTypes.string.isRequired,
