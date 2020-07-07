@@ -12,14 +12,16 @@ const renderTitles = (title, category) => (
   </div>
 );
 
-const renderButtons = (path, favorites, favoriteFunc) => {
-  const urlPath = `localhost:3000${path}`;
-  const id = path.slice(-5);
+const renderButtons = (path, favorites, setFavorite, {
+  id, type, area, category, title, thumb,
+}) => {
+  const isFavorite = favorites.find((elem) => elem.id === id);
+  const urlPath = `http://localhost:3000${path}`;
   return (
     <div className="buttons-container">
       <button
         data-testid="share-btn"
-        onClick={() => { navigator.clipboard.writeText(`https://${urlPath}`); alert('Link copiado!'); }}
+        onClick={() => { navigator.clipboard.writeText(urlPath); alert('Link copiado!'); }}
         src={shareIcon}
         type="button"
       >
@@ -27,11 +29,11 @@ const renderButtons = (path, favorites, favoriteFunc) => {
       </button>
       <button
         data-testid="favorite-btn"
-        onClick={() => favoriteFunc(id)}
         src={favorites.includes(id) ? blackHeartIcon : whiteHeartIcon}
+        onClick={() => { setFavorite(id, type, area, category, title, thumb); }}
         type="button"
       >
-        {favorites.includes(id)
+        {isFavorite
           ? <img src={blackHeartIcon} alt="is favorite" />
           : <img src={whiteHeartIcon} alt="not favorite" />}
       </button>
@@ -107,8 +109,8 @@ const startBtn = (doing, path) => (
 );
 
 const RenderDish = ({
-  done, path, favorites, thumb, title, category,
-  ingredients, measures, instructions, recom, video,
+  id, type, area, done, path, favorites, thumb, title, category,
+  ingredients, measures, instructions, recom, video, setFavorite,
 }) => (
   <div>
     <img
@@ -120,7 +122,9 @@ const RenderDish = ({
     <div className="recipe-container">
       <div className="recipe-header">
         {renderTitles(title, category)}
-        {renderButtons(path, favorites)}
+        {renderButtons(path, favorites, setFavorite, {
+          id, type, area, category, title, thumb,
+        })}
       </div>
       {renderIngredients(ingredients, measures)}
       {renderIntructions(instructions)}
@@ -144,6 +148,9 @@ RenderDish.defaultProps = {
 };
 
 RenderDish.propTypes = {
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  area: PropTypes.string.isRequired,
   done: PropTypes.bool.isRequired,
   path: PropTypes.string.isRequired,
   favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -155,6 +162,7 @@ RenderDish.propTypes = {
   instructions: PropTypes.string.isRequired,
   recom: PropTypes.arrayOf(PropTypes.object).isRequired,
   video: PropTypes.string,
+  setFavorite: PropTypes.func.isRequired,
 };
 
 export default RenderDish;
