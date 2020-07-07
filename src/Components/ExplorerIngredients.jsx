@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useLocation, Redirect } from 'react-router-dom';
 import Footer from './Footer';
 import RecipeCard from './RecipeCard';
@@ -14,7 +14,6 @@ const ExplorerIngredients = () => {
   const {
     ingredientsFood, ingredientsDrink, setRenderIngredients, renderIngredients,
   } = useContext(recipeContext);
-  console.log('filterringredients', renderIngredients);
 
   const location = useLocation().pathname;
   const listIngredients = location === '/explorar/comidas/ingredientes' ? ingredientsFood : ingredientsDrink;
