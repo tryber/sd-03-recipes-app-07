@@ -65,9 +65,7 @@ img , div , h3 , h2 , button {
 }
 
 .card {
-  height: 191px;
   margin: 10px;
-  width: 150px;
 }
 
 .title-c {
