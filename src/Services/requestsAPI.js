@@ -66,7 +66,17 @@ const requestCategoriesDrinks = async (drink) => {
   return categoryDrink;
 };
 
+const requestByAreas = async (area) => {
+  const areaFood = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`);
+  return areaFood;
+};
+
+const requestByIngredients = async (ingredients, type) => {
+  const filterIngredients = await axios.get(`https://www.the${type}db.com/api/json/v1/1/filter.php?i=${ingredients}`);
+  return filterIngredients;
+};
+
 export {
   foodsRequests, drinksRequests, requestRadioButtons, requestCategoriesFood,
-  requestCategoriesDrinks,
+  requestCategoriesDrinks, requestByAreas, requestByIngredients,
 };
