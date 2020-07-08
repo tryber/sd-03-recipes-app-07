@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../Layout/RecipeCard.css';
 
-const RecipeCard = ({ index, imgSrc, title, midle }) => (
+const RecipeCard = ({
+  index, imgSrc, title, midle,
+}) => (
   <div
     data-testid={`${index}-${midle}-card`}
     className="card"
