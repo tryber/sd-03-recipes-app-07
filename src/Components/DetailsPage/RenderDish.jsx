@@ -94,7 +94,7 @@ const renderRecomendations = (recom) => {
   );
 };
 
-const startBtn = (doing, path) => (
+const startBtn = (checks, path, id) => (
   <div>
     <Link to={`${path}/in-progress`}>
       <button
@@ -102,7 +102,7 @@ const startBtn = (doing, path) => (
         data-testid="start-recipe-btn"
         type="button"
       >
-        {doing
+        {Object.keys(checks.cocktails).includes(id) || Object.keys(checks.meals).includes(id)
           ? 'Continuar Receita'
           : 'Iniciar Receita'}
       </button>
@@ -111,8 +111,8 @@ const startBtn = (doing, path) => (
 );
 
 const RenderDish = ({
-  id, type, area, drinkCategory, alcoholicOrNot, done, path, favorites, thumb, title, category,
-  ingredients, measures, instructions, recom, video, setFavorite,
+  id, type, area, checks, drinkCategory, alcoholicOrNot, done, path, favorites, thumb,
+  title, category, ingredients, measures, instructions, recom, video, setFavorite,
 }) => (
   <div>
     <img
@@ -141,7 +141,7 @@ const RenderDish = ({
       )}
       {renderRecomendations(recom)}
     </div>
-    {!done && startBtn(done, path)}
+    {!done && startBtn(checks, path, id)}
   </div>
 );
 
@@ -150,23 +150,27 @@ RenderDish.defaultProps = {
 };
 
 RenderDish.propTypes = {
-  id: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  area: PropTypes.string.isRequired,
-  drinkCategory: PropTypes.string.isRequired,
   alcoholicOrNot: PropTypes.string.isRequired,
+  area: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  checks: PropTypes.shape({
+    cocktails: PropTypes.arrayOf(PropTypes.number),
+    meals: PropTypes.arrayOf(PropTypes.number),
+  }).isRequired,
   done: PropTypes.bool.isRequired,
-  path: PropTypes.string.isRequired,
+  drinkCategory: PropTypes.string.isRequired,
   favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
+  id: PropTypes.string.isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+  instructions: PropTypes.string.isRequired,
+  measures: PropTypes.arrayOf(PropTypes.string).isRequired,
+  path: PropTypes.string.isRequired,
+  recom: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setFavorite: PropTypes.func.isRequired,
   thumb: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
-  measures: PropTypes.arrayOf(PropTypes.string).isRequired,
-  instructions: PropTypes.string.isRequired,
-  recom: PropTypes.arrayOf(PropTypes.object).isRequired,
+  type: PropTypes.string.isRequired,
   video: PropTypes.string,
-  setFavorite: PropTypes.func.isRequired,
 };
 
 export default RenderDish;
