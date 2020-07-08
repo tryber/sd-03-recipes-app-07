@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../Layout/RecipeCard.css';
 
-const RecipeCard = ({ index, imgSrc, title }) => (
+const RecipeCard = ({ index, imgSrc, title, midle }) => (
   <div
-    data-testid={`${index}-recipe-card`}
+    data-testid={`${index}-${midle}-card`}
     className="card"
   >
     <img
@@ -26,6 +26,7 @@ RecipeCard.propTypes = {
   index: PropTypes.number.isRequired,
   imgSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  midle: PropTypes.string.isRequired,
 };
 
 export default RecipeCard;
