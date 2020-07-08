@@ -20,36 +20,40 @@ const SearchButtonShow = (callBack, value) => (
 const radioButtons = (callBack) => (
   <div className="radios-box">
     <input
+      className="radios-inputs"
       value="ingredients"
       type="radio"
       name="selectButtonsradios"
       data-testid="ingredient-search-radio"
       onChange={(event) => callBack(event.target.value)}
     />
-    <label htmlFor="selectButtonsradios">Ingredientes</label>
+    <label className="labels-radios" htmlFor="selectButtonsradios">Ingredientes</label>
     <input
+      className="radios-inputs"
       value="name"
       type="radio"
       name="selectButtonsradios"
       data-testid="name-search-radio"
       onChange={(event) => callBack(event.target.value)}
     />
-    <label htmlFor="selectButtonsradios">Nome</label>
+    <label className="labels-radios" htmlFor="selectButtonsradios">Nome</label>
     <input
+      className="radios-inputs"
       value="letterFirst"
       type="radio"
       name="selectButtonsradios"
       data-testid="first-letter-search-radio"
       onChange={(event) => callBack(event.target.value)}
     />
-    <label htmlFor="selectButtonsradios">Primeira letra</label>
+    <label className="labels-radios" htmlFor="selectButtonsradios">Primeira letra</label>
   </div>
 );
 
 const SearchBar = (callBackRadios, callBackSearchInput) => (
-  <div>
+  <div className="search-bar-container">
     <label htmlFor="searchInput">
       <input
+        className="search-input"
         name="searchInput"
         type="text"
         data-testid="search-input"
@@ -129,6 +133,7 @@ const titlePage = (location) => {
 
 const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
   <button
+    className="search-button"
     type="button"
     data-testid="exec-search-btn"
     onClick={() => {
@@ -143,6 +148,13 @@ const searchButton = (btnSelected, searchValue, setBtnFunc, location) => (
   </button>
 );
 
+const searchHeaderShow = (location) => {
+  if (location === '/comidas' || location === '/bebidas' || location === '/explorarorigem') {
+    return true;
+  }
+  return false;
+};
+
 const Header = () => {
   const location = useLocation().pathname;
   const { setRadioBtnFilteredFun, radioBtnFiltered } = useContext(recipeContext);
@@ -152,22 +164,28 @@ const Header = () => {
   const lengthRecipeList = redirectRecipeDetails(radioBtnFiltered, location).oneRecipe.length;
   const idRecipe = redirectRecipeDetails(radioBtnFiltered, location).id;
   if (lengthRecipeList === 1) return <Redirect to={`${location}/${idRecipe}`} />;
-
+  if (showSearchBar) {
+    window.addEventListener('scroll', () => {
+      setShowSearchBar(false);
+    });
+  }
   return (
-    <nav className="nav-header-container">
-      <Link to="/perfil" data-testid="profile-top-btn">
-        <img
-          alt="titulo"
-          src={profile}
-        />
-      </Link>
-      <h1
-        data-testid="page-title"
-        className="page-title"
-      >
-        {titlePage(location)}</h1>
-      {SearchButtonShow(setShowSearchBar, !showSearchBar)}
-      {showSearchBar && SearchBar(setBtnSel, setSearchValue)}
+    <nav>
+      <div className="nav-header-container">
+        <Link to="/perfil" data-testid="profile-top-btn">
+          <img
+            alt="titulo"
+            src={profile}
+          />
+        </Link>
+        <h1
+          data-testid="page-title"
+          className="page-title"
+        >
+          {titlePage(location)}</h1>
+        {searchHeaderShow(location) && SearchButtonShow(setShowSearchBar, !showSearchBar)}
+        {showSearchBar && SearchBar(setBtnSel, setSearchValue)}
+      </div>
       {
         showSearchBar
         &&

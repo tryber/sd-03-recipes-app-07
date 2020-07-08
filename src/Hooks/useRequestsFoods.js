@@ -17,8 +17,8 @@ const useRequestsFoods = () => {
         const resultIngredients = index[2].data.meals;
         setFoods(meals);
         setApiFoood(false);
-        setAreasFood(index[3]);
         setCategoryFood(data.meals);
+        setAreasFood(index[3].data.meals);
         setIngredientsFood(resultIngredients);
       }),
     );
