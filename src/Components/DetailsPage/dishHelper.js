@@ -27,33 +27,95 @@ const setFavorite = (
 };
 
 const doingRecipesHandler = () => {
-  //if (!getLocalStorage('inProgressRecipes')) {
-    setLocalStorage('inProgressRecipes', { cocktails: {}, meals: { 52977: [0] } });
-  //}
+  if (!getLocalStorage('inProgressRecipes')) {
+    setLocalStorage('inProgressRecipes', { cocktails: {}, meals: {} });
+  }
   return getLocalStorage('inProgressRecipes');
 };
 
-// ? setLocalStorage('InProgressRecipes', {
-//   ...recipesInProgress,
-//   meals: { ...recipesInProgress.meals, [id]: arr }
-// }) : setLocalStorage('InProgressRecipes', {
-//   ...recipesInProgress,
-//   meals: { [id]: arr } });
-
-const setDoing = (id, type, exists, arr) => {
-  // const recipesInProgress = getLocalStorage('inProgressRecipes');
-  // console.log(Object.values(recipesInProgress.meals))
-  // if (type === 'comida' && exists) {
-  //   setLocalStorage('inProgressRecipes', {
-  //     ...recipesInProgress,
-  //     meals: {
-  //       [id]: [...arr],
-  //     },
-  //   });
-  // }
+const setFood = (id, index, arr, setDoneChecks) => {
+  const recipesInProgress = getLocalStorage('inProgressRecipes');
+  if (arr.length === 0) {
+    setLocalStorage('inProgressRecipes', {
+      ...recipesInProgress,
+      meals: {
+        ...recipesInProgress.meals,
+        [id]: [index],
+      },
+    });
+    return setDoneChecks(setDoneChecks);
+  }
+  switch (arr[1].includes(index)) {
+    case true:
+      setLocalStorage('inProgressRecipes', {
+        ...recipesInProgress,
+        meals: {
+          ...recipesInProgress.meals,
+          [id]: [...arr[1].filter((e) => e !== index)],
+        },
+      });
+      return setDoneChecks(setDoneChecks);
+    case false:
+      setLocalStorage('inProgressRecipes', {
+        ...recipesInProgress,
+        meals: {
+          ...recipesInProgress.meals,
+          [id]: [...arr[1], index],
+        },
+      });
+      return setDoneChecks(setDoneChecks);
+    default:
+      break;
+  }
+  return setDoneChecks();
 };
 
-const makeTheDish = (dish, recomendations, path, forceUpdate) => {
+const setDrink = (id, index, arr, setDoneChecks) => {
+  const recipesInProgress = getLocalStorage('inProgressRecipes');
+  if (arr.length === 0) {
+    setLocalStorage('inProgressRecipes', {
+      ...recipesInProgress,
+      cocktails: {
+        ...recipesInProgress.cocktails,
+        [id]: [index],
+      },
+    });
+    return setDoneChecks(setDoneChecks);
+  }
+  switch (arr[1].includes(index)) {
+    case true:
+      setLocalStorage('inProgressRecipes', {
+        ...recipesInProgress,
+        cocktails: {
+          ...recipesInProgress.cocktails,
+          [id]: [...arr[1].filter((e) => e !== index)],
+        },
+      });
+      return setDoneChecks(setDoneChecks);
+    case false:
+      setLocalStorage('inProgressRecipes', {
+        ...recipesInProgress,
+        cocktails: {
+          ...recipesInProgress.cocktails,
+          [id]: [...arr[1], index],
+        },
+      });
+      return setDoneChecks(setDoneChecks);
+    default:
+      break;
+  }
+  return setDoneChecks();
+};
+
+const setDoing = (id, type, index, arr, setDoneChecks) => {
+  if (type === 'comida') {
+    setFood(id, index, arr, setDoneChecks);
+  } else {
+    setDrink(id, index, arr, setDoneChecks);
+  }
+};
+
+const makeTheDish = (dish, recomendations, path, forceUpdate, setDoneChecks) => {
   const ingredients = Object.entries(dish).filter((elem) => elem[0].includes('Ingredient') && elem[1]).map((elem) => elem[1]);
   const measures = Object.entries(dish).filter((elem) => elem[0].includes('Measure') && elem[1] !== ' ').map((elem) => elem[1]);
   const doingChecks = doingRecipesHandler();
@@ -66,7 +128,7 @@ const makeTheDish = (dish, recomendations, path, forceUpdate) => {
       area: '',
       drinkCategory: dish.strCategory,
       alcoholicOrNot: dish.strAlcoholic ? 'Alcoholic' : '',
-      done: false, // doneChecks.cocktails.includes(dish.idDrink)
+      done: false,
       path,
       favorites,
       thumb: dish.strDrinkThumb,
@@ -79,13 +141,14 @@ const makeTheDish = (dish, recomendations, path, forceUpdate) => {
       setFavorite: (...data) => setFavorite(...data, forceUpdate),
       checks: doingChecks,
       func: setDoing,
+      setDoneChecks,
     });
   }
   return ({
     id: dish.idMeal,
     type: 'comida',
     area: dish.strArea,
-    done: false, // doneChecks.meals.includes(dish.idMeal),
+    done: false,
     alcoholicOrNot: '',
     path,
     favorites,
@@ -100,6 +163,7 @@ const makeTheDish = (dish, recomendations, path, forceUpdate) => {
     setFavorite: (...data) => setFavorite(...data, forceUpdate),
     checks: doingChecks,
     func: setDoing,
+    setDoneChecks,
   });
 };
 

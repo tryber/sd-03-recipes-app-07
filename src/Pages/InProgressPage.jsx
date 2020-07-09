@@ -10,8 +10,7 @@ const mealOrDrink = (meal, drink) => { if (meal) return meal[0]; return drink[0]
 const goodRecomen = (value) => { if (value.meals) return value.meals; return value.drinks; };
 
 const InProgressPage = () => {
-  const forceUpdate = useState()[1];
-  const [doneChecks, setDoneChecks] = useState([]);
+  const forceUpdate = useState('')[1];
   const { params: { id }, path, url } = useRouteMatch();
   const { recipe, recomendations, requesting } = useRequestId(path, id);
 
@@ -22,9 +21,8 @@ const InProgressPage = () => {
       mealOrDrink(meals, drinks),
       goodRecomen(recomendations),
       url,
+      '',
       forceUpdate,
-      doneChecks,
-      setDoneChecks,
     );
     return RenderDish(dish);
   }

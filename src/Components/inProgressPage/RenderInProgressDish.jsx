@@ -44,34 +44,36 @@ const renderButtons = (path, favorites, setFavorite, {
   );
 };
 
-const checkIngredients = (id, type, arr, index) => {
-  // switch (type) {
-  //   case 'comida':
-  //     Object.entries(arr.meals).includes(id) ? Object.values()
-  //   case 'bebida':
-  //   default: return [];
-  // }
-  // if (arr.includes(index)) {
-  //   return arr.filter((elem) => elem !== index);
-  // }
-  // return [...arr, index];
+const checkIfIncludes = (id, i, checks, type) => {
+  const arrCom = Object.keys(checks.meals).find((elem) => elem === id);
+  const arrBeb = Object.keys(checks.cocktails).find((elem) => elem === id);
+  if (type === 'comida' && arrCom) {
+    return [
+      Object.entries(checks.meals).find((elem) => elem[0] === id.toString())[1].includes(i),
+      Object.entries(checks.meals).find((elem) => elem[0] === id.toString()),
+    ];
+  } if (type === 'bebida' && arrBeb) {
+    return [
+      Object.entries(checks.cocktails).find((elem) => elem[0] === id.toString())[1].includes(i),
+      Object.entries(checks.cocktails).find((elem) => elem[0] === id.toString()),
+    ];
+  }
+  return [false, []];
 };
 
 // tomar atenção com o local storage se for o numero do ingrediente ou o nome do ingrediente
-const renderIngredients = (id, type, ingredients, measures, checks, func) => (
+const renderIngredients = (id, type, ingredients, measures, checks, func, newFunc) => (
   <div className="ingredients-container">
     <h3>Ingredientes</h3>
     {ingredients.map((elem, i) => (
       <div key={elem}>
         <input
-          checked={checks.meals.includes(elem) || checks.cocktails.includes(elem)}
-          onChange={() => func(id, type, checkIngredients(id, type, checks, i))}
+          checked={checkIfIncludes(id, i, checks, type)[0]}
+          data-testid={`${i}-ingredient-step`}
+          onChange={() => func(id, type, i, checkIfIncludes(id, i, checks, type)[1], newFunc)}
           type="checkbox"
         />
-        <p
-          data-testid={`${i}-ingredient-step`}
-          className={checks.meals.includes(elem) || checks.cocktails.includes(elem) ? 'selectedCheckBox' : ''}
-        >
+        <p className={checkIfIncludes(id, i, checks, type)[0] ? 'selectedCheckBox' : ''}>
           {`- ${elem} - ${measures[i]}`}
         </p>
       </div>
@@ -104,7 +106,7 @@ const renderIntructions = (instructions) => (
 
 const RenderDish = ({
   id, type, area, drinkCategory, alcoholicOrNot, path, favorites, thumb, title,
-  category, ingredients, measures, instructions, setFavorite, checks, func,
+  category, ingredients, measures, instructions, setFavorite, checks, func, setDoneChecks,
 }) => (
   <div>
     <img
@@ -120,7 +122,7 @@ const RenderDish = ({
           id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
         })}
       </div>
-      {renderIngredients(id, type, ingredients, measures, checks, func)}
+      {renderIngredients(id, type, ingredients, measures, checks, func, setDoneChecks)}
       {renderIntructions(instructions)}
     </div>
     {/* !done && startBtn(done, path) */}
