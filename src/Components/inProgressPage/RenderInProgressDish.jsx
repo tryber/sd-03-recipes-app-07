@@ -44,6 +44,17 @@ const renderButtons = (path, favorites, setFavorite, {
   );
 };
 
+const renderHeading = (path, favorites, setFavorite, {
+  id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+}) => (
+  <div className="recipe-header">
+    {renderTitles(title, category)}
+    {renderButtons(path, favorites, setFavorite, {
+      id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+    })}
+  </div>
+);
+
 const checkIfIncludes = (id, i, checks, type) => {
   const arrCom = Object.keys(checks.meals).find((elem) => elem === id);
   const arrBeb = Object.keys(checks.cocktails).find((elem) => elem === id);
@@ -116,12 +127,9 @@ const RenderDish = ({
       src={thumb}
     />
     <div className="recipe-container">
-      <div className="recipe-header">
-        {renderTitles(title, category)}
-        {renderButtons(path, favorites, setFavorite, {
-          id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
-        })}
-      </div>
+      {renderHeading(path, favorites, setFavorite, {
+        id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+      })}
       {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
       {renderIntructions(instructions)}
     </div>
