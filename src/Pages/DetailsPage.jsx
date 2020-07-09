@@ -22,7 +22,6 @@ const DetailsPage = () => {
       goodRecomen(recomendations),
       url,
       forceUpdate,
-      forceUpdate,
     );
     return RenderDish(dish);
   }

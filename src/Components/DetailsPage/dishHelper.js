@@ -117,7 +117,7 @@ const setDoing = (id, type, index, arr, setDoneChecks) => {
   }
 };
 
-const makeTheDish = (dish, recomendations, path, forceUpdate, setDoneChecks) => {
+const makeTheDish = (dish, recomendations, path, forceUpdate) => {
   const ingredients = Object.entries(dish).filter((elem) => elem[0].includes('Ingredient') && elem[1]).map((elem) => elem[1]);
   const measures = Object.entries(dish).filter((elem) => elem[0].includes('Measure') && elem[1] !== ' ').map((elem) => elem[1]);
   const doingChecks = doingRecipesHandler();
@@ -139,9 +139,9 @@ const makeTheDish = (dish, recomendations, path, forceUpdate, setDoneChecks) => 
       measures,
       instructions: dish.strInstructions,
       recom: recomendations.slice('', 6),
-      setFavorite: (...data) => setFavorite(...data, setDoneChecks),
+      setFavorite: (...data) => setFavorite(...data, forceUpdate),
       checks: doingChecks,
-      func: [setDoing, setDoneChecks],
+      func: [setDoing, forceUpdate],
     });
   }
   return ({
@@ -159,9 +159,9 @@ const makeTheDish = (dish, recomendations, path, forceUpdate, setDoneChecks) => 
     instructions: dish.strInstructions,
     recom: recomendations.slice('', 6),
     video: dish.strYoutube.replace('watch?v=', 'embed/'),
-    setFavorite: (...data) => setFavorite(...data, setDoneChecks),
+    setFavorite: (...data) => setFavorite(...data, forceUpdate),
     checks: doingChecks,
-    func: [setDoing, setDoneChecks],
+    func: [setDoing, forceUpdate],
   });
 };
 
