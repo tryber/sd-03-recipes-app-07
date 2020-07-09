@@ -76,10 +76,9 @@ const renderIngredients = (id, type, ingredients, measures, checks, setLS, callb
   <div className="ingredients-container">
     <h3>Ingredientes</h3>
     {ingredients.map((elem, i) => (
-      <div key={elem}>
+      <div data-testid={`${i}-ingredient-step`} key={elem}>
         <input
           checked={checkIfIncludes(id, i, checks, type)[0]}
-          data-testid={`${i}-ingredient-step`}
           onChange={() => setLS(id, type, i, checkIfIncludes(id, i, checks, type)[1], callback)}
           type="checkbox"
         />
