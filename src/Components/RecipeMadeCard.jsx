@@ -1,7 +1,4 @@
-import react from 'react';
-
-
-const tags = () => (
+/* const tags = () => (
   <div data-testid={`${index}-${tagName}-horizontal-tag`}>
     <p></p>
     <p></p>
@@ -13,7 +10,7 @@ const RecipeMadeCard = (type) => {
   if (type === 'drink') drink = true;
   <div>
     <div>
-     {/*  <img src={} alt='' /> */}
+      <img src={} alt='' />
     </div>
     <div>
       <div>
@@ -27,6 +24,5 @@ const RecipeMadeCard = (type) => {
   </div>
 }
 
-
-
 export default RecipeMadeCard;
+ */

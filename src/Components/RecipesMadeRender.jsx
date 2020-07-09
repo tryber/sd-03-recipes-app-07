@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import RecipeMadeCard from './RecipeCard';
 
 const BtnFiltersFoodDrinks = () => (
@@ -17,3 +17,4 @@ const RecipesMadeRender = () => (
 );
 
 export default RecipesMadeRender;
+ */
