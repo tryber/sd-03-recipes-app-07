@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
-import '../../Layout/DetailsPage.css';
+import '../../Layout/RenderInProgressDish.css';
 
 const renderTitles = (title, category) => (
   <div className="titles-container">
@@ -14,7 +14,7 @@ const renderTitles = (title, category) => (
 
 const shareRecipe = (urlPath, callback) => {
   callback(true);
-  navigator.clipboard.writeText(urlPath);
+  navigator.clipboard.writeText(urlPath.replace('/in-progress', ''));
   setTimeout(() => callback(false), 2000);
 };
 
@@ -24,9 +24,8 @@ const renderButtons = (path, favorites, setFavorite, callback, state, {
   const isFavorite = favorites.find((elem) => elem.id === id);
   const urlPath = `http://localhost:3000${path}`;
   return (
-    <div className="buttons-container-details">
+    <div className="buttons-container">
       <button
-        className="share-btn"
         data-testid="share-btn"
         onClick={() => shareRecipe(urlPath, callback)}
         src={shareIcon}
@@ -36,7 +35,6 @@ const renderButtons = (path, favorites, setFavorite, callback, state, {
       </button>
       {state && <span>Link copiado!</span>}
       <button
-        className="favorite-btn"
         data-testid="favorite-btn"
         src={isFavorite ? blackHeartIcon : whiteHeartIcon}
         onClick={() => setFavorite(
@@ -63,16 +61,37 @@ const renderHeading = (path, favorites, setFavorite, callback, state, {
   </div>
 );
 
-const renderIngredients = (ingredients, measures) => (
+const checkIfIncludes = (id, i, checks, type) => {
+  const arrCom = Object.keys(checks.meals).find((elem) => elem === id);
+  const arrBeb = Object.keys(checks.cocktails).find((elem) => elem === id);
+  if (type === 'comida' && arrCom) {
+    return [
+      Object.entries(checks.meals).find((elem) => elem[0] === id.toString())[1].includes(i),
+      Object.entries(checks.meals).find((elem) => elem[0] === id.toString()),
+    ];
+  } if (type === 'bebida' && arrBeb) {
+    return [
+      Object.entries(checks.cocktails).find((elem) => elem[0] === id.toString())[1].includes(i),
+      Object.entries(checks.cocktails).find((elem) => elem[0] === id.toString()),
+    ];
+  }
+  return [false, []];
+};
+
+const renderIngredients = (id, type, ingredients, measures, checks, setLS, callback) => (
   <div className="ingredients-container">
     <h3>Ingredientes</h3>
     {ingredients.map((elem, i) => (
-      <p
-        data-testid={`${i}-ingredient-name-and-measure`}
-        key={elem}
-      >
-        {`- ${elem} - ${measures[i]}`}
-      </p>
+      <div data-testid={`${i}-ingredient-step`} key={elem}>
+        <input
+          checked={checkIfIncludes(id, i, checks, type)[0]}
+          onChange={() => setLS(id, type, i, checkIfIncludes(id, i, checks, type)[1], callback)}
+          type="checkbox"
+        />
+        <p className={checkIfIncludes(id, i, checks, type)[0] ? 'selectedCheckBox' : ''}>
+          {`- ${elem} - ${measures[i]}`}
+        </p>
+      </div>
     ))}
   </div>
 );
@@ -84,55 +103,36 @@ const renderIntructions = (instructions) => (
   </div>
 );
 
-const renderRecomendations = (recom) => {
-  if (!recom[0].strDrink) {
-    return (
-      <div className="recom-container">
-        {recom.map((elem, i) => (
-          <Link key={elem.strMeal} to={`/comidas/${elem.idMeal}`}>
-            <div data-testid={`${i}-recomendation-card`} className="card">
-              <h3 className="title-c" data-testid={`${i}-recomendation-title`}>{elem.strMeal}</h3>
-              <img alt="Card recipe name" className="cardImage" src={elem.strMealThumb} />
-            </div>
-          </Link>
-        ))}
-      </div>
-    );
+const checkIfAllMarket = (ingredients, id, type, arr) => {
+  const food = Object.entries(arr.meals).find((elem) => elem[0] === id);
+  const drink = Object.entries(arr.cocktails).find((elem) => elem[0] === id);
+  if (type === 'comida' && food) {
+    return food[1].length === ingredients.length;
   }
-
-  return (
-    <div className="recom-container">
-      {recom.map((elem, i) => (
-        <Link key={elem.strDrink} to={`/bebidas/${elem.idDrink}`}>
-          <div data-testid={`${i}-recomendation-card`} className="card">
-            <h3 className="title-c" data-testid={`${i}-recomendation-title`}>{elem.strDrink}</h3>
-            <img alt="Card recipe name" className="cardImage" src={elem.strDrinkThumb} />
-          </div>
-        </Link>
-      ))}
-    </div>
-  );
+  if (type === 'bebida' && drink) {
+    return drink[1].length === ingredients.length;
+  }
+  return false;
 };
 
-const startBtn = (checks, path, id) => (
+const startBtn = (done) => (
   <div>
-    <Link to={`${path}/in-progress`}>
+    <Link to="/receitas-feitas">
       <button
-        className="start-btn"
-        data-testid="start-recipe-btn"
+        className="finish-btn"
+        data-testid="finish-recipe-btn"
+        disabled={!done}
         type="button"
       >
-        {Object.keys(checks.cocktails).includes(id) || Object.keys(checks.meals).includes(id)
-          ? 'Continuar Receita'
-          : 'Iniciar Receita'}
+        Finalizar receita
       </button>
     </Link>
   </div>
 );
 
 const RenderDish = (callback, state, {
-  id, type, area, checks, drinkCategory, alcoholicOrNot = '', done, path, favorites, thumb,
-  title, category, ingredients, measures, instructions, recom, video = '', setFavorite,
+  id, type, area, drinkCategory, alcoholicOrNot = '', path, favorites, thumb, title,
+  category, ingredients, measures, instructions, setFavorite, checks, func,
 }) => (
   <div>
     <img
@@ -145,21 +145,11 @@ const RenderDish = (callback, state, {
       {renderHeading(path, favorites, setFavorite, callback, state, {
         id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
       })}
-      {renderIngredients(ingredients, measures)}
+      {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
       {renderIntructions(instructions)}
-      {video && (
-        <iframe
-          className="instruction-video"
-          data-testid="video"
-          src={video}
-          title="Video"
-          frameBorder="0"
-        />
-      )}
-      {renderRecomendations(recom)}
     </div>
-    {!done && startBtn(checks, path, id)}
+    {startBtn(checkIfAllMarket(ingredients, id, type, checks))}
   </div>
-  );
+);
 
 export default RenderDish;
