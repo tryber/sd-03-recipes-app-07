@@ -13,8 +13,8 @@ const renderTitles = (title, category) => (
 );
 
 const shareRecipe = (urlPath, callback) => {
-  navigator.clipboard.writeText(urlPath);
   callback(true);
+  navigator.clipboard.writeText(urlPath);
   setTimeout(() => callback(false), 2000);
 };
 
