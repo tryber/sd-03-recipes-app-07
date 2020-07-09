@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import '../../Layout/DetailsPage.css';
 
 const renderTitles = (title, category) => (
   <div className="titles-container">
@@ -18,8 +19,9 @@ const renderButtons = (path, favorites, setFavorite, {
   const isFavorite = favorites.find((elem) => elem.id === id);
   const urlPath = `http://localhost:3000${path}`;
   return (
-    <div className="buttons-container">
+    <div className="buttons-container-details">
       <button
+        className="share-btn"
         data-testid="share-btn"
         onClick={() => { navigator.clipboard.writeText(urlPath); alert('Link copiado!'); }}
         src={shareIcon}
@@ -28,6 +30,7 @@ const renderButtons = (path, favorites, setFavorite, {
         <img src={shareIcon} alt="Share" />
       </button>
       <button
+        className="favorite-btn"
         data-testid="favorite-btn"
         src={isFavorite ? blackHeartIcon : whiteHeartIcon}
         onClick={() => setFavorite(
@@ -114,36 +117,36 @@ const RenderDish = ({
   id, type, area, drinkCategory, alcoholicOrNot, done, path, favorites, thumb, title, category,
   ingredients, measures, instructions, recom, video, setFavorite,
 }) => (
-  <div>
-    <img
-      alt="food or beverage"
-      className="recipe-img"
-      data-testid="recipe-photo"
-      src={thumb}
-    />
-    <div className="recipe-container">
-      <div className="recipe-header">
-        {renderTitles(title, category)}
-        {renderButtons(path, favorites, setFavorite, {
-          id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
-        })}
+    <div>
+      <img
+        alt="food or beverage"
+        className="recipe-img"
+        data-testid="recipe-photo"
+        src={thumb}
+      />
+      <div className="recipe-container">
+        <div className="recipe-header">
+          {renderTitles(title, category)}
+          {renderButtons(path, favorites, setFavorite, {
+            id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+          })}
+        </div>
+        {renderIngredients(ingredients, measures)}
+        {renderIntructions(instructions)}
+        {video && (
+          <iframe
+            className="instruction-video"
+            data-testid="video"
+            src={video}
+            title="Video"
+            frameBorder="0"
+          />
+        )}
+        {renderRecomendations(recom)}
       </div>
-      {renderIngredients(ingredients, measures)}
-      {renderIntructions(instructions)}
-      {video && (
-        <iframe
-          className="instruction-video"
-          data-testid="video"
-          src={video}
-          title="Video"
-          frameBorder="0"
-        />
-      )}
-      {renderRecomendations(recom)}
+      {!done && startBtn(done, path)}
     </div>
-    {!done && startBtn(done, path)}
-  </div>
-);
+  );
 
 RenderDish.defaultProps = {
   video: '',

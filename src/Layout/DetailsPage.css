@@ -37,8 +37,20 @@ img , div , h3 , h2 , button {
   letter-spacing: 3px;
 }
 
-.buttons-container button {
-  margin: 10px;
+.buttons-container-details {
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+}
+
+.share-btn, .favorite-btn {
+  background-color: transparent;
+  border: none;
+  width: 30px;
+}
+
+.share-btn:focus, .favorite-btn:focus {
+  border: none;
 }
 
 .ingredients-container , .instructions-container {

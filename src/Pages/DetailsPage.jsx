@@ -3,7 +3,6 @@ import { useRouteMatch } from 'react-router-dom';
 import makeTheDish from '../Components/DetailsPage/dishHelper';
 import RenderDish from '../Components/DetailsPage/RenderDish';
 import useRequestId from '../Hooks/useRequestId';
-import '../Layout/DetailsPage.css';
 
 const mealOrDrink = (meal, drink) => { if (meal) return meal[0]; return drink[0]; };
 

@@ -1,0 +1,39 @@
+.profileContainer-main {
+  background-image: url('https://cdn.pixabay.com/photo/2015/04/20/13/30/kitchen-731351_960_720.jpg');
+  background-position: left;
+  background-size: cover;
+  
+  height: 82vh;
+}
+
+.profileContainer {
+  
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  justify-content: space-between;
+  padding-top: 100px;
+}
+
+.profile-link {
+  text-decoration: none;
+}
+
+.userEmail {
+  background-color: #f3a43d;
+  color: white;
+  font-weight: 700;
+  padding: 20px;
+  text-align: center;
+  width: 280px;
+}
+
+.profile-btn {
+  background-color: #f3a43d;
+  border: none;
+  color: white;
+  font-weight: 700;
+  padding: 20px;
+  width: 320px;
+}
