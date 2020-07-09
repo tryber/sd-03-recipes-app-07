@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import '../../Layout/DetailsPage.css';
 
 const renderTitles = (title, category) => (
   <div className="titles-container">
