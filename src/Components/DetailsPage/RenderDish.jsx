@@ -27,7 +27,7 @@ const renderButtons = (path, favorites, setFavorite, callback, state, {
     <div className="buttons-container">
       <button
         data-testid="share-btn"
-        onClick={() => { shareRecipe(urlPath, callback); }}
+        onClick={() => shareRecipe(urlPath, callback)}
         src={shareIcon}
         type="button"
       >

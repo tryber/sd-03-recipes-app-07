@@ -14,6 +14,7 @@ const renderTitles = (title, category) => (
 
 const shareRecipe = (urlPath, callback) => {
   callback(true);
+  navigator.clipboard.writeText(urlPath.replace('/in-progress', ''));
   setTimeout(() => callback(false), 2000);
 };
 
@@ -26,7 +27,7 @@ const renderButtons = (path, favorites, setFavorite, callback, state, {
     <div className="buttons-container">
       <button
         data-testid="share-btn"
-        onClick={() => { navigator.clipboard.writeText(urlPath); shareRecipe(urlPath, callback); }}
+        onClick={() => shareRecipe(urlPath, callback)}
         src={shareIcon}
         type="button"
       >
