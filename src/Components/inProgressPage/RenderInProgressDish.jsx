@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import blackHeartIcon from '../../images/blackHeartIcon.svg';
-import shareIcon from '../../images/shareIcon.svg';
-import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import renderButtons from '../DetailsButtons';
 import '../../Layout/RenderInProgressDish.css';
 
 const renderTitles = (title, category) => (
@@ -12,43 +10,43 @@ const renderTitles = (title, category) => (
   </div>
 );
 
-const shareRecipe = (urlPath, callback) => {
-  callback(true);
-  navigator.clipboard.writeText(urlPath.replace('/in-progress', ''));
-  setTimeout(() => callback(false), 2000);
-};
+// const shareRecipe = (urlPath, callback) => {
+//   callback(true);
+//   navigator.clipboard.writeText(urlPath.replace('/in-progress', ''));
+//   setTimeout(() => callback(false), 2000);
+// };
 
-const renderButtons = (path, favorites, setFavorite, callback, state, {
-  id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
-}) => {
-  const isFavorite = favorites.find((elem) => elem.id === id);
-  const urlPath = `http://localhost:3000${path}`;
-  return (
-    <div className="buttons-container">
-      <button
-        data-testid="share-btn"
-        onClick={() => shareRecipe(urlPath, callback)}
-        src={shareIcon}
-        type="button"
-      >
-        <img src={shareIcon} alt="Share" />
-      </button>
-      {state && <span>Link copiado!</span>}
-      <button
-        data-testid="favorite-btn"
-        src={isFavorite ? blackHeartIcon : whiteHeartIcon}
-        onClick={() => setFavorite(
-          id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
-        )}
-        type="button"
-      >
-        {isFavorite
-          ? <img src={blackHeartIcon} alt="is favorite" />
-          : <img src={whiteHeartIcon} alt="not favorite" />}
-      </button>
-    </div>
-  );
-};
+// const renderButtons = (path, favorites, setFavorite, callback, state, {
+//   id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+// }) => {
+//   const isFavorite = favorites.find((elem) => elem.id === id);
+//   const urlPath = `http://localhost:3000${path}`;
+//   return (
+//     <div className="buttons-container">
+//       <button
+//         data-testid="share-btn"
+//         onClick={() => shareRecipe(urlPath, callback)}
+//         src={shareIcon}
+//         type="button"
+//       >
+//         <img src={shareIcon} alt="Share" />
+//       </button>
+//       {state && <span>Link copiado!</span>}
+//       <button
+//         data-testid="favorite-btn"
+//         src={isFavorite ? blackHeartIcon : whiteHeartIcon}
+//         onClick={() => setFavorite(
+//           id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+//         )}
+//         type="button"
+//       >
+//         {isFavorite
+//           ? <img src={blackHeartIcon} alt="is favorite" />
+//           : <img src={whiteHeartIcon} alt="not favorite" />}
+//       </button>
+//     </div>
+//   );
+// };
 
 const renderHeading = (path, favorites, setFavorite, callback, state, {
   id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
