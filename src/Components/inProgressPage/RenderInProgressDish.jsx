@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
@@ -13,7 +12,13 @@ const renderTitles = (title, category) => (
   </div>
 );
 
-const renderButtons = (path, favorites, setFavorite, {
+const shareRecipe = (urlPath, callback) => {
+  navigator.clipboard.writeText(urlPath);
+  callback(true);
+  setTimeout(() => callback(false), 2000);
+};
+
+const renderButtons = (path, favorites, setFavorite, callback, state, {
   id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
 }) => {
   const isFavorite = favorites.find((elem) => elem.id === id);
@@ -22,12 +27,13 @@ const renderButtons = (path, favorites, setFavorite, {
     <div className="buttons-container">
       <button
         data-testid="share-btn"
-        onClick={() => { navigator.clipboard.writeText(urlPath); alert('Link copiado!'); }}
+        onClick={() => { navigator.clipboard.writeText(urlPath); shareRecipe(urlPath, callback); }}
         src={shareIcon}
         type="button"
       >
         <img src={shareIcon} alt="Share" />
       </button>
+      {state && <span>Link copiado!</span>}
       <button
         data-testid="favorite-btn"
         src={isFavorite ? blackHeartIcon : whiteHeartIcon}
@@ -40,17 +46,16 @@ const renderButtons = (path, favorites, setFavorite, {
           ? <img src={blackHeartIcon} alt="is favorite" />
           : <img src={whiteHeartIcon} alt="not favorite" />}
       </button>
-      <span>Link copiado!</span>
     </div>
   );
 };
 
-const renderHeading = (path, favorites, setFavorite, {
+const renderHeading = (path, favorites, setFavorite, callback, state, {
   id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
 }) => (
   <div className="recipe-header">
     {renderTitles(title, category)}
-    {renderButtons(path, favorites, setFavorite, {
+    {renderButtons(path, favorites, setFavorite, callback, state, {
       id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
     })}
   </div>
@@ -125,7 +130,7 @@ const startBtn = (done) => (
   </div>
 );
 
-const RenderDish = ({
+const RenderDish = (callback, state, {
   id, type, area, drinkCategory, alcoholicOrNot = '', path, favorites, thumb, title,
   category, ingredients, measures, instructions, setFavorite, checks, func,
 }) => (
@@ -137,7 +142,7 @@ const RenderDish = ({
       src={thumb}
     />
     <div className="recipe-container">
-      {renderHeading(path, favorites, setFavorite, {
+      {renderHeading(path, favorites, setFavorite, callback, state, {
         id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
       })}
       {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
@@ -146,24 +151,5 @@ const RenderDish = ({
     {startBtn(checkIfAllMarket(ingredients, id, type, checks))}
   </div>
 );
-
-RenderDish.propTypes = {
-  id: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  area: PropTypes.string.isRequired,
-  drinkCategory: PropTypes.string.isRequired,
-  alcoholicOrNot: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
-  favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
-  thumb: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
-  measures: PropTypes.arrayOf(PropTypes.string).isRequired,
-  instructions: PropTypes.string.isRequired,
-  setFavorite: PropTypes.func.isRequired,
-  checks: PropTypes.arrayOf(PropTypes.string).isRequired,
-  func: PropTypes.func.isRequired,
-};
 
 export default RenderDish;

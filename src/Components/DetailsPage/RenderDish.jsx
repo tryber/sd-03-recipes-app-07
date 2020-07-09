@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
@@ -13,7 +12,13 @@ const renderTitles = (title, category) => (
   </div>
 );
 
-const renderButtons = (path, favorites, setFavorite, {
+const shareRecipe = (urlPath, callback) => {
+  navigator.clipboard.writeText(urlPath);
+  callback(true);
+  setTimeout(() => callback(false), 2000);
+};
+
+const renderButtons = (path, favorites, setFavorite, callback, state, {
   id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
 }) => {
   const isFavorite = favorites.find((elem) => elem.id === id);
@@ -22,12 +27,13 @@ const renderButtons = (path, favorites, setFavorite, {
     <div className="buttons-container">
       <button
         data-testid="share-btn"
-        onClick={() => { navigator.clipboard.writeText(urlPath); alert('Link copiado!'); }}
+        onClick={() => { navigator.clipboard.writeText(urlPath); shareRecipe(urlPath, callback); }}
         src={shareIcon}
         type="button"
       >
         <img src={shareIcon} alt="Share" />
       </button>
+      {state && <span>Link copiado!</span>}
       <button
         data-testid="favorite-btn"
         src={isFavorite ? blackHeartIcon : whiteHeartIcon}
@@ -40,10 +46,20 @@ const renderButtons = (path, favorites, setFavorite, {
           ? <img src={blackHeartIcon} alt="is favorite" />
           : <img src={whiteHeartIcon} alt="not favorite" />}
       </button>
-      <span>Link copiado!</span>
     </div>
   );
 };
+
+const renderHeading = (path, favorites, setFavorite, callback, state, {
+  id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+}) => (
+  <div className="recipe-header">
+    {renderTitles(title, category)}
+    {renderButtons(path, favorites, setFavorite, callback, state, {
+      id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+    })}
+  </div>
+);
 
 const renderIngredients = (ingredients, measures) => (
   <div className="ingredients-container">
@@ -112,9 +128,9 @@ const startBtn = (checks, path, id) => (
   </div>
 );
 
-const RenderDish = ({
+const RenderDish = (callback, state, {
   id, type, area, checks, drinkCategory, alcoholicOrNot = '', done, path, favorites, thumb,
-  title, category, ingredients, measures, instructions, recom, video, setFavorite,
+  title, category, ingredients, measures, instructions, recom, video = '', setFavorite,
 }) => (
   <div>
     <img
@@ -124,12 +140,9 @@ const RenderDish = ({
       src={thumb}
     />
     <div className="recipe-container">
-      <div className="recipe-header">
-        {renderTitles(title, category)}
-        {renderButtons(path, favorites, setFavorite, {
-          id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
-        })}
-      </div>
+      {renderHeading(path, favorites, setFavorite, callback, state, {
+        id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+      })}
       {renderIngredients(ingredients, measures)}
       {renderIntructions(instructions)}
       {video && (
@@ -146,33 +159,5 @@ const RenderDish = ({
     {!done && startBtn(checks, path, id)}
   </div>
 );
-
-RenderDish.defaultProps = {
-  video: '',
-};
-
-RenderDish.propTypes = {
-  alcoholicOrNot: PropTypes.string.isRequired,
-  area: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  checks: PropTypes.shape({
-    cocktails: PropTypes.arrayOf(PropTypes.number),
-    meals: PropTypes.arrayOf(PropTypes.number),
-  }).isRequired,
-  done: PropTypes.bool.isRequired,
-  drinkCategory: PropTypes.string.isRequired,
-  favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
-  id: PropTypes.string.isRequired,
-  ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
-  instructions: PropTypes.string.isRequired,
-  measures: PropTypes.arrayOf(PropTypes.string).isRequired,
-  path: PropTypes.string.isRequired,
-  recom: PropTypes.arrayOf(PropTypes.object).isRequired,
-  setFavorite: PropTypes.func.isRequired,
-  thumb: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  video: PropTypes.string,
-};
 
 export default RenderDish;

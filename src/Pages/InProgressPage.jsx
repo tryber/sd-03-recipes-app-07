@@ -10,6 +10,7 @@ const goodRecomen = (value) => { if (value.meals) return value.meals; return val
 
 const InProgressPage = () => {
   const forceUpdate = useState('')[1];
+  const [share, setShare] = useState(false);
   const { params: { id }, path, url } = useRouteMatch();
   const { recipe, recomendations, requesting } = useRequestId(path, id);
 
@@ -22,7 +23,7 @@ const InProgressPage = () => {
       url,
       forceUpdate,
     );
-    return RenderDish(dish);
+    return RenderDish(setShare, share, dish);
   }
   return <h1>Loading...</h1>;
 };

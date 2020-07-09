@@ -3,7 +3,6 @@ import { useRouteMatch } from 'react-router-dom';
 import makeTheDish from '../Components/DetailsPage/dishHelper';
 import RenderDish from '../Components/DetailsPage/RenderDish';
 import useRequestId from '../Hooks/useRequestId';
-import '../Layout/DetailsPage.css';
 
 const mealOrDrink = (meal, drink) => { if (meal) return meal[0]; return drink[0]; };
 
@@ -11,6 +10,7 @@ const goodRecomen = (value) => { if (value.meals) return value.meals; return val
 
 const DetailsPage = () => {
   const forceUpdate = useState('')[1];
+  const [share, setShare] = useState(false);
   const { params: { id }, path, url } = useRouteMatch();
   const { recipe, recomendations, requesting } = useRequestId(path, id);
 
@@ -23,7 +23,7 @@ const DetailsPage = () => {
       url,
       forceUpdate,
     );
-    return RenderDish(dish);
+    return RenderDish(setShare, share, dish);
   }
   return <h1>Loading...</h1>;
 };
