@@ -26,6 +26,7 @@ const renderButtons = (path, favorites, setFavorite, callback, state, {
   return (
     <div className="buttons-container">
       <button
+        className="share-btn"
         data-testid="share-btn"
         onClick={() => shareRecipe(urlPath, callback)}
         src={shareIcon}
@@ -35,8 +36,9 @@ const renderButtons = (path, favorites, setFavorite, callback, state, {
       </button>
       {state && <span>Link copiado!</span>}
       <button
+        className="favorite-btn"
         data-testid="favorite-btn"
-        src={isFavorite ? blackHeartIcon : whiteHeartIcon}
+        src={!isFavorite ? whiteHeartIcon : blackHeartIcon}
         onClick={() => setFavorite(
           id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
         )}
