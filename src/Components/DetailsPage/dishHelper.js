@@ -147,7 +147,6 @@ const makeTheDish = (dish, recomendations, path, forceUpdate, setDoneChecks) => 
     type: 'comida',
     area: dish.strArea,
     done: false,
-    alcoholicOrNot: '',
     path,
     favorites,
     thumb: dish.strMealThumb,

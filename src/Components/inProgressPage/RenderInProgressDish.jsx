@@ -116,7 +116,7 @@ const renderIntructions = (instructions) => (
 // );
 
 const RenderDish = ({
-  id, type, area, drinkCategory, alcoholicOrNot, path, favorites, thumb, title,
+  id, type, area, drinkCategory, alcoholicOrNot = '', path, favorites, thumb, title,
   category, ingredients, measures, instructions, setFavorite, checks, func,
 }) => (
   <div>
