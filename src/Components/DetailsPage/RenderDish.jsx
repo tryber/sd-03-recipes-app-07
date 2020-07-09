@@ -113,7 +113,7 @@ const startBtn = (checks, path, id) => (
 );
 
 const RenderDish = ({
-  id, type, area, checks, drinkCategory, alcoholicOrNot, done, path, favorites, thumb,
+  id, type, area, checks, drinkCategory, alcoholicOrNot = '', done, path, favorites, thumb,
   title, category, ingredients, measures, instructions, recom, video, setFavorite,
 }) => (
   <div>
