@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import makeTheDish from '../Components/DetailsPage/dishHelper';
-import RenderDish from '../Components/DetailsPage/RenderDish';
+import RenderDish from '../Components/inProgressPage/RenderInProgressDish';
 import useRequestId from '../Hooks/useRequestId';
 
 const mealOrDrink = (meal, drink) => { if (meal) return meal[0]; return drink[0]; };
 
 const goodRecomen = (value) => { if (value.meals) return value.meals; return value.drinks; };
 
-const DetailsPage = () => {
+const InProgressPage = () => {
   const forceUpdate = useState('')[1];
   const [share, setShare] = useState(false);
   const { params: { id }, path, url } = useRouteMatch();
@@ -28,4 +28,4 @@ const DetailsPage = () => {
   return <h1>Loading...</h1>;
 };
 
-export default DetailsPage;
+export default InProgressPage;
