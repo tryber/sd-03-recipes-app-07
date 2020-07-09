@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
@@ -72,8 +72,7 @@ const checkIfIncludes = (id, i, checks, type) => {
   return [false, []];
 };
 
-// tomar atenção com o local storage se for o numero do ingrediente ou o nome do ingrediente
-const renderIngredients = (id, type, ingredients, measures, checks, func, newFunc) => (
+const renderIngredients = (id, type, ingredients, measures, checks, setLS, callback) => (
   <div className="ingredients-container">
     <h3>Ingredientes</h3>
     {ingredients.map((elem, i) => (
@@ -81,7 +80,7 @@ const renderIngredients = (id, type, ingredients, measures, checks, func, newFun
         <input
           checked={checkIfIncludes(id, i, checks, type)[0]}
           data-testid={`${i}-ingredient-step`}
-          onChange={() => func(id, type, i, checkIfIncludes(id, i, checks, type)[1], newFunc)}
+          onChange={() => setLS(id, type, i, checkIfIncludes(id, i, checks, type)[1], callback)}
           type="checkbox"
         />
         <p className={checkIfIncludes(id, i, checks, type)[0] ? 'selectedCheckBox' : ''}>
@@ -99,21 +98,32 @@ const renderIntructions = (instructions) => (
   </div>
 );
 
-// const startBtn = (doing, path) => (
-//   <div>
-//     <Link to={`${path}/in-progress`}>
-//       <button
-//         className="start-btn"
-//         data-testid="start-recipe-btn"
-//         type="button"
-//       >
-//         {doing
-//           ? 'Continuar Receita'
-//           : 'Iniciar Receita'}
-//       </button>
-//     </Link>
-//   </div>
-// );
+const checkIfAllMarket = (ingredients, id, type, arr) => {
+  const food = Object.entries(arr.meals).find((elem) => elem[0] === id);
+  const drink = Object.entries(arr.cocktails).find((elem) => elem[0] === id);
+  if (type === 'comida' && food) {
+    return food[1].length === ingredients.length;
+  }
+  if (type === 'bebida' && drink) {
+    return drink[1].length === ingredients.length;
+  }
+  return false;
+};
+
+const startBtn = (done) => (
+  <div>
+    <Link to="/receitas-feitas">
+      <button
+        className="finish-btn"
+        data-testid="finish-recipe-btn"
+        disabled={!done}
+        type="button"
+      >
+        Finalizar receita
+      </button>
+    </Link>
+  </div>
+);
 
 const RenderDish = ({
   id, type, area, drinkCategory, alcoholicOrNot = '', path, favorites, thumb, title,
@@ -133,7 +143,7 @@ const RenderDish = ({
       {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
       {renderIntructions(instructions)}
     </div>
-    {/* !done && startBtn(done, path) */}
+    {startBtn(checkIfAllMarket(ingredients, id, type, checks))}
   </div>
 );
 
