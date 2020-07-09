@@ -120,7 +120,6 @@ const makeTheDish = (dish, recomendations, path, forceUpdate, setDoneChecks) => 
   const measures = Object.entries(dish).filter((elem) => elem[0].includes('Measure') && elem[1] !== ' ').map((elem) => elem[1]);
   const doingChecks = doingRecipesHandler();
   const favorites = favoriteRecipesHandler();
-
   if (dish.strDrink) {
     return ({
       id: dish.idDrink,
@@ -140,8 +139,7 @@ const makeTheDish = (dish, recomendations, path, forceUpdate, setDoneChecks) => 
       recom: recomendations.slice('', 6),
       setFavorite: (...data) => setFavorite(...data, forceUpdate),
       checks: doingChecks,
-      func: setDoing,
-      setDoneChecks,
+      func: [setDoing, setDoneChecks],
     });
   }
   return ({
@@ -162,8 +160,7 @@ const makeTheDish = (dish, recomendations, path, forceUpdate, setDoneChecks) => 
     video: dish.strYoutube.replace('watch?v=', 'embed/'),
     setFavorite: (...data) => setFavorite(...data, forceUpdate),
     checks: doingChecks,
-    func: setDoing,
-    setDoneChecks,
+    func: [setDoing, setDoneChecks],
   });
 };
 

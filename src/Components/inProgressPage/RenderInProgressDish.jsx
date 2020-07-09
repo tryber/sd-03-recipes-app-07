@@ -106,7 +106,7 @@ const renderIntructions = (instructions) => (
 
 const RenderDish = ({
   id, type, area, drinkCategory, alcoholicOrNot, path, favorites, thumb, title,
-  category, ingredients, measures, instructions, setFavorite, checks, func, setDoneChecks,
+  category, ingredients, measures, instructions, setFavorite, checks, func,
 }) => (
   <div>
     <img
@@ -122,7 +122,7 @@ const RenderDish = ({
           id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
         })}
       </div>
-      {renderIngredients(id, type, ingredients, measures, checks, func, setDoneChecks)}
+      {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
       {renderIntructions(instructions)}
     </div>
     {/* !done && startBtn(done, path) */}
