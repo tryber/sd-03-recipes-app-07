@@ -39,6 +39,7 @@ const renderButtons = (path, favorites, setFavorite, {
           ? <img src={blackHeartIcon} alt="is favorite" />
           : <img src={whiteHeartIcon} alt="not favorite" />}
       </button>
+      <span>Link copiado!</span>
     </div>
   );
 };

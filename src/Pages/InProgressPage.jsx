@@ -21,7 +21,7 @@ const InProgressPage = () => {
       mealOrDrink(meals, drinks),
       goodRecomen(recomendations),
       url,
-      '',
+      forceUpdate,
       forceUpdate,
     );
     return RenderDish(dish);

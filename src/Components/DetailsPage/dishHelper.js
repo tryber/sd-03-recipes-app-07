@@ -13,17 +13,19 @@ const setFavorite = (
   const favorites = getLocalStorage('favoriteRecipes');
   if (favorites.find((elem) => elem.id === id)) {
     setLocalStorage('favoriteRecipes', [...favorites.filter((elem) => elem.id !== id)]);
-    forceUpdate(false);
+    forceUpdate(forceUpdate);
   } else if (type === 'bebida') {
     setLocalStorage('favoriteRecipes', [...favorites, {
       id, type, area, category: drinkCategory, alcoholicOrNot, name: title, image: thumb,
     }]);
+    forceUpdate(forceUpdate);
   } else {
     setLocalStorage('favoriteRecipes', [...favorites, {
       id, type, area, category, alcoholicOrNot, name: title, image: thumb,
     }]);
+    forceUpdate(forceUpdate);
   }
-  forceUpdate(true);
+  forceUpdate();
 };
 
 const doingRecipesHandler = () => {
@@ -137,7 +139,7 @@ const makeTheDish = (dish, recomendations, path, forceUpdate, setDoneChecks) => 
       measures,
       instructions: dish.strInstructions,
       recom: recomendations.slice('', 6),
-      setFavorite: (...data) => setFavorite(...data, forceUpdate),
+      setFavorite: (...data) => setFavorite(...data, setDoneChecks),
       checks: doingChecks,
       func: [setDoing, setDoneChecks],
     });
@@ -157,7 +159,7 @@ const makeTheDish = (dish, recomendations, path, forceUpdate, setDoneChecks) => 
     instructions: dish.strInstructions,
     recom: recomendations.slice('', 6),
     video: dish.strYoutube.replace('watch?v=', 'embed/'),
-    setFavorite: (...data) => setFavorite(...data, forceUpdate),
+    setFavorite: (...data) => setFavorite(...data, setDoneChecks),
     checks: doingChecks,
     func: [setDoing, setDoneChecks],
   });
