@@ -3,7 +3,7 @@ a , div , button {
   padding: 0;
 }
 
-.explorer-food-btn-container-main, .explorer-drink-btn-container-main {
+.explorer-food-btn-container-main , .explorer-drink-btn-container-main {
   background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
@@ -47,7 +47,7 @@ a , div , button {
   box-shadow: 3px 3px 7px black;
   color: white;
   font-weight: 800;
-  padding: 25px 0;
   margin: 10px 0;
+  padding: 25px 0;
   width: 340px;
 }

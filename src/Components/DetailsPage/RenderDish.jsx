@@ -117,35 +117,35 @@ const RenderDish = ({
   id, type, area, drinkCategory, alcoholicOrNot, done, path, favorites, thumb, title, category,
   ingredients, measures, instructions, recom, video, setFavorite,
 }) => (
-    <div>
-      <img
-        alt="food or beverage"
-        className="recipe-img"
-        data-testid="recipe-photo"
-        src={thumb}
-      />
-      <div className="recipe-container">
-        <div className="recipe-header">
-          {renderTitles(title, category)}
-          {renderButtons(path, favorites, setFavorite, {
-            id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
-          })}
-        </div>
-        {renderIngredients(ingredients, measures)}
-        {renderIntructions(instructions)}
-        {video && (
-          <iframe
-            className="instruction-video"
-            data-testid="video"
-            src={video}
-            title="Video"
-            frameBorder="0"
-          />
-        )}
-        {renderRecomendations(recom)}
+  <div>
+    <img
+      alt="food or beverage"
+      className="recipe-img"
+      data-testid="recipe-photo"
+      src={thumb}
+    />
+    <div className="recipe-container">
+      <div className="recipe-header">
+        {renderTitles(title, category)}
+        {renderButtons(path, favorites, setFavorite, {
+          id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+        })}
       </div>
-      {!done && startBtn(done, path)}
+      {renderIngredients(ingredients, measures)}
+      {renderIntructions(instructions)}
+      {video && (
+        <iframe
+          className="instruction-video"
+          data-testid="video"
+          src={video}
+          title="Video"
+          frameBorder="0"
+        />
+      )}
+      {renderRecomendations(recom)}
     </div>
+    {!done && startBtn(done, path)}
+  </div>
   );
 
 RenderDish.defaultProps = {

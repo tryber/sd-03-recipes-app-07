@@ -18,7 +18,8 @@ const ExplorerDrinks = () => {
       <Header />
       <div className="explorer-drink-btn-container-main">
         <div className="explorer-drink-btn-container">
-          <Link className="btn-explorer-a-food-drink"
+          <Link
+            className="btn-explorer-a-food-drink"
             to="/explorar/bebidas/ingredientes"
           >
             <button

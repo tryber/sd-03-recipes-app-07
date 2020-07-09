@@ -15,8 +15,8 @@ a , button , div {
 }
 
 .buttons-container-explorer {
+  margin: 145px 5px;
   margin-top: 145px;
-  margin: 5px solid white;
   width: 360px;
 }
 

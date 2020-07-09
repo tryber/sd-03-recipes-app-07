@@ -11,6 +11,7 @@ const BtnFiltersFoodDrinks = () => (
 
 const RecipesMadeRender = () => (
   <div>
+    <BtnFiltersFoodDrinks />
     <RecipeMadeCard />
   </div>
 );

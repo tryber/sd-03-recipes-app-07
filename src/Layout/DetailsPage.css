@@ -43,13 +43,13 @@ img , div , h3 , h2 , button {
   width: 80px;
 }
 
-.share-btn, .favorite-btn {
+.share-btn , .favorite-btn {
   background-color: transparent;
   border: none;
   width: 30px;
 }
 
-.share-btn:focus, .favorite-btn:focus {
+.share-btn:focus , .favorite-btn:focus {
   border: none;
 }
 

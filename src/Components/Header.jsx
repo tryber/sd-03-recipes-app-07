@@ -187,7 +187,7 @@ const Header = () => {
         >
           {titlePage(location)}</h1>
         {searchHeaderShow(location) && SearchButtonShow(setShowSearchBar, !showSearchBar)}
-        {!searchHeaderShow(location) && <div></div>}
+        {!searchHeaderShow(location) && <div>&copy;</div>}
         {showSearchBar && SearchBar(setBtnSel, setSearchValue)}
       </div>
       {

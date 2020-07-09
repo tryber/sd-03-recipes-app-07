@@ -13,7 +13,7 @@ const RecipeMadeCard = (type) => {
   if (type === 'drink') drink = true;
   <div>
     <div>
-      <img src={} alt='' />
+     {/*  <img src={} alt='' /> */}
     </div>
     <div>
       <div>
