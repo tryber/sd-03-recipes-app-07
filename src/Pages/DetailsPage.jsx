@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
-import makeTheDish from '../Components/DetailsPage/dishHelper';
-import RenderDish from '../Components/DetailsPage/RenderDish';
+import makeTheDish from '../Services/dishHelper';
+import RenderDish from '../Components/RenderDish';
 import useRequestId from '../Hooks/useRequestId';
 
 const mealOrDrink = (meal, drink) => { if (meal) return meal[0]; return drink[0]; };
@@ -23,7 +23,7 @@ const DetailsPage = () => {
       url,
       forceUpdate,
     );
-    return RenderDish(setShare, share, dish);
+    return <RenderDish set={setShare} share={share} dish={dish} />;
   }
   return <h1>Loading...</h1>;
 };

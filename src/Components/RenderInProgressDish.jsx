@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import renderButtons from '../DetailsButtons';
-import '../../Layout/RenderInProgressDish.css';
+import renderButtons from './DetailsButtons';
+import '../Layout/RenderInProgressDish.css';
 
 const renderTitles = (title, category) => (
   <div className="titles-container">
@@ -90,26 +91,59 @@ const startBtn = (done) => (
   </div>
 );
 
-const RenderDish = (callback, state, {
-  id, type, area, drinkCategory, alcoholicOrNot = '', path, favorites, thumb, title,
-  category, ingredients, measures, instructions, setFavorite, checks, func,
-}) => (
-  <div>
-    <img
-      alt="food or beverage"
-      className="recipe-img"
-      data-testid="recipe-photo"
-      src={thumb}
-    />
-    <div className="recipe-container">
-      {renderHeading(path, favorites, setFavorite, callback, state, {
-        id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
-      })}
-      {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
-      {renderIntructions(instructions)}
+const RenderDish = ({ dish, share, set: callback }) => {
+  const {
+    id, type, area, drinkCategory, alcoholicOrNot = '', path, favorites, thumb, title,
+    category, ingredients, measures, instructions, setFavorite, checks, func,
+  } = dish;
+  console.log(func);
+  return (
+    <div>
+      <img
+        alt="food or beverage"
+        className="recipe-img"
+        data-testid="recipe-photo"
+        src={thumb}
+      />
+      <div className="recipe-container">
+        {renderHeading(path, favorites, setFavorite, callback, share, {
+          id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+        })}
+        {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
+        {renderIntructions(instructions)}
+      </div>
+      {startBtn(checkIfAllMarket(ingredients, id, type, checks))}
     </div>
-    {startBtn(checkIfAllMarket(ingredients, id, type, checks))}
-  </div>
-);
+  );
+};
+
+RenderDish.propTypes = {
+  dish: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    area: PropTypes.string,
+    checks: PropTypes.shape({
+      cocktails: PropTypes.objectOf(PropTypes.array),
+      meals: PropTypes.objectOf(PropTypes.array),
+    }),
+    drinkCategory: PropTypes.string,
+    alcoholicOrNot: PropTypes.string,
+    done: PropTypes.bool,
+    path: PropTypes.string,
+    favorites: PropTypes.arrayOf(PropTypes.object),
+    thumb: PropTypes.string,
+    title: PropTypes.string,
+    category: PropTypes.string,
+    ingredients: PropTypes.arrayOf(PropTypes.string),
+    measures: PropTypes.arrayOf(PropTypes.string),
+    instructions: PropTypes.string,
+    recom: PropTypes.arrayOf(PropTypes.object),
+    video: PropTypes.string,
+    setFavorite: PropTypes.func,
+    func: PropTypes.arrayOf(PropTypes.func),
+  }).isRequired,
+  share: PropTypes.bool.isRequired,
+  set: PropTypes.func.isRequired,
+};
 
 export default RenderDish;

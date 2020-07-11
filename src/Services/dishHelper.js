@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from '../../Services/localStorage';
+import { getLocalStorage, setLocalStorage } from './localStorage';
 
 const favoriteRecipesHandler = () => {
   if (!getLocalStorage('favoriteRecipes')) {
