@@ -123,8 +123,8 @@ RenderDish.propTypes = {
     type: PropTypes.string,
     area: PropTypes.string,
     checks: PropTypes.shape({
-      cocktails: PropTypes.objectOf(PropTypes.array),
       meals: PropTypes.objectOf(PropTypes.array),
+      cocktails: PropTypes.objectOf(PropTypes.array),
     }),
     drinkCategory: PropTypes.string,
     alcoholicOrNot: PropTypes.string,
