@@ -96,7 +96,6 @@ const RenderDish = ({ dish, share, set: callback }) => {
     id, type, area, drinkCategory, alcoholicOrNot = '', path, favorites, thumb, title,
     category, ingredients, measures, instructions, setFavorite, checks, func,
   } = dish;
-  console.log(func);
   return (
     <div>
       <img
