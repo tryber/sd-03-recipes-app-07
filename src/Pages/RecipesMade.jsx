@@ -5,7 +5,6 @@ import Header from '../Components/Header';
 const RecipesMade = () => (
   <div>
     <Header />
-    
   </div>
 );
 

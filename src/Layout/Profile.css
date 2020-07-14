@@ -20,6 +20,7 @@
 
 .userEmail {
   background-color: #f3a43d;
+  box-shadow: 4px 4px 5px black;
   color: white;
   font-weight: 700;
   padding: 20px;
@@ -30,6 +31,7 @@
 .profile-btn {
   background-color: #f3a43d;
   border: none;
+  box-shadow: 4px 4px 5px black;
   color: white;
   font-weight: 700;
   padding: 20px;

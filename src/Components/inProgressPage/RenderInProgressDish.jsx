@@ -13,13 +13,13 @@ const renderTitles = (title, category) => (
 const renderHeading = (path, favorites, setFavorite, callback, state, {
   id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
 }) => (
-  <div className="recipe-header">
-    {renderTitles(title, category)}
-    {renderButtons(path, favorites, setFavorite, callback, state, {
-      id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
-    })}
-  </div>
-);
+    <div className="recipe-header">
+      {renderTitles(title, category)}
+      {renderButtons(path, favorites, setFavorite, callback, state, {
+        id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+      })}
+    </div>
+  );
 
 const checkIfIncludes = (id, i, checks, type) => {
   const arrCom = Object.keys(checks.meals).find((elem) => elem === id);
@@ -42,7 +42,11 @@ const renderIngredients = (id, type, ingredients, measures, checks, setLS, callb
   <div className="ingredients-container">
     <h3>Ingredientes</h3>
     {ingredients.map((elem, i) => (
-      <div data-testid={`${i}-ingredient-step`} key={elem}>
+      <div
+        data-testid={`${i}-ingredient-step`}
+        key={elem}
+        className="checkbox-inprogress-container"
+      >
         <input
           checked={checkIfIncludes(id, i, checks, type)[0]}
           onChange={() => setLS(id, type, i, checkIfIncludes(id, i, checks, type)[1], callback)}
@@ -94,22 +98,22 @@ const RenderDish = (callback, state, {
   id, type, area, drinkCategory, alcoholicOrNot = '', path, favorites, thumb, title,
   category, ingredients, measures, instructions, setFavorite, checks, func,
 }) => (
-  <div>
-    <img
-      alt="food or beverage"
-      className="recipe-img"
-      data-testid="recipe-photo"
-      src={thumb}
-    />
-    <div className="recipe-container">
-      {renderHeading(path, favorites, setFavorite, callback, state, {
-        id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
-      })}
-      {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
-      {renderIntructions(instructions)}
+    <div style={{paddingBottom: '58px'}}>
+      <img
+        alt="food or beverage"
+        className="recipe-img"
+        data-testid="recipe-photo"
+        src={thumb}
+      />
+      <div className="recipe-container">
+        {renderHeading(path, favorites, setFavorite, callback, state, {
+          id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+        })}
+        {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
+        {renderIntructions(instructions)}
+      </div>
+      {startBtn(checkIfAllMarket(ingredients, id, type, checks))}
     </div>
-    {startBtn(checkIfAllMarket(ingredients, id, type, checks))}
-  </div>
-);
+  );
 
 export default RenderDish;

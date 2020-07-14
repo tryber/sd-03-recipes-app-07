@@ -63,6 +63,7 @@ img , div , h3 , h2 , button {
 
 .instruction-video {
   margin-left: 10px;
+  height: 192px;
   width: 340px;
 }
 
