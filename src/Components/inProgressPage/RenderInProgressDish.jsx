@@ -98,7 +98,7 @@ const RenderDish = (callback, state, {
   id, type, area, drinkCategory, alcoholicOrNot = '', path, favorites, thumb, title,
   category, ingredients, measures, instructions, setFavorite, checks, func,
 }) => (
-  <div style={{paddingBottom: '58px'}}>
+  <div style={ {paddingBottom: '58px'} }>
     <img
       alt="food or beverage"
       className="recipe-img"
