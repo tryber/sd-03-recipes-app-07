@@ -107,16 +107,19 @@ const titlePage = (location) => {
     case '/explorar':
       title = 'Explorar';
       break;
-    case '/explorarcomidas':
+    case '/explorar/comidas':
       title = 'Explorar Comidas';
       break;
-    case '/explorarbebidas':
+    case '/explorar/bebidas':
       title = 'Explorar Bebidas';
       break;
-    case '/exploraringredientes':
+    case '/explorar/comidas/ingredientes':
       title = 'Explorar Ingredientes';
       break;
-    case '/explorarorigem':
+    case '/explorar/bebidas/ingredientes':
+      title = 'Explorar Ingredientes';
+      break;
+    case '/explorar/comidas/area':
       title = 'Explorar Origem';
       break;
     case '/receitasfeitas':
@@ -184,6 +187,7 @@ const Header = () => {
         >
           {titlePage(location)}</h1>
         {searchHeaderShow(location) && SearchButtonShow(setShowSearchBar, !showSearchBar)}
+        {!searchHeaderShow(location) && <div>&copy;</div>}
         {showSearchBar && SearchBar(setBtnSel, setSearchValue)}
       </div>
       {

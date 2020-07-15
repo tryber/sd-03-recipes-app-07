@@ -1,0 +1,53 @@
+a , div , button {
+  margin: 0;
+  padding: 0;
+}
+
+.explorer-food-btn-container-main , .explorer-drink-btn-container-main {
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+}
+
+.explorer-food-btn-container-main {
+  background-image: url('../images/bcg-explorar-food.jpg');
+}
+
+.explorer-drink-btn-container-main {
+  background-image: url('../images/bcg-explorar-drink.jpg');
+  background-position: center;
+}
+
+.explorer-food-btn-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  margin-top: 105px;
+}
+
+.explorer-drink-btn-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  margin-top: 135px;
+}
+
+.btn-explorer-a-food-drink {
+  text-decoration: none;
+}
+
+.btn-explorer-button-food-drink {
+  background-color: #f3a43d;
+  border: none;
+  box-shadow: 3px 3px 7px black;
+  color: white;
+  font-weight: 800;
+  margin: 10px 0;
+  padding: 25px 0;
+  width: 340px;
+}

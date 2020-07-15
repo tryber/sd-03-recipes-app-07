@@ -2,6 +2,7 @@ import React from 'react';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import '../Layout/DetailsPage.css';
 
 const shareRecipe = (urlPath, callback) => {
   callback(true);
@@ -19,8 +20,9 @@ const renderButtons = (path, favorites, setFavorite, callback, state, {
   const isFavorite = favorites.find((elem) => elem.id === id);
   const urlPath = `http://localhost:3000${path}`;
   return (
-    <div className="buttons-container">
+    <div className="buttons-container-details">
       <button
+        className="share-btn"
         data-testid="share-btn"
         onClick={() => shareRecipe(urlPath, callback)}
         src={shareIcon}
@@ -30,6 +32,7 @@ const renderButtons = (path, favorites, setFavorite, callback, state, {
       </button>
       {state && <span>Link copiado!</span>}
       <button
+        className="favorite-btn"
         data-testid="favorite-btn"
         src={isFavorite ? blackHeartIcon : whiteHeartIcon}
         onClick={() => setFavorite(

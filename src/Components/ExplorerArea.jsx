@@ -3,6 +3,9 @@ import React, { useContext, useState } from 'react';
 import RecipeCard from './RecipeCard';
 import { recipeContext } from '../Hooks/recipeContext';
 import { requestByAreas } from '../Services/requestsAPI';
+import Header from './Header';
+import Footer from './Footer';
+import '../Layout/ExplorerArea.css';
 
 const callArea = (county, setcountry) => {
   requestByAreas(county).then((data) => setcountry(data.data.meals));
@@ -37,29 +40,36 @@ const ExplorerArea = () => {
 
   return (
     <div>
-      <select
-        data-testid="explore-by-area-dropdown"
-        onChange={(e) => {
-          callArea(e.target.value, setRenderArea);
-          if (e.target.value === 'All') return setcountry('');
-          return setcountry(e.target.value);
-        }}
-      >
-        {areasFood.map((elem) => (
-          <option
-            data-testid={`${elem.strArea}-option`}
-            key={elem.strArea}
-          >
-            {elem.strArea}
-          </option>
-        ))}
-        <option
-          data-testid="All-option"
+      <Header />
+      <div>
+        <select
+          className="counters-select"
+          data-testid="explore-by-area-dropdown"
+          onChange={(e) => {
+            callArea(e.target.value, setRenderArea);
+            if (e.target.value === 'All') return setcountry('');
+            return setcountry(e.target.value);
+          }}
         >
-          All
+          {areasFood.map((elem) => (
+            <option
+              className="counters-options"
+              data-testid={`${elem.strArea}-option`}
+              key={elem.strArea}
+            >
+              {elem.strArea}
+            </option>
+          ))}
+          <option
+            className="counters-options"
+            data-testid="All-option"
+          >
+            All
         </option>
-      </select>
-      {renderFoods(foods, country, renderArea)}
+        </select>
+        {renderFoods(foods, country, renderArea)}
+      </div>
+      <Footer />
     </div>
   );
 };

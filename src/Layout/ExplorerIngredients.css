@@ -1,0 +1,16 @@
+button , div {
+  margin: 0;
+  padding: 0;
+}
+
+.explorer-ingredients-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 65px;
+}
+
+.btn-explorer-ingredients {
+  background-color: transparent;
+  border: none;
+}

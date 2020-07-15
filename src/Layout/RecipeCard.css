@@ -33,9 +33,12 @@ div , h3 , img {
 .card-title {
   color: white;
   font-family: reisregular, Arial, Helvetica, sans-serif;
-  letter-spacing: 3.5px;
-  padding: 10px;
+  letter-spacing: 2.5px;
+  overflow: hidden;
+  padding: 8px 10px;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card-image {
