@@ -118,6 +118,6 @@ const RenderDish = (callback, state, {
     </div>
     {!done && startBtn(checks, path, id)}
   </div>
-);
+  );
 
 export default RenderDish;

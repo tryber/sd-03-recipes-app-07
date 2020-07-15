@@ -1,3 +1,21 @@
 .selectedCheckBox {
   text-decoration: line-through solid black;
 }
+
+.finish-btn {
+  background-color: green;
+  border: none;
+  bottom: 0;
+  color: white;
+  font-size: 26px;
+  height: 60px;
+  margin-left: 10px;
+  position: fixed;
+  text-align: center;
+  width: 340px;
+}
+
+.checkbox-inprogress-container {
+  align-items: center;
+  display: flex;
+}

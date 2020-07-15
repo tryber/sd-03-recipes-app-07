@@ -1,0 +1,36 @@
+a , button , div {
+  margin: 0;
+  padding: 0;
+}
+
+.buttons-container-main {
+  align-items: center;
+  background-image: url('../images/bcg-explorar.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+}
+
+.buttons-container-explorer {
+  margin: 145px 5px;
+  margin-top: 145px;
+  width: 360px;
+}
+
+.btn-explorer-a {
+  text-decoration: none;
+}
+
+.btn-explorer-button {
+  background-color: #f3a43d;
+  border: none;
+  box-shadow: 3px 3px 7px black;
+  color: white;
+  font-weight: 800;
+  margin: 10px;
+  padding: 25px 0;
+  width: 340px;
+}
