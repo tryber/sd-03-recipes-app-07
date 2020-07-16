@@ -12,7 +12,7 @@ export const DoneRecipeCard = ({ recipe, index }) => (
     <h3 data-testid={`${index}-horizontal-done-date`}>{recipe.doneDate}</h3>
     {recipe.tags.length > 0
         && recipe.tags.map((tag) => (
-        <p key={tag} data-testid={`${index}-${tag}-horizontal-tag`}>{tag}</p>
+          <p key={tag} data-testid={`${index}-${tag}-horizontal-tag`}>{tag}</p>
       ))}
     <button
       data-testid={`${index}-horizontal-share-btn`}
@@ -25,8 +25,8 @@ export const DoneRecipeCard = ({ recipe, index }) => (
 );
 
 DoneRecipeCard.propTypes = {
-  recipe: PropTypes.string,
-  index: PropTypes.string,
+  recipe: PropTypes.string.isRequired,
+  index: PropTypes.string.isRequired,
 };
 
 export default DoneRecipeCard;
