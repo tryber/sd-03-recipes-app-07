@@ -12,7 +12,9 @@ export const DoneRecipeCard = ({ recipe, index }) => (
         alt="Recipe"
       />
     </div>
-    <h4 data-testid={`${index}-horizontal-top-text`}>{recipe.category || recipe.alcoholicOrNot}</h4>
+    <h4 data-testid={`${index}-horizontal-top-text`}>
+      {recipe.type === 'comida' ? recipe.area + recipe.category : recipe.alcoholicOrNot}
+    </h4>
     <h2 data-testid={`${index}-horizontal-name`}>{recipe.name}</h2>
     <h3 data-testid={`${index}-horizontal-done-date`}>{recipe.doneDate}</h3>
     {recipe.tags.length > 0
