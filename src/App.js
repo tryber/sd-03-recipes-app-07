@@ -9,6 +9,7 @@ import {
   Profile,
   ExplorerScreen,
   InProgressPage,
+  RecipesMade,
 } from './Pages';
 
 import ExplorerFoods from './Components/ExplorerFoods';
@@ -36,7 +37,7 @@ const App = () => (
         <Route exact path="/explorar/comidas/area" component={ExplorerArea} />
         <Route exact path="/explorar/bebidas/area" component={NotFound} />
         <Route exact path="/perfil" component={Profile} />
-        <Route exact path="/receitas-feitas" component={Login} />
+        <Route exact path="/receitas-feitas" component={RecipesMade} />
         <Route exact path="/receitas-favoritas" component={Login} />
       </Switch>
     </Router>

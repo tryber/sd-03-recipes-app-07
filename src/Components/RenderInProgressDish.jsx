@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import renderButtons from './DetailsButtons';
+import { doneRecipesHandler } from '../Services/dishHelper';
 import '../Layout/RenderInProgressDish.css';
 
 const renderTitles = (title, category) => (
@@ -80,20 +81,27 @@ const checkIfAllMarket = (ingredients, id, type, arr) => {
   return false;
 };
 
-const startBtn = (done) => (
-  <div>
-    <Link to="/receitas-feitas">
-      <button
-        className="finish-btn"
-        data-testid="finish-recipe-btn"
-        disabled={!done}
-        type="button"
-      >
-        Finalizar receita
-      </button>
-    </Link>
-  </div>
-);
+const startBtn = (done, id, type) => {
+  const d = new Date();
+  const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+  const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
+  const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+  return (
+    <div>
+      <Link to="/receitas-feitas">
+        <button
+          className="finish-btn"
+          data-testid="finish-recipe-btn"
+          disabled={!done}
+          type="button"
+          onClick={() => doneRecipesHandler(id, type, `${da}/${mo}/${ye}`)}
+        >
+          Finalizar receita
+        </button>
+      </Link>
+    </div>
+  );
+};
 
 const RenderDish = ({ dish, share, set: callback }) => {
   const {
@@ -115,7 +123,7 @@ const RenderDish = ({ dish, share, set: callback }) => {
         {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
         {renderIntructions(instructions)}
       </div>
-      {startBtn(checkIfAllMarket(ingredients, id, type, checks))}
+      {startBtn(checkIfAllMarket(ingredients, id, type, checks), id, type)}
     </div>
   );
 };

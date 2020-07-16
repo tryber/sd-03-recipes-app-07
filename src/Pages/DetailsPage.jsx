@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
-import makeTheDish from '../Services/dishHelper';
+import { makeTheDish } from '../Services/dishHelper';
 import RenderDish from '../Components/RenderDish';
 import useRequestId from '../Hooks/useRequestId';
 
