@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import renderButtons from '../DetailsButtons';
-import '../../Layout/RenderInProgressDish.css';
+import renderButtons from './DetailsButtons';
+import { doneRecipesHandler } from '../Services/dishHelper';
+import '../Layout/RenderInProgressDish.css';
 
 const renderTitles = (title, category) => (
   <div className="titles-container">
@@ -79,41 +81,80 @@ const checkIfAllMarket = (ingredients, id, type, arr) => {
   return false;
 };
 
-const startBtn = (done) => (
-  <div>
-    <Link to="/receitas-feitas">
-      <button
-        className="finish-btn"
-        data-testid="finish-recipe-btn"
-        disabled={!done}
-        type="button"
-      >
-        Finalizar receita
-      </button>
-    </Link>
-  </div>
-);
-
-const RenderDish = (callback, state, {
-  id, type, area, drinkCategory, alcoholicOrNot = '', path, favorites, thumb, title,
-  category, ingredients, measures, instructions, setFavorite, checks, func,
-}) => (
-  <div style={{ paddingBottom: '58px' }}>
-    <img
-      alt="food or beverage"
-      className="recipe-img"
-      data-testid="recipe-photo"
-      src={thumb}
-    />
-    <div className="recipe-container">
-      {renderHeading(path, favorites, setFavorite, callback, state, {
-        id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
-      })}
-      {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
-      {renderIntructions(instructions)}
+const startBtn = (done, id, type) => {
+  const d = new Date();
+  const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+  const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
+  const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+  return (
+    <div>
+      <Link to="/receitas-feitas">
+        <button
+          className="finish-btn"
+          data-testid="finish-recipe-btn"
+          disabled={!done}
+          type="button"
+          onClick={() => doneRecipesHandler(id, type, `${da}/${mo}/${ye}`)}
+        >
+          Finalizar receita
+        </button>
+      </Link>
     </div>
-    {startBtn(checkIfAllMarket(ingredients, id, type, checks))}
-  </div>
   );
+};
+
+const RenderDish = ({ dish, share, set: callback }) => {
+  const {
+    id, type, area, drinkCategory, alcoholicOrNot = '', path, favorites, thumb, title,
+    category, ingredients, measures, instructions, setFavorite, checks, func,
+  } = dish;
+  return (
+    <div>
+      <img
+        alt="food or beverage"
+        className="recipe-img"
+        data-testid="recipe-photo"
+        src={thumb}
+      />
+      <div className="recipe-container">
+        {renderHeading(path, favorites, setFavorite, callback, share, {
+          id, type, area, category, drinkCategory, alcoholicOrNot, title, thumb,
+        })}
+        {renderIngredients(id, type, ingredients, measures, checks, func[0], func[1])}
+        {renderIntructions(instructions)}
+      </div>
+      {startBtn(checkIfAllMarket(ingredients, id, type, checks), id, type)}
+    </div>
+  );
+};
+
+RenderDish.propTypes = {
+  dish: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    area: PropTypes.string,
+    checks: PropTypes.shape({
+      meals: PropTypes.objectOf(PropTypes.array),
+      cocktails: PropTypes.objectOf(PropTypes.array),
+    }),
+    drinkCategory: PropTypes.string,
+    alcoholicOrNot: PropTypes.string,
+    done: PropTypes.bool,
+    path: PropTypes.string,
+    favorites: PropTypes.arrayOf(PropTypes.object),
+    thumb: PropTypes.string,
+    title: PropTypes.string,
+    category: PropTypes.string,
+    ingredients: PropTypes.arrayOf(PropTypes.string),
+    measures: PropTypes.arrayOf(PropTypes.string),
+    instructions: PropTypes.string,
+    recom: PropTypes.arrayOf(PropTypes.object),
+    video: PropTypes.string,
+    setFavorite: PropTypes.func,
+    func: PropTypes.arrayOf(PropTypes.func),
+  }).isRequired,
+  share: PropTypes.bool.isRequired,
+  set: PropTypes.func.isRequired,
+};
 
 export default RenderDish;

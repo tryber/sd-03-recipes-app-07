@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from '../../Services/localStorage';
+import { getLocalStorage, setLocalStorage } from './localStorage';
 
 const favoriteRecipesHandler = () => {
   if (!getLocalStorage('favoriteRecipes')) {
@@ -117,11 +117,16 @@ const setDoing = (id, type, index, arr, setDoneChecks) => {
   }
 };
 
-const makeTheDish = (dish, recomendations, path, forceUpdate) => {
+const setup = (dish) => {
   const ingredients = Object.entries(dish).filter((elem) => elem[0].includes('Ingredient') && elem[1]).map((elem) => elem[1]);
   const measures = Object.entries(dish).filter((elem) => elem[0].includes('Measure') && elem[1] !== ' ').map((elem) => elem[1]);
   const doingChecks = doingRecipesHandler();
   const favorites = favoriteRecipesHandler();
+  return { ingredients, measures, doingChecks, favorites };
+};
+
+const makeTheDish = (dish, recomendations, path, forceUpdate) => {
+  const { ingredients, measures, doingChecks, favorites } = setup(dish);
   if (dish.strDrink) {
     return ({
       id: dish.idDrink,
@@ -165,4 +170,73 @@ const makeTheDish = (dish, recomendations, path, forceUpdate) => {
   });
 };
 
-export default makeTheDish;
+const doneRecipesLS = () => {
+  if (!getLocalStorage('doneRecipes')) {
+    setLocalStorage('doneRecipes', []);
+  }
+  return getLocalStorage('doneRecipes');
+};
+
+const setDoneMeal = (meal, date) => {
+  const { idMeal, strMealThumb, strMeal, strCategory, strArea, strTags } = meal;
+  const tags = strTags.split(',').slice(0, 2);
+  return {
+    id: idMeal,
+    type: 'comida',
+    area: strArea,
+    category: strCategory,
+    alcoholicOrNot: '',
+    name: strMeal,
+    image: strMealThumb,
+    doneDate: date,
+    tags,
+  };
+};
+
+const setDoneDrink = (drink, date) => {
+  const { idDrink, strCategory, strDrinkThumb, strDrink, strAlcoholic } = drink;
+  return {
+    id: idDrink,
+    type: 'bebida',
+    area: '',
+    category: strCategory,
+    alcoholicOrNot: strAlcoholic,
+    name: strDrink,
+    image: strDrinkThumb,
+    doneDate: date,
+    tags: [],
+  };
+};
+
+const setDoneRecipesOnLS = (obj) => {
+  const localStorageRef = doneRecipesLS();
+  setLocalStorage('doneRecipes', [
+    ...localStorageRef,
+    obj,
+  ]);
+};
+
+const removeDoingLocalStorage = (id, type, obj) => {
+  console.log(obj);
+  const localStorageRef = doingRecipesHandler();
+  if (type === 'comida') {
+    delete localStorageRef.meals[id];
+    setLocalStorage('inProgressRecipes', { ...localStorageRef });
+  } else {
+    delete localStorageRef.cocktails[id];
+    setLocalStorage('inProgressRecipes', { ...localStorageRef });
+  }
+};
+
+const doneRecipesHandler = async (id, type, date) => {
+  doneRecipesLS();
+  const isMeal = type === 'comida' ? 'meal' : 'cocktail';
+  const req = await fetch(`https://www.the${isMeal}db.com/api/json/v1/1/lookup.php?i=${id}`);
+  const res = await req.json();
+  const dish = type === 'comida' ? setDoneMeal(res.meals[0], date) : setDoneDrink(res.drinks[0], date);
+  removeDoingLocalStorage(id, type);
+  setDoneRecipesOnLS(dish);
+  return dish;
+};
+
+export { doneRecipesHandler, doneRecipesLS, makeTheDish };
