@@ -175,7 +175,7 @@ const doneRecipesLS = () => {
     setLocalStorage('doneRecipes', []);
   }
   return getLocalStorage('doneRecipes');
-}
+};
 
 const setDoneMeal = (meal, date) => {
   const { idMeal, strMealThumb, strMeal, strCategory, strArea, strTags } = meal;
@@ -217,13 +217,14 @@ const setDoneRecipesOnLS = (obj) => {
 };
 
 const removeDoingLocalStorage = (id, type, obj) => {
+  console.log(obj);
   const localStorageRef = doingRecipesHandler();
   if (type === 'comida') {
     delete localStorageRef.meals[id];
-    setLocalStorage('inProgressRecipes', { ...localStorageRef })
+    setLocalStorage('inProgressRecipes', { ...localStorageRef });
   } else {
     delete localStorageRef.cocktails[id];
-    setLocalStorage('inProgressRecipes', { ...localStorageRef })
+    setLocalStorage('inProgressRecipes', { ...localStorageRef });
   }
 };
 
