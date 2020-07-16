@@ -170,6 +170,13 @@ const makeTheDish = (dish, recomendations, path, forceUpdate) => {
   });
 };
 
+const doneRecipesLS = () => {
+  if (!getLocalStorage('doneRecipes')) {
+    setLocalStorage('doneRecipes', []);
+  }
+  return getLocalStorage('doneRecipes');
+}
+
 const setDoneMeal = (meal, date) => {
   const { idMeal, strMealThumb, strMeal, strCategory, strArea, strTags } = meal;
   const tags = strTags.split(',').slice(0, 2);
@@ -201,14 +208,34 @@ const setDoneDrink = (drink, date) => {
   };
 };
 
+const setDoneRecipesOnLS = (obj) => {
+  const localStorageRef = doneRecipesLS();
+  setLocalStorage('doneRecipes', [
+    ...localStorageRef,
+    obj,
+  ]);
+};
+
+const removeDoingLocalStorage = (id, type, obj) => {
+  const localStorageRef = doingRecipesHandler();
+  if (type === 'comida') {
+    delete localStorageRef.meals[id];
+    setLocalStorage('inProgressRecipes', { ...localStorageRef })
+  } else {
+    delete localStorageRef.cocktails[id];
+    setLocalStorage('inProgressRecipes', { ...localStorageRef })
+  }
+};
+
 const doneRecipesHandler = async (id, type, date) => {
+  doneRecipesLS();
   const isMeal = type === 'comida' ? 'meal' : 'cocktail';
   const req = await fetch(`https://www.the${isMeal}db.com/api/json/v1/1/lookup.php?i=${id}`);
   const res = await req.json();
   const dish = type === 'comida' ? setDoneMeal(res.meals[0], date) : setDoneDrink(res.drinks[0], date);
-  console.log(dish);
-  // remove a receita do localstorage doing
-  // salvar dados no local storage em feitas
+  removeDoingLocalStorage(id, type);
+  setDoneRecipesOnLS(dish);
+  return dish;
 };
 
-export { doneRecipesHandler, makeTheDish };
+export { doneRecipesHandler, doneRecipesLS, makeTheDish };
