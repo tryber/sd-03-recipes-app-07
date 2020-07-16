@@ -123,7 +123,7 @@ const setup = (dish) => {
   const doingChecks = doingRecipesHandler();
   const favorites = favoriteRecipesHandler();
   return { ingredients, measures, doingChecks, favorites };
-}
+};
 
 const makeTheDish = (dish, recomendations, path, forceUpdate) => {
   const { ingredients, measures, doingChecks, favorites } = setup(dish);
@@ -209,6 +209,6 @@ const doneRecipesHandler = async (id, type, date) => {
   console.log(dish);
   // remove a receita do localstorage doing
   // salvar dados no local storage em feitas
-}
+};
 
 export { doneRecipesHandler, makeTheDish };
